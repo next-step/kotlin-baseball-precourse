@@ -12,7 +12,12 @@ class Controller {
     }
 
     private fun _game(): Unit {
-
+        _computer.setRandomNum()
+        do {
+            val userInput: String = _inputUserNum()
+            val state: Int = _computer.compareNum(userInput)
+            _outputState(state)
+        } while (state != 30)
     }
 
     private fun _inputNewGame(): Int {

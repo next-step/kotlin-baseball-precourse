@@ -3,9 +3,9 @@ import kotlin.random.Random
 
 fun main() {
     var goalNumString: String = generateGoalNum()
-    val bw = BufferedReader(System.`in`.bufferedReader())
+    val br = BufferedReader(System.`in`.bufferedReader())
     print("숫자를 입력해 주세요 : ")
-    var inputNumString: String = bw.readLine()
+    var inputNumString: String = br.readLine()
 
     try {
         checkInputNum(inputNumString)
@@ -14,6 +14,10 @@ fun main() {
         return
     }
 
+    val matchResultMap = mutableMapOf("스트라이크" to 0, "볼" to 0, "미스" to 0)
+
+    matchGoalNumAndUserNum(goalNumString, inputNumString, matchResultMap)
+    printMatchResult(matchResultMap)
 }
 
 /**
@@ -102,4 +106,82 @@ fun isNotThreeDigitNumber(inputNumString: String): Boolean {
  */
 fun isNotDistinctNumber(numString: String): Boolean {
     return (numString[0] == numString[1] || numString[0] == numString[2] || numString[1] == numString[2])
+}
+
+/**
+ * goalNumString과 inputNumString을 매칭하고 matchResultMap을 업데이트함.
+ *
+ * @param goalNumString 목표 숫자 문자열
+ * @param inputNumString 사용자 입력 숫자 문자열
+ * @param matchResultMap 매칭 결과를 저장하는 MutableMap
+ *   맵의 키는 "스트라이크", "볼", "미스"이며, 값은 해당 결과의 개수임.
+ */
+fun matchGoalNumAndUserNum(
+    goalNumString: String,
+    inputNumString: String,
+    matchResultMap: MutableMap<String, Int>
+) {
+    for (i in 0..2) {
+        if (isStrike(i, inputNumString[i], goalNumString)) {
+            matchResultMap["스트라이크"] = matchResultMap["스트라이크"]!! + 1
+        } else if (isBall(i, inputNumString[i], goalNumString)) {
+            matchResultMap["볼"] = matchResultMap["볼"]!! + 1
+        } else {
+            matchResultMap["미스"] = matchResultMap["미스"]!! + 1
+        }
+    }
+}
+
+/**
+ * 현재 선택된 숫자가 스트라이크인지 확인.
+ *
+ * @param index 현재 자릿수를 나태는 index.
+ * @param curNumChar 현재 숫자를 나타내는 문자.
+ * @param goalNumString 목표 숫자를 나타내는 문자열.
+ * @return `true` if 스트라이크인 경우, `false` 그 외의 경우.
+ */
+fun isStrike(index: Int, curNumChar: Char, goalNumString: String): Boolean {
+    goalNumString.forEachIndexed { i, n ->
+        if (i == index && n == curNumChar) {
+            return true
+        }
+    }
+    return false
+}
+
+/**
+ * 현재 선택된 숫자가 볼인지 확인.
+ *
+ * @param index 현재 자릿수를 나태는 index.
+ * @param curNumChar 현재 숫자를 나타내는 문자.
+ * @param goalNumString 목표 숫자를 나타내는 문자열.
+ * @return `true` if 볼인 경우, `false` 그 외의 경우.
+ */
+fun isBall(index: Int, curNumChar: Char, goalNumString: String): Boolean {
+    goalNumString.forEachIndexed { i, n ->
+        if (i != index && n == curNumChar) {
+            return true
+        }
+    }
+    return false
+}
+
+/**
+ * 매칭 결과를 출력하는 함수.
+ *
+ * @param matchResultMap 매칭 결과를 저장하는 MutableMap.
+ *   맵의 키는 "스트라이크", "볼", "미스"이며, 값은 해당 결과의 개수임.
+ */
+fun printMatchResult(matchResultMap: MutableMap<String, Int>) {
+    if (matchResultMap["미스"] == 3) {
+        println("낫싱")
+        return
+    }
+    if (matchResultMap["스트라이크"] == 0) {
+        println("${matchResultMap["볼"]}볼")
+    } else if (matchResultMap["볼"] == 0) {
+        println("${matchResultMap["스트라이크"]}스트라이크")
+    } else {
+        println("${matchResultMap["볼"]}볼 ${matchResultMap["스트라이크"]}스트라이크")
+    }
 }

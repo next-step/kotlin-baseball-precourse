@@ -82,6 +82,7 @@ private class Player {
         var userInput: String = getUserInput()
         var inputNumberState: Boolean = inputChecker.checkThreeDigitInput(userInput)
         while (!inputNumberState) {
+            print("숫자를 입력해 주세요 : ")
             userInput = getUserInput()
             inputNumberState = inputChecker.checkThreeDigitInput(userInput)
         }

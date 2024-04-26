@@ -6,10 +6,18 @@ private sealed class GameState {
 
 private class GameController {
     var gameState: GameState = GameState.BeforeStart
+
+    fun startGame() {
+        gameState = GameState.OnGoing
+    }
+
+    fun endGame() {
+        gameState = GameState.GameEnd
+    }
 }
 
-private class Computer {
-    val number: Array<Int> = setNumber()
+private class Computer(val gameController: GameController) {
+    val randomNumber: Array<Int> = setNumber()
 
     private fun setNumber(): Array<Int> {
         val number: Array<Int> = Array(3) { 0 }
@@ -28,8 +36,39 @@ private class Computer {
         return result
     }
 
-    fun printResult(userNumberInput: Array<Int>) {
+    fun printResult(userInputNumber: Array<Int>, gameController: GameController) {
+        val strike: Int = countStrike(userInputNumber)
+        val ball: Int = countBall(userInputNumber)
 
+        if (strike == 3) {
+            println("3스트라이크")
+            println("3개의 숫자를 모두 맞히셨습니다!게임종료")
+            gameController.endGame()
+        }
+        when {
+            strike == 0 && ball == 0 -> println("낫싱")
+            strike == 0 -> println("${ball}볼")
+            ball == 0 -> println("${strike}스트라이크")
+            else -> println("${ball}볼 ${strike}스트라이크")
+        }
+    }
+
+    private fun countStrike(userInputNumber: Array<Int>): Int {
+        var strike: Int = 0
+        if (userInputNumber[0] == randomNumber[0]) strike++
+        if (userInputNumber[1] == randomNumber[1]) strike++
+        if (userInputNumber[2] == randomNumber[2]) strike++
+
+        return strike
+    }
+
+    private fun countBall(userInputNumber: Array<Int>): Int {
+        var ball: Int = 0
+        if (userInputNumber[0] == randomNumber[1] || userInputNumber[0] == randomNumber[2]) ball++
+        if (userInputNumber[1] == randomNumber[0] || userInputNumber[1] == randomNumber[2]) ball++
+        if (userInputNumber[2] == randomNumber[0] || userInputNumber[2] == randomNumber[1]) ball++
+
+        return ball
     }
 }
 
@@ -56,6 +95,7 @@ private class Player {
     }
 
     fun getUserGameStatusInput(): Int {
+        print("숫자를 입력해 주세요 : ")
         return 0
     }
 }

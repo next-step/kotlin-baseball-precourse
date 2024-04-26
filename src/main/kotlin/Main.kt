@@ -80,10 +80,10 @@ private class Player {
     fun getUserNumberInput(inputChecker: InputChecker): Array<Int> {
         print("숫자를 입력해 주세요 : ")
         var userInput: String = getUserInput()
-        var inputNumberState: Boolean = inputChecker.checkInput(userInput)
+        var inputNumberState: Boolean = inputChecker.checkThreeDigitInput(userInput)
         while (!inputNumberState) {
             userInput = getUserInput()
-            inputNumberState = inputChecker.checkInput(userInput)
+            inputNumberState = inputChecker.checkThreeDigitInput(userInput)
         }
 
         val result: Array<Int> = Array(3) { 0 }
@@ -94,15 +94,35 @@ private class Player {
         return result
     }
 
-    fun getUserGameStatusInput(): Int {
-        print("숫자를 입력해 주세요 : ")
-        return 0
+    fun getUserGameStatusInput(inputChecker: InputChecker): Int {
+        println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+        var userInput: String = getUserInput()
+        var inputNumberState: Boolean = inputChecker.checkOneDigitInput(userInput)
+        while (!inputNumberState) {
+            userInput = getUserInput()
+            inputNumberState = inputChecker.checkOneDigitInput(userInput)
+        }
+
+        return userInput.toInt()
     }
 }
 
 private class InputChecker {
-    fun checkInput(userInput: String): Boolean {
+    fun checkThreeDigitInput(userInput: String): Boolean {
         return isInt(userInput) && isThreeDigit(userInput) && notDuplicated(userInput)
+    }
+
+    fun checkOneDigitInput(userInput: String): Boolean {
+        return isInt(userInput) && isOneOrTwo(userInput)
+    }
+
+    private fun isOneOrTwo(userInput: String): Boolean {
+        val num = userInput.toInt()
+        if (num == 1 || num == 2) {
+            return true
+        }
+        println("입력값이 1 또는 2가 아닙니다.")
+        return false
     }
 
     private fun isInt(userInput: String): Boolean {
@@ -110,7 +130,7 @@ private class InputChecker {
             userInput.toInt()
             true
         } catch (e: NumberFormatException) {
-            println("1부터 9까지 서로 다른 수로 이루어진 3자리수를 입력하세요.")
+            println("입력값이 정수가 아닙니다.")
             false
         }
     }
@@ -120,6 +140,7 @@ private class InputChecker {
         if (num % 1000 == 0) {
             return true
         }
+        println("입력값이 세 자리수가 아닙니다.")
         return false
     }
 

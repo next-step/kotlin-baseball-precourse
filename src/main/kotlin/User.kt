@@ -12,6 +12,13 @@ class User {
     }
 
     public fun compareNum(enemyNum: String): Int {
-        return 0
+        var state = 0
+        for (i in 0..2) {
+            if (enemyNum[i] == _number[i])
+                state += 10
+            else if (enemyNum[i] in _number)
+                state += 1
+        }
+        return state
     }
 }

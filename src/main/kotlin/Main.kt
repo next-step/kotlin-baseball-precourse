@@ -16,8 +16,8 @@ private class GameController {
     }
 }
 
-private class Computer(val gameController: GameController) {
-    val randomNumber: Array<Int> = setNumber()
+private class Computer {
+    private val randomNumber: Array<Int> = setNumber()
 
     private fun setNumber(): Array<Int> {
         val number: Array<Int> = Array(3) { 0 }
@@ -159,5 +159,14 @@ private class InputChecker {
 }
 
 fun main() {
+    val gameController = GameController()
+    val computer = Computer()
+    val player = Player()
+    val inputChecker = InputChecker()
 
+    gameController.gameState = GameState.OnGoing
+    while (gameController.gameState == GameState.OnGoing) {
+        val userInput = player.getUserNumberInput(inputChecker)
+        computer.printResult(userInput, gameController)
+    }
 }

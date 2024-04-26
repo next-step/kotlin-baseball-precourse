@@ -33,6 +33,16 @@ private class Computer {
     }
 }
 
+private class Player {
+    fun getUserNumberInput(): Int {
+        return 0
+    }
+
+    fun getUserGameStatusInput(): Int {
+        return 0
+    }
+}
+
 fun main() {
 
 }

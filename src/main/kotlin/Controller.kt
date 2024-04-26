@@ -6,7 +6,9 @@ class Controller {
     private val _view: View = View()
 
     public fun run(): Unit {
-
+        do {
+            _game()
+        } while (_inputNewGame() == 1)
     }
 
     private fun _game(): Unit {

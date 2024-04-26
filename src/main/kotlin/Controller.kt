@@ -1,5 +1,6 @@
 import User
 import View
+import java.lang.IllegalArgumentException
 
 class Controller {
     private val _computer: User = User()
@@ -21,7 +22,11 @@ class Controller {
     }
 
     private fun _inputNewGame(): Int {
-        return 0
+        _view.outputln("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+        val userInput: String = _view.input()
+        if (userInput != "1" && userInput != "2")
+            throw IllegalArgumentException("올바른 입력이 아닙니다.")
+        return userInput.toInt()
     }
 
     private fun _inputUserNum(): String {

@@ -30,7 +30,11 @@ class Controller {
     }
 
     private fun _inputUserNum(): String {
-        return ""
+        _view.output("숫자를 입력해 주세요 : ");
+        val userInput: String = _view.input()
+        if (!"[1-9]{3}".toRegex().matches(userInput))
+            throw IllegalArgumentException("올바른 입력이 아닙니다.")
+        return userInput
     }
 
     private fun _outputState(state: Int): Unit {

@@ -38,6 +38,15 @@ class Controller {
     }
 
     private fun _outputState(state: Int): Unit {
-
+        var msg: String = ""
+        if (state % 10 != 0)
+            msg += "${state % 10}볼 "
+        if (state / 10 != 0)
+            msg += "${state / 10}스트라이크 "
+        if (state == 30)
+            msg = "3개의 숫자를 모두 맞히셨습니다! 게임 종료"
+        if (state == 0)
+            msg = "낫싱"
+        _view.outputln(msg)
     }
 }

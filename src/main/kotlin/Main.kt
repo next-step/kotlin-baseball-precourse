@@ -136,8 +136,7 @@ private class InputChecker {
     }
 
     private fun isThreeDigit(userInput: String): Boolean {
-        val num = userInput.toInt()
-        if (num % 1000 == 0) {
+        if (userInput.length == 3) {
             return true
         }
         println("입력값이 세 자리수가 아닙니다.")

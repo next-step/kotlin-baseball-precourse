@@ -38,13 +38,10 @@ fun generateGoalNum(): String {
  * @return `true` if goalNumString이 게임 규칙에 맞는 경우, `false` 그 외의 경우
  */
 fun isCorrectGoalNum(goalNumString: String): Boolean {
-    if (goalNumString[1] == '0' || goalNumString[2] == '0') {
+    if (isNotValidNumber(goalNumString)) {
         return false
     }
-    if (goalNumString[0] == goalNumString[1] ||
-        goalNumString[0] == goalNumString[2] ||
-        goalNumString[1] == goalNumString[2]
-    ) {
+    if (isNotDistinctNumber(goalNumString)) {
         return false
     }
     return true

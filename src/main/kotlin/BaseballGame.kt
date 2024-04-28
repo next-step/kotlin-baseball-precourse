@@ -3,10 +3,18 @@ import kotlin.random.Random
 // HOW_MANY_BALLS
 // 유추해야 할 수의 자리수
 // 과제에서는 3자리로 한정되어 있지만 해당 값을 바꾸면 자리수도 바꿔진다
-class BaseballGame(private val HOW_MANY_BALLS : Int) {
-    private val answer: List<Int> = makeAnswer()
-    private var _strikeCount : Int = 0
-    private var _ballCount : Int = 0
+class BaseballGame(private val HOW_MANY_BALLS: Int) {
+    private var answer: List<Int>
+    private var _strikeCount: Int = 0
+    private var _ballCount: Int = 0
+
+    // 종료 플래그
+    // 메인에서 호출 시 terminateFlag가 true가 될 때까지 doGame을 호출한다
+    var terminateFlag: Boolean = false
+
+    init {
+        answer = makeAnswer()
+    }
 
     // 랜덤한 정답 생성 함수
     private fun makeAnswer(): List<Int> {
@@ -29,6 +37,18 @@ class BaseballGame(private val HOW_MANY_BALLS : Int) {
         return answer.joinToString("")
     }
 
+    // 깔끔한 비교를 위해 정규 표현식으로 유효성 검증
+    // (?! .. ) 는 negative lookahead. 즉, 다음에 나올 패턴에 부합하지 않는 패턴만 매치함
+    // *(.).*\\1 는 문자열에 존재하는 모든 char에 대해 중복이 존재하는지 확인
+    //   보충 : *(.).* 부분을 통해 한가지의 char를 그룹 캡처. 이는 존재하는 모든 char에 대해 반복한다
+    //         그 후 캡처한 그룹 \\1 을 통해 본인을 제외한 char중 같은 것이 있는지 확인을 진행한다
+    //         ?!에 의해 존재하는 경우 매칭되지 않는다
+    // [1-9]{3} 은 1~9의 숫자로 3자리 수여야 함을 뜻함
+    private fun isValidInput(num: String): Boolean {
+        val regex = Regex("^(?!.*(.).*\\1)[1-9]{${HOW_MANY_BALLS}}$")
+        return regex.matches(num)
+    }
+
     // 볼, 스트라이크 카운트 초기화 함수
     private fun initCount() {
         _ballCount = 0
@@ -37,26 +57,32 @@ class BaseballGame(private val HOW_MANY_BALLS : Int) {
 
     // 계산한 볼, 스트라이크 카운트 출력 함수
     // 볼, 스트라이크의 합이 0일 경우 낫싱으로 판단
-    private fun printCount(){
-        if(_ballCount + _strikeCount == 0){
+    private fun printGuessResult() {
+        if (_ballCount + _strikeCount == 0) {
             println("낫싱")
             return
         }
 
-        if (_ballCount > 0){
+        if (_ballCount > 0) {
             print("${_ballCount}볼 ")
         }
-        if (_strikeCount > 0){
+        if (_strikeCount > 0) {
             println("${_strikeCount}스트라이크")
         } else {
             println("")
         }
     }
 
-    // 사용자가 게임을 하기위해 호출하는 추측 메서드
-    fun guess(guessNum: String) {
+    // 유추한 수의 스트라이크, 볼을 판단하는 메서드
+    // 정규표현식 이용을 위해 String으로 파라미터를 받는다
+    private fun guess(guessNum: String) {
 
         initCount()
+        // 유효하지 않은 수일 경우 IllegalArgumentException 발생
+        // 이 결과는 main 함수의 try catch 문에서 이어진다
+        if (!isValidInput(guessNum)) {
+            throw IllegalArgumentException("올바르지 않은 형식입니다. \n서로 다른 1에서 9까지의 수로 이루어진 3자리 수를 입력하세요.\nex) 123, 456")
+        }
 
         // 추측한 수의 각 자리수 및 인덱스 추출
         for ((idx, guessDigit) in guessNum.withIndex()) {
@@ -71,10 +97,22 @@ class BaseballGame(private val HOW_MANY_BALLS : Int) {
                 _ballCount++
             }
         }
-
-        printCount()
     }
 
+    // 사용자가 게임을 하기위해 호출하는 메서드
+    // 숫자를 입력받고 guess 함수에 넘긴다.
+    // IllegalArgumentException 발생시 메시지 출력 후 종료 플래그를 true로 바꾼다
+    fun doGame() {
+        print("숫자를 입력해 주세요 : ")
+        val guessNum = readLine() ?: ""
+        try {
+            guess(guessNum)
+        } catch (e: IllegalArgumentException) {
+            println(e.message)
+            terminateFlag = true
+        }
+        printGuessResult()
+    }
 
 
 }
@@ -82,17 +120,8 @@ class BaseballGame(private val HOW_MANY_BALLS : Int) {
 fun main() {
     var baseballGame = BaseballGame(3)
 
-    println(baseballGame.getAnswer())
-
-    baseballGame.guess("123")
-    baseballGame.guess("456")
-    baseballGame.guess("789")
-    baseballGame.guess("234")
-
-
-
-
-
-
-
+    while (!baseballGame.terminateFlag) {
+        baseballGame.doGame()
+    }
+    println("프로그램을 종료합니다.")
 }

@@ -33,10 +33,6 @@ class BaseballGame(private val HOW_MANY_BALLS: Int) {
         return _answer
     }
 
-    fun getAnswer(): String {
-        return answer.joinToString("")
-    }
-
     // 깔끔한 비교를 위해 정규 표현식으로 유효성 검증
     // (?! .. ) 는 negative lookahead. 즉, 다음에 나올 패턴에 부합하지 않는 패턴만 매치함
     // *(.).*\\1 는 문자열에 존재하는 모든 char에 대해 중복이 존재하는지 확인

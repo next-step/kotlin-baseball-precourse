@@ -4,9 +4,9 @@ import kotlin.random.Random
 // 유추해야 할 수의 자리수
 // 과제에서는 3자리로 한정되어 있지만 해당 값을 바꾸면 자리수도 바꿔진다
 class BaseballGame(private val HOW_MANY_BALLS: Int) {
-    private var answer: List<Int>
-    private var _strikeCount: Int = 0
-    private var _ballCount: Int = 0
+    var answer: List<Int>
+    var _strikeCount: Int = 0
+    var _ballCount: Int = 0
 
     // 종료 플래그
     // 메인에서 호출 시 terminateFlag가 true가 될 때까지 doGame을 호출한다
@@ -17,7 +17,7 @@ class BaseballGame(private val HOW_MANY_BALLS: Int) {
     }
 
     // 랜덤한 정답 생성 함수
-    private fun makeAnswer(): List<Int> {
+    fun makeAnswer(): List<Int> {
         var _answer = mutableListOf(3)
 
         // 1~9의 랜덤 수를 추출
@@ -44,7 +44,7 @@ class BaseballGame(private val HOW_MANY_BALLS: Int) {
     //         그 후 캡처한 그룹 \\1 을 통해 본인을 제외한 char중 같은 것이 있는지 확인을 진행한다
     //         ?!에 의해 존재하는 경우 매칭되지 않는다
     // [1-9]{3} 은 1~9의 숫자로 3자리 수여야 함을 뜻함
-    private fun isValidInput(num: String): Boolean {
+    fun isValidInput(num: String): Boolean {
         val regex = Regex("^(?!.*(.).*\\1)[1-9]{${HOW_MANY_BALLS}}$")
         return regex.matches(num)
     }
@@ -75,7 +75,7 @@ class BaseballGame(private val HOW_MANY_BALLS: Int) {
 
     // 유추한 수의 스트라이크, 볼을 판단하는 메서드
     // 정규표현식 이용을 위해 String으로 파라미터를 받는다
-    private fun guess(guessNum: String) {
+    fun guess(guessNum: String) {
 
         initCount()
         // 유효하지 않은 수일 경우 IllegalArgumentException 발생
@@ -125,7 +125,7 @@ class BaseballGame(private val HOW_MANY_BALLS: Int) {
     // 게임이 종료 됐을 시 실행되는 메서드
     // 값을 입력 받고 1이면 정답을 초기화 한다
     // 1이 아닌 다른 수일 경우 종료 플래그를 true로 바꾼다
-    private fun restart() {
+    fun restart() {
         println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
 
         if (readLine() ?: "" == "1") {
@@ -134,6 +134,7 @@ class BaseballGame(private val HOW_MANY_BALLS: Int) {
             terminateFlag = true
         }
     }
+
 
 }
 

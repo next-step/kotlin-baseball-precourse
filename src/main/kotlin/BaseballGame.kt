@@ -110,16 +110,16 @@ class BaseballGame(private val HOW_MANY_BALLS: Int) {
 
         try {
             guess(guessNum)
+            printGuessResult()
+            if (_strikeCount == HOW_MANY_BALLS) {
+                println("${HOW_MANY_BALLS}개의 숫자를 모두 맞히셨습니다! 게임 종료")
+                restart()
+            }
         } catch (e: IllegalArgumentException) {
             println(e.message)
             terminateFlag = true
         }
 
-        printGuessResult()
-        if (_strikeCount == HOW_MANY_BALLS) {
-            println("${HOW_MANY_BALLS}개의 숫자를 모두 맞히셨습니다! 게임 종료")
-            restart()
-        }
     }
 
     // 게임이 종료 됐을 시 실행되는 메서드

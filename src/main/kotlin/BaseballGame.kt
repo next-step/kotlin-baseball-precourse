@@ -100,20 +100,40 @@ class BaseballGame(private val HOW_MANY_BALLS: Int) {
     }
 
     // 사용자가 게임을 하기위해 호출하는 메서드
-    // 숫자를 입력받고 guess 함수에 넘긴다.
+    // 숫자를 입력받고 guess()에 넘긴다.
     // IllegalArgumentException 발생시 메시지 출력 후 종료 플래그를 true로 바꾼다
+    // 각 유추시 마다 printGuessResult()를 호출하여 결과를 출력하고
+    // 모든 숫자를 맞췄을 시 restart()를 호출해 계속 진행할 지를 물어본다
     fun doGame() {
         print("숫자를 입력해 주세요 : ")
         val guessNum = readLine() ?: ""
+
         try {
             guess(guessNum)
         } catch (e: IllegalArgumentException) {
             println(e.message)
             terminateFlag = true
         }
+
         printGuessResult()
+        if (_strikeCount == HOW_MANY_BALLS) {
+            println("${HOW_MANY_BALLS}개의 숫자를 모두 맞히셨습니다! 게임 종료")
+            restart()
+        }
     }
 
+    // 게임이 종료 됐을 시 실행되는 메서드
+    // 값을 입력 받고 1이면 정답을 초기화 한다
+    // 1이 아닌 다른 수일 경우 종료 플래그를 true로 바꾼다
+    private fun restart() {
+        println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+
+        if (readLine() ?: "" == "1") {
+            answer = makeAnswer()
+        } else {
+            terminateFlag = true
+        }
+    }
 
 }
 

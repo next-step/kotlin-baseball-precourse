@@ -1,7 +1,18 @@
-fun main(){
+fun main() {
+    while(true){
+        println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+        val game = readLine()!!
+        if (game == "1"){
+            startGame(createdRandomNumber())
 
+        } else if (game == "2"){
+            println("프로그램을 종료합니다.")
+            break
 
-
+        }else{
+            throw IllegalArgumentException("A number must be 1 or 2")
+        }
+    }
 }
 
 fun baseballGame(checkUserNumber: String, checkRandomNumber : String) { //스트라이크 볼 판정

@@ -15,10 +15,28 @@ fun main() {
     }
 }
 
-fun baseballGame(checkUserNumber: String, checkRandomNumber : String) { //스트라이크 볼 판정
+fun baseballGame(checkUserNumber: String, checkRandomNumber : String){ //스트라이크 볼 판정
+    var ball : Int = 0
+    var strike : Int = 0
+    for (i in 0..2){
+        if(checkUserNumber[i] == checkRandomNumber[i]){
+            strike +=1
+        }else if (checkUserNumber[i] != checkRandomNumber[i] && checkUserNumber[i] in checkRandomNumber){
+            ball +=1
+        }else{
+            continue
+        }
 
-
-
+    }
+    if(ball ==0 && strike ==0){
+        return println("낫싱")
+    }else if (ball ==0 && strike != 0){
+        return println("${strike}스트라이크")
+    }else if (ball !=0 && strike == 0){
+        return println("${ball}볼")
+    }else{
+        return println("${ball}볼 ${strike}스트라이크")
+    }
 
 }
 

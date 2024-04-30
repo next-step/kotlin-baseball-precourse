@@ -23,9 +23,20 @@ fun baseballGame(checkUserNumber: String, checkRandomNumber : String) { //스트
 }
 
 fun startGame(randomNumberInFunction : String){
-
-
-
+    while(true){
+        println("숫자를 입력해 주세요:")
+        var userNumberInFunction : String = readLine()!!
+        if(randomNumberInFunction == userNumberInFunction){
+            println("3스트라이크")
+            println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+            break
+        }else if(userNumberInFunction.length != 3){
+            throw IllegalArgumentException("A number must be 100~999 ")
+            break
+        }else{
+            baseballGame(userNumberInFunction,randomNumberInFunction)
+        }
+    }
 }
 
 fun createdRandomNumber() : String { // 랜덤 난수 생성 함수!

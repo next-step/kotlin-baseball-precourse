@@ -20,6 +20,20 @@ fun judgeFromUserInput(game: BaseballGame, player: BaseballPlayer) {
     }
 }
 
+/** 사용자가 게임을 끝내고 싶은지 확인하는 함수
+ *  @return 사용자가 그만하기를 원한다면 true, 계속하기를 원한다면 false 반환 */
+fun wantExit(): Boolean {
+    print("> 게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요: ")
+
+    // 사용자로부터 입력을 받음
+    val userInput: String = readLine()!!
+    return when (userInput) {
+        "1" -> false    // "1"을 입력한 경우, false 반환
+        "2" -> true     // "2"를 입력한 경우, true 반환
+        else -> wantExit()    // 그 외의 값을 입력한 경우, 재귀적으로 다시 반복
+    }
+}
+
 fun main() {
     while (true) {
         println("===[숫자야구 게임]==========")
@@ -33,6 +47,7 @@ fun main() {
         // 사용자가 맞힐때 까지 계속해서 입력을 시도
         judgeFromUserInput(game, player)
 
-        break   // 임시
+        // 해당 프로그램을 재시작할지, 종료할지 결정
+        if (wantExit()) break
     }
 }

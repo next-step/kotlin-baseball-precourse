@@ -20,6 +20,7 @@ fun playGame (computerNumbers: List<Int>) {
         }
         val (strikes, balls) = calculateResult(computerNumbers, userNumbers)
         if (strikes == 3) {
+            printGameResult(balls, strikes)
             println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
             gameOver = true
         } else if (strikes != 0 || balls != 0){

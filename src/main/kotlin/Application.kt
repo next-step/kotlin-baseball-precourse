@@ -33,7 +33,7 @@ fun generateComputerNumbers(): List<Int> = List(3) { Random.nextInt(1, 10) }.dis
 fun getUserInput(): String {print("숫자를 입력해 주세요 : ")
     return readLine() ?: throw IllegalArgumentException()
 }
-fun isValidInput(numbers: List<Int>):Boolean = numbers.size == 3 && numbers.all { it in 1..9 }
+fun isValidInput(numbers: List<Int>):Boolean = numbers.size == 3 && numbers.all { it in 1..9 } && numbers.distinct().size == 3
 fun parseUserInput(input: String):List<Int> = input.trim().map { it.toString().toInt() }
 fun calculateResult(computerNumbers: List<Int>, userNumbers: List<Int>): Pair<Int, Int> {
     var strikes = 0

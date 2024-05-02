@@ -57,6 +57,6 @@ fun calculateResult(computerNumbers: List<Int>, userNumbers: List<Int>): Pair<In
 }
 
 fun printGameResult(balls: Int, strikes: Int) {
-    println("$balls볼 $strikes스트라이크")
+    println("$balls 볼 $strikes 스트라이크")
 }
 fun askForAnotherGame() : Boolean {}

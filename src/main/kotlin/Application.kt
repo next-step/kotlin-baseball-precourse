@@ -35,6 +35,26 @@ fun getUserInput(): String {print("숫자를 입력해 주세요 : ")
 }
 fun isValidInput(numbers: List<Int>):Boolean = numbers.size == 3 && numbers.all { it in 1..9 }
 fun parseUserInput(input: String):List<Int> = input.trim().map { it.toString().toInt() }
-fun calculateResult(computerNumbers: List<Int>, userNumbers: List<Int>):
+fun calculateResult(computerNumbers: List<Int>, userNumbers: List<Int>): Pair<Int, Int> {
+    var strikes = 0
+    var balls = 0
+    val matchedIndices = mutableSetOf<Int>()
+
+    for ((index, userNumber) in userNumbers.withIndex()) {
+        if (userNumber == computerNumbers[index]) {
+            strikes++
+            matchedIndices.add(index)
+        }
+    }
+
+    for ((index, userNumber) in userNumbers.withIndex()) {
+        if (index !in matchedIndices && userNumber in computerNumbers) {
+            balls++
+        }
+    }
+
+    return Pair(strikes, balls)
+}
+
 fun printGameResult(balls: Int, strikes: Int) {}
 fun askForAnotherGame() : Boolean {}

@@ -12,7 +12,14 @@ class Console : Input, Output{
     }
 
     override fun displayBallCount(ballCount: BallCount) {
-        println("${ballCount.ball}볼 ${ballCount.strike}스트라이크")
+        with(ballCount) {
+            when {
+                strike > 0 && ball > 0 -> println("${ball}볼 ${strike}스트라이크")
+                strike > 0 -> println("${strike}스트라이크")
+                ball > 0 -> println("${ball}볼")
+                else -> println("낫싱")
+            }
+        }
     }
 
     override fun displayInputError() {

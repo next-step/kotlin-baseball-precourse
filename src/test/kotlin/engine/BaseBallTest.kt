@@ -84,7 +84,7 @@ class BaseBallTest {
         val answer = listOf(1, 2, 3)
         val inputNumbers = listOf(1, 2, 3)
         val result: BallCount = baseBall.returnBallCount(answer, inputNumbers)
-        // mockConsole.displayBallCount(result)
+        mockConsole.displayBallCount(result)
         assertEquals(3, result.strike)
         assertEquals(0, result.ball)
     }
@@ -95,7 +95,7 @@ class BaseBallTest {
         val answer = listOf(1, 2, 3)
         val inputNumbers = listOf(1, 4, 3)
         val result: BallCount = baseBall.returnBallCount(answer, inputNumbers)
-        // mockConsole.displayBallCount(result)
+        mockConsole.displayBallCount(result)
         assertEquals(2, result.strike)
         assertEquals(0, result.ball)
     }
@@ -106,7 +106,7 @@ class BaseBallTest {
         val answer = listOf(1, 2, 3)
         val inputNumbers = listOf(2, 3, 1)
         val result: BallCount = baseBall.returnBallCount(answer, inputNumbers)
-
+        mockConsole.displayBallCount(result)
         assertEquals(0, result.strike)
         assertEquals(3, result.ball)
     }
@@ -117,7 +117,7 @@ class BaseBallTest {
         val answer = listOf(1, 2, 3)
         val inputNumbers = listOf(6, 8, 1)
         val result: BallCount = baseBall.returnBallCount(answer, inputNumbers)
-
+        mockConsole.displayBallCount(result)
         assertEquals(0, result.strike)
         assertEquals(1, result.ball)
     }
@@ -128,16 +128,18 @@ class BaseBallTest {
         val answer = listOf(1, 2, 3)
         val inputNumbers = listOf(1, 3, 5)
         val result: BallCount = baseBall.returnBallCount(answer, inputNumbers)
-
+        mockConsole.displayBallCount(result)
         assertEquals(1, result.strike)
         assertEquals(1, result.ball)
     }
 
     @Test
+    @DisplayName("BallCount(6) : nothing")
     fun `test no matches`() {
         val answer = listOf(1, 2, 3)
         val inputNumbers = listOf(4, 5, 6)
         val result = baseBall.returnBallCount(answer, inputNumbers)
+        mockConsole.displayBallCount(result)
         assertEquals(0, result.strike)
         assertEquals(0, result.ball)
     }

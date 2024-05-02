@@ -59,4 +59,8 @@ fun calculateResult(computerNumbers: List<Int>, userNumbers: List<Int>): Pair<In
 fun printGameResult(balls: Int, strikes: Int) {
     println("$balls 볼 $strikes 스트라이크")
 }
-fun askForAnotherGame() : Boolean {}
+fun askForAnotherGame() : Boolean {
+    print("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요. ")
+    val choice = readLine()
+    return choice?.trim() == "1"
+}

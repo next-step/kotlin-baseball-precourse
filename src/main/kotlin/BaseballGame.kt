@@ -26,23 +26,15 @@ class BaseballGame() {
     fun _ballCheck(player: BaseballPlayer): Int {
         var ballCount: Int = 0
 
+        // 정답의 i번째 값과 같은 값이 있지만 위치가 다른 경우를 확인
         for (i in (0..2)) {
-            // 정답의 i번째 값이 ball에 해당하는지 확인하는 flag 변수
-            var ballFlag: Int = 0
+            // 같은 위치에서 값이 같은 경우는 Strike이므로 이는 제외
+            if (answer[i] == player.inputString[i]) continue
 
-            // player의 j번째 값을 비교
-            for (j in (0..2)) {
-                // ball의 경우 두 위치가 달라야 하므로, i == j인 경우는 제외
-                if (i == j) continue
-
-                // 두 위치의 값이 다른 경우도 해당하지 않으므로 제외
-                if (this.answer[i] != player.inputString[j]) continue
-
-                // ball에 해당하는 경우, ballFlag를 켠다
-                ballFlag = 1
+            // player의 입력에 answer[i]가 있다면 -> ball인 경우이므로 갯수 증가
+            if (player.inputString.contains(answer[i])) {
+                ++ballCount
             }
-
-            ballCount += ballFlag
         }
         return ballCount
     }

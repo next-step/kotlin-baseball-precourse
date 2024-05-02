@@ -93,20 +93,29 @@ fun getInput(): Int {
 }
 
 fun getValidPredict(): List<Int> {
-    var temp: Int = 0
-    while (true) {
-        temp = getInput()
-        if (temp in 111..999)
-            break
-        println("유효한 예측은 세자리 입니다.")
-        print("숫자를 입력해 주세요 : ")
+    var res = List<Int>(3) { 0 }
+    var isValid: Boolean = false
+    while (!isValid) {
+        var temp: Int = getInput()
+        if (temp >= 1000) {
+            println("예측값은 세자리수 입니다.")
+            print("숫자를 입력해 주세요 : ")
+            continue
+        }
+        val num100: Int = temp / 100
+        temp %= 100
+        val num010: Int = temp / 10
+        temp %= 10
+        val num001: Int = temp
+        if (num100 == 0 || num010 == 0 || num001 == 0) {
+            println("예측값의 각 자릿수는 1에서 9사이 값을 가져야 합니다.")
+            print("숫자를 입력해 주세요 : ")
+            continue
+        }
+        res = listOf(num100, num010, num001)
+        isValid = true
     }
-    val num100: Int = temp / 100
-    temp %= 100
-    val num010: Int = temp / 10
-    temp %= 10
-    val num001: Int = temp
-    return listOf(num100, num010, num001)
+    return res
 }
 
 fun getValidOption(): Int {

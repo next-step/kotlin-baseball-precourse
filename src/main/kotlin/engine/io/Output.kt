@@ -5,7 +5,8 @@ import engine.BallCount
 interface Output {
     fun displayBallCount(ballCount: BallCount)
 
-    fun displayInputError()
+    fun displayInputError(errorMessage: String?)
 
     fun displayCorrectMessage()
+
 }

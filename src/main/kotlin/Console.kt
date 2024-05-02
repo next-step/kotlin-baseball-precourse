@@ -22,8 +22,8 @@ class Console : Input, Output{
         }
     }
 
-    override fun displayInputError() {
-        println("입력이 잘못되었습니다. 앱 종료")
+    override fun displayInputError(errorMessage: String?) {
+        println(errorMessage ?: "입력값에 오류가 있습니다. 애플리케이션을 종료합니다.")
     }
 
     override fun displayCorrectMessage() {

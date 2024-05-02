@@ -2,9 +2,7 @@ package engine
 
 import RandomNumberGenerator
 import engine.io.Input
-import engine.io.NumberGenerator
 import engine.io.Output
-
 class BaseBall constructor(
     private val generator: RandomNumberGenerator,
     private val input: Input,
@@ -13,32 +11,47 @@ class BaseBall constructor(
     private val COUNT_OF_NUMBERS: Int = 3
 
     override fun run() {
-        val answer:List<Int> = generator.generate(COUNT_OF_NUMBERS)
+        var keepPlaying = true
+        while (keepPlaying) {
+            val answer = generator.generate(COUNT_OF_NUMBERS)
+            var gameFinished = false
 
-        while (true) {
-            val inputString: String = input.input("숫자를 입력해 주세요 : ")
-            val inputNumber: List<Int>? = parse(inputString)
+            while (!gameFinished) {
+                try {
+                    val inputString = input.input("숫자를 입력해 주세요 : ")
+                    val inputNumbers = parse(inputString)
 
-            if (inputNumber == null) {
-                output.displayInputError()
-                break   // or continue?
+                    if (inputNumbers == null) {
+                        throw IllegalArgumentException("잘못된 입력입니다. 올바른 형식의 숫자를 입력하세요.")
+                    }
+
+                    val ballCount = returnBallCount(answer, inputNumbers)
+                    if (ballCount.strike == COUNT_OF_NUMBERS) {
+                        output.displayCorrectMessage()
+                        gameFinished = true
+                    } else {
+                        output.displayBallCount(ballCount)
+                    }
+                } catch (e: IllegalArgumentException) {
+                    output.displayInputError(e.message)
+                    return  // 게임 종료
+                }
             }
-
-            var ballCount = returnBallCount(answer, inputNumber)
-            output.displayBallCount(ballCount)
-
-            // 스트라이크 및 볼 판정 로직
+            keepPlaying = promptForRestart()
         }
     }
-    fun Hello(){
 
+    private fun promptForRestart(): Boolean {
+        val choice = input.input("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+        return choice == "1"
     }
+
     fun returnBallCount(answer:List<Int>, inputNumbers:List<Int>): BallCount {
         var strikes = 0
         var balls = 0
 
         answer.forEachIndexed { i, n ->
-            inputNumbers.forEachIndexed {j, m ->
+            inputNumbers.forEachIndexed { j, m ->
                 if (n == m) {
                     if (i == j) strikes++
                     else balls++

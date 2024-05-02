@@ -1,5 +1,8 @@
+import engine.BaseBall
+
 fun main() {
-    val generator = RandomNumberGenerator()
-    val generatedNumbers = generator.generate(3)
-    println("생성된 숫자: $generatedNumbers")
+    var generator = RandomNumberGenerator()
+    var console = Console();
+
+    BaseBall(generator, console, console).run()
 }

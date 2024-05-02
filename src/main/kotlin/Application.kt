@@ -31,7 +31,7 @@ fun playGame (computerNumbers: List<Int>) {
 }
 fun generateComputerNumbers(): List<Int> = List(3) { Random.nextInt(1, 10) }.distinct()
 fun getUserInput(): String {print("숫자를 입력해 주세요 : ")
-    return readLine() ?: throw new IllegalArgumentException()
+    return readLine() ?: throw IllegalArgumentException()
 }
 fun isValidInput(numbers: List<Int>):Boolean = numbers.size == 3 && numbers.all { it in 1..9 }
 fun parseUserInput(input: String):List<Int> = input.trim().map { it.toString().toInt() }

@@ -1,4 +1,7 @@
 class GameResult(var ballCount: Int, var strikeCount: Int) {
+    // 현재 상태가 게임을 종료할 상태인지 확인하는 변수
+    val isGameEnd: Boolean
+        get() = (strikeCount == 3)
 
     /** 현재 게임 결과의 상태를 출력하는 함수 */
     fun printGameResult() {

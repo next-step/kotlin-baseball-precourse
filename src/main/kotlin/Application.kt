@@ -1,3 +1,21 @@
+fun main() {
+    while (true) {
+        println("===[숫자야구 게임]==========")
+
+        // 게임 객체 생성 -> 생성과 동시에 정답이 정해짐
+        var game: BaseballGame = BaseballGame()
+
+        // 플레이어 객체 생성
+        var player: BaseballPlayer = BaseballPlayer()
+
+        // 사용자가 맞힐때 까지 계속해서 입력을 시도
+        judgeFromUserInput(game, player)
+
+        // 해당 프로그램을 재시작할지, 종료할지 결정
+        if (wantExit()) break
+    }
+}
+
 /** 사용자가 game의 값을 맞출 때까지, 입력과 비교를 반복하는 시뮬레이션 함수 */
 fun judgeFromUserInput(game: BaseballGame, player: BaseballPlayer) {
     while (true) {
@@ -31,23 +49,5 @@ fun wantExit(): Boolean {
         "1" -> false    // "1"을 입력한 경우, false 반환
         "2" -> true     // "2"를 입력한 경우, true 반환
         else -> wantExit()    // 그 외의 값을 입력한 경우, 재귀적으로 다시 반복
-    }
-}
-
-fun main() {
-    while (true) {
-        println("===[숫자야구 게임]==========")
-
-        // 게임 객체 생성 -> 생성과 동시에 정답이 정해짐
-        var game: BaseballGame = BaseballGame()
-
-        // 플레이어 객체 생성
-        var player: BaseballPlayer = BaseballPlayer()
-
-        // 사용자가 맞힐때 까지 계속해서 입력을 시도
-        judgeFromUserInput(game, player)
-
-        // 해당 프로그램을 재시작할지, 종료할지 결정
-        if (wantExit()) break
     }
 }

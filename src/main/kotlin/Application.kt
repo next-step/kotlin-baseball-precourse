@@ -16,7 +16,7 @@ fun playGame (computerNumbers: List<Int>) {
         val userInput = getUserInput()
         val userNumbers = parseUserInput(userInput)
         if (!isValidInput(userNumbers)) {
-            throw new IllegalArgumentException("애플리케이션 종료")
+            throw IllegalArgumentException("애플리케이션 종료")
         }
         val (strikes, balls) = calculateResult(computerNumbers, userNumbers)
         if (strikes == 3) {

@@ -22,10 +22,4 @@ class BaseballPlayer {
         // match가 된 경우 -> 원본 문자열을 그대로 반환
         return value
     }
-
-
-
-
-
-
 }

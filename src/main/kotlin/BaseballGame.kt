@@ -14,6 +14,8 @@ class BaseballGame() {
         return threeNumberList.joinToString("")
     }
 
+    /** player의 입력과 정답을 비교하여 판정 값을 반환
+     *  @return GameResult에 Ball개수와 Strike개수를 담아서 반환 */
     fun judgeGameResult(player: BaseballPlayer): GameResult {
         val ballCount: Int = this._ballCheck(player)
         val strikeCount: Int = this._strikeCheck(player)

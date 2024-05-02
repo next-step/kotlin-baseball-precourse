@@ -29,7 +29,7 @@ fun playGame (computerNumbers: List<Int>) {
         }
     }
 }
-fun generateComputerNumbers(): List<Int> {}
+fun generateComputerNumbers(): List<Int> = List(3) { Random.nextInt(1, 10) }.distinct()
 fun getUserInput(): String {}
 fun isValidInput(numbers: List<Int>):
 fun parseUserInput(input: String):

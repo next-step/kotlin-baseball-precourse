@@ -28,5 +28,9 @@ fun checkInputNumber(number: String){
 fun compareNumber(){}
 
 fun main(){
-    
+    print("숫자를 입력해 주세요 : ")
+    val br = BufferedReader(System.`in`.bufferedReader())
+    val inputNumber = br.readLine()
+    br.close()
+    checkInputNumber(inputNumber)
 }

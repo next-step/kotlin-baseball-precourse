@@ -14,6 +14,17 @@ fun createAnswer(): List<Int> {
 }
 
 // 시스템 기능
+class GameInfo(mAnswer: List<Int>) {
+    var ball: Int = 0
+    var strike: Int = 0
+    var answer: List<Int> = mAnswer
+
+    fun clearScore() {
+        ball = 0
+        strike = 0
+    }
+}
+
 fun runSystem() {
     do {
         startGame()
@@ -22,12 +33,40 @@ fun runSystem() {
 }
 
 fun startGame() {
+    val gameInfo = GameInfo(createAnswer())
+    do {
+        print("숫자를 입력해 주세요 : ")
+        var predict: List<Int> = getValidPredict()
+        compareNumber(predict, gameInfo)
+        printScore(gameInfo)
+    } while (!checkEnd(gameInfo))
+    println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
 }
 
-fun compareNumber() {
+fun compareNumber(predict: List<Int>, gameInfo: GameInfo) {
+    gameInfo.clearScore()
+    predict.forEachIndexed { index: Int, num: Int ->
+        val answerIdx: Int = gameInfo.answer.indexOf(num)
+        if (answerIdx != -1 && answerIdx == index) {
+            gameInfo.strike++
+        } else if (answerIdx != -1) {
+            gameInfo.ball++
+        }
+    }
 }
 
-fun checkScore() {
+fun printScore(gameInfo: GameInfo) {
+    if (gameInfo.ball != 0)
+        print("${gameInfo.ball}볼 ")
+    if (gameInfo.strike != 0)
+        print("${gameInfo.strike}스트라이크")
+    if (gameInfo.ball == 0 && gameInfo.strike == 0)
+        print("낫싱")
+    println()
+}
+
+fun checkEnd(gameInfo: GameInfo): Boolean {
+    return gameInfo.strike == 3
 }
 
 fun restartGame(): Boolean {
@@ -50,4 +89,31 @@ fun restartGame(): Boolean {
         restart = restartGame()
     }
     return restart
+}
+
+fun getInput(): Int {
+    var userInput: Int = 0
+    try {
+        userInput = readln().toInt()
+    }
+    catch (exception: Exception) {
+        throw IllegalArgumentException("잘못된 입력입니다. 애플리케이션을 종료합니다.")
+    }
+    return userInput
+}
+
+fun getValidPredict(): List<Int> {
+    var temp: Int = 0
+    while (true) {
+        temp = getInput()
+        if (temp in 111..999)
+            break
+        println("111에서 999사이의 3자리 수를 입력하세요.")
+    }
+    val num100: Int = temp / 100
+    temp %= 100
+    val num010: Int = temp / 10
+    temp %= 10
+    val num001: Int = temp
+    return listOf(num100, num010, num001)
 }

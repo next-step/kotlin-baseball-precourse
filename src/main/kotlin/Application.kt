@@ -72,21 +72,11 @@ fun checkEnd(gameInfo: GameInfo): Boolean {
 fun restartGame(): Boolean {
     println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
     var restart: Boolean = false
-    var opt: Int = 0
-    try {
-        opt = readln().toInt()
-    }
-    catch (exception: Exception) {
-        throw IllegalArgumentException("잘못된 입력입니다. 애플리케이션을 종료합니다.")
-    }
-
+    val opt: Int = getValidOption()
     if (opt == 1) {
         restart = true
     } else if (opt == 2) {
         restart = false
-    } else {
-        println("1 또는 2를 입력하세요.")
-        restart = restartGame()
     }
     return restart
 }
@@ -108,7 +98,8 @@ fun getValidPredict(): List<Int> {
         temp = getInput()
         if (temp in 111..999)
             break
-        println("111에서 999사이의 3자리 수를 입력하세요.")
+        println("유효한 예측은 세자리 입니다.")
+        print("숫자를 입력해 주세요 : ")
     }
     val num100: Int = temp / 100
     temp %= 100
@@ -116,4 +107,16 @@ fun getValidPredict(): List<Int> {
     temp %= 10
     val num001: Int = temp
     return listOf(num100, num010, num001)
+}
+
+fun getValidOption(): Int {
+    var opt: Int = 0
+    while (true) {
+        opt = getInput()
+        if (opt in 1..2)
+            break
+        println("1 또는 2를 입력 하세요.")
+        println("게임을 새로 시작: 1, 종료: 2")
+    }
+    return opt
 }

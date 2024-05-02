@@ -34,7 +34,7 @@ fun getUserInput(): String {print("숫자를 입력해 주세요 : ")
     return readLine() ?: throw new IllegalArgumentException()
 }
 fun isValidInput(numbers: List<Int>):Boolean = numbers.size == 3 && numbers.all { it in 1..9 }
-fun parseUserInput(input: String):
+fun parseUserInput(input: String):List<Int> = input.trim().map { it.toString().toInt() }
 fun calculateResult(computerNumbers: List<Int>, userNumbers: List<Int>):
 fun printGameResult(balls: Int, strikes: Int) {}
 fun askForAnotherGame() : Boolean {}

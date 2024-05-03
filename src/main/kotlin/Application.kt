@@ -25,7 +25,21 @@ fun checkInputNumber(number: String){
     }
 }
 
-fun compareNumber(){}
+fun printResult(strikeCount: Int, userNumber: Int){}
+
+fun compareNumber(goalNumber: String, userNumber: String){
+    var strikeCount : Int = 0
+    var ballCount : Int = 0
+    //각 자리 값 비교
+    for(i in 0 .. 2){
+        if (userNumber[i] == goalNumber[i]){
+            strikeCount++
+        }else if(userNumber[i] in goalNumber){
+            ballCount++
+        }
+    }
+    printResult(strikeCount,ballCount)
+}
 
 fun main(){
     print("숫자를 입력해 주세요 : ")

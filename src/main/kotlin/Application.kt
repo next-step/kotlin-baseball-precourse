@@ -28,8 +28,41 @@ class Computer{
 //            println("IllegalArgumentException 잘못된 값을 입력하셨습니다.")
             error("error")
         }
+    }
 
+//    같은 수가 같은 자리에 있으면 스트라이크, 다른 자리에 있으면 볼, 같은 수가 전혀 없으면 낫싱이란 힌트를 얻고,
+//    그 힌트를 이용해서 먼저 상대방(컴퓨터)의 수를 맞추면 승리한다. 승리하였다면 win 불린 변수를 참으로 변경한다.
+//    컴퓨터는 입력한 숫자에 대한 결과를 출력한다.
+    fun check(){
+        var ball:Int = 0
+        var strike:Int = 0
+        var num:Int = answer/100
+        if (first == num) strike+=1
+        else if (num == second || num == third) ball +=1
+        answer %= 100
+        num = answer/10
+        if (second == num) strike+=1
+        else if (num == first || num == third) ball +=1
+        answer%=10
+        num = answer
+        if (third == num) strike+=1
+        else if (num == first || num == second) ball +=1
 
+        if (ball + strike == 0) println("낫싱")
+        else if (ball == 0){
+            println("${strike}스트라이크")
+            if (strike == 3){
+                println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+                win = true
+            }
+        }
+        else if (strike == 0){
+            println("${ball}볼")
+        }
+        else {
+            println("${ball}볼 ${strike}스트라이크")
+
+        }
     }
 
 }

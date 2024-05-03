@@ -104,7 +104,7 @@ class ComputerTest {
 	@DisplayName("0 입력 확인")
 	fun testZeroInput() {
 		val inputFunction: () -> Unit = {
-			val input = "023\n" // Out of range number
+			val input = "0\n" // Out of range number
 			System.setIn(input.byteInputStream())
 			assertThrows(Exception::class.java) { computer.readNum() }
 		}

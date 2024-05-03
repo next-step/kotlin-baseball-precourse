@@ -1,5 +1,5 @@
 class BaseballGame() {
-    private val answer: String = this._createRandomAnswer()
+    var answer: String = this._createRandomAnswer()
 
     /** 서로 다른 임의의 3개의 숫자를 선택하여 정답을 생성하는 내부 함수
      *  @return 선택된 3개의 수를 이어 붙인 문자열 반환 */

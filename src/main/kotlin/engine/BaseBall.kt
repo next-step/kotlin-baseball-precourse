@@ -2,9 +2,10 @@ package engine
 
 import RandomNumberGenerator
 import engine.io.Input
+import engine.io.NumberGenerator
 import engine.io.Output
 class BaseBall constructor(
-    private val generator: RandomNumberGenerator,
+    private val generator: NumberGenerator,
     private val input: Input,
     private val output: Output
 ) : Runnable {
@@ -26,11 +27,10 @@ class BaseBall constructor(
                     }
 
                     val ballCount = returnBallCount(answer, inputNumbers)
+                    output.displayBallCount(ballCount)
                     if (ballCount.strike == COUNT_OF_NUMBERS) {
                         output.displayCorrectMessage()
                         gameFinished = true
-                    } else {
-                        output.displayBallCount(ballCount)
                     }
                 } catch (e: IllegalArgumentException) {
                     output.displayInputError(e.message)

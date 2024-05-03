@@ -39,13 +39,14 @@ private class Computer {
         if (strike == 3) {
             println("3스트라이크")
             println("3개의 숫자를 모두 맞히셨습니다!게임종료")
-            gameController.endGame()
-        }
-        when {
-            strike == 0 && ball == 0 -> println("낫싱")
-            strike == 0 -> println("${ball}볼")
-            ball == 0 -> println("${strike}스트라이크")
-            else -> println("${ball}볼 ${strike}스트라이크")
+            gameController.changeGameState(GameState.End)
+        } else {
+            when {
+                strike == 0 && ball == 0 -> println("낫싱")
+                strike == 0 -> println("${ball}볼")
+                ball == 0 -> println("${strike}스트라이크")
+                else -> println("${ball}볼 ${strike}스트라이크")
+            }
         }
     }
 
@@ -161,7 +162,7 @@ fun main() {
     val inputChecker = InputChecker()
 
     gameController.gameState = GameState.OnGoing
-    while (gameController.gameState == GameState.OnGoing) {
+    while (gameController.gameState != GameState.OnGoing) {
         val userInput = player.getUserNumberInput(inputChecker)
         computer.printResult(userInput, gameController)
     }

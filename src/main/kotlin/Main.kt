@@ -5,10 +5,14 @@ private sealed class GameState {
 }
 
 private class GameController {
-    var gameState: GameState = GameState.IsLoading
+    private var gameState: GameState = GameState.IsLoading
 
     fun changeGameState(state: GameState) {
         gameState = state
+    }
+
+    fun getGameState(): GameState {
+        return gameState
     }
 }
 

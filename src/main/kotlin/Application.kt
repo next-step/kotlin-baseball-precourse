@@ -19,16 +19,16 @@ class Computer{
 
     }
 
-//  위 숫자 야구 게임에서 상대방의 역할을 컴퓨터가 한다. 컴퓨터는 1에서 9까지 서로 다른 임의의 수 3개를 선택한다.
-//  게임 플레이어는 컴퓨터가 생각하고 있는 3개의 숫자를 입력하고, 컴퓨터는 입력한 숫자에 대한 결과를 출력한다.
-//  이 같은 과정을 반복해 컴퓨터가 선택한 3개의 숫자를 모두 맞히면 게임이 종료된다.
-//  게임을 종료한 후 게임을 다시 시작하거나 완전히 종료할 수 있다.
+//    위 숫자 야구 게임에서 상대방의 역할을 컴퓨터가 한다. 컴퓨터는 1에서 9까지 서로 다른 임의의 수 3개를 선택한다.
+//    게임 플레이어는 컴퓨터가 생각하고 있는 3개의 숫자를 입력하고, 컴퓨터는 입력한 숫자에 대한 결과를 출력한다.
+//    이 같은 과정을 반복해 컴퓨터가 선택한 3개의 숫자를 모두 맞히면 게임이 종료된다.
+//    게임을 종료한 후 게임을 다시 시작하거나 완전히 종료할 수 있다.
     fun run():Int{
         while (!win){
             input()
             check()
         }
-        println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+        println("게임을 새로 시작하려면 1, 종료하려면 다른 수를 입력하세요.")
         return readLine()!!.toInt()
     }
 
@@ -39,7 +39,7 @@ class Computer{
         answer = readLine()!!.toInt()
         if (answer>999 || answer <100){
 //            println("IllegalArgumentException 잘못된 값을 입력하셨습니다.")
-            error("error")
+            error("잘못된 값을 입력하셨습니다")
         }
     }
 
@@ -80,6 +80,18 @@ class Computer{
 
 }
 
-
+//    게임의 시작과 반복, 종료 구현.
+//    사용자가 잘못된 값을 입력할 경우 IllegalArgumentException 을 발생시킨 후 애플리케이션은 종료
+fun main(){
+    var start:Int = 1
+    while(start == 1){
+        val computer = Computer()
+        try {
+            start = computer.run()
+        }catch (e:Exception) {
+            throw IllegalArgumentException("잘못된 값을 입력하셨습니다")
+        }
+    }
+}
 
 

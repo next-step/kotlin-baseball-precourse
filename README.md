@@ -16,7 +16,7 @@
 - GitHub에 미션을 제출한 후 구글 폼에 PR 링크를 포함하여 최종 제출한다.
 
 
-### 과제 제출 전 체크리스
+### 과제 제출 전 체크리스트
 
 - 터미널에서 Mac 또는 Linux 사용자의 경우 `./gradlew clean test` 명령을 실행하고,   
   Windows 사용자의 경우  `gradlew.bat clean test` 또는 `./gradlew.bat clean test` 명령을 실행할 때 모든 테스트가 아래와 같이 통과하는지 확인한다.

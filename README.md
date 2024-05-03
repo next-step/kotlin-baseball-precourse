@@ -1,11 +1,11 @@
 # kotlin-baseball-precourse
 # 목차
-1. 과제 설명(https://github.com/joominchul/kotlin-baseball-precourse/tree/joominchul#%EA%B3%BC%EC%A0%9C-%EC%84%A4%EB%AA%85)
-2. 과제 진행 요구 사항(https://github.com/joominchul/kotlin-baseball-precourse/tree/joominchul#%EA%B3%BC%EC%A0%9C-%EC%A7%84%ED%96%89-%EC%9A%94%EA%B5%AC-%EC%82%AC%ED%95%AD)
-3. 기능 요구 사항(https://github.com/joominchul/kotlin-baseball-precourse/tree/joominchul#%EA%B8%B0%EB%8A%A5-%EC%9A%94%EA%B5%AC-%EC%82%AC%ED%95%AD)
-4. 프로그래밍 요구 사항(https://github.com/joominchul/kotlin-baseball-precourse/tree/joominchul#%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D-%EC%9A%94%EA%B5%AC-%EC%82%AC%ED%95%AD)
-5. 실행 결과(https://github.com/joominchul/kotlin-baseball-precourse/tree/joominchul#%EC%8B%A4%ED%96%89-%EA%B2%B0%EA%B3%BC)
-6. 과제 진행 소감(https://github.com/joominchul/kotlin-baseball-precourse/tree/joominchul#%EA%B3%BC%EC%A0%9C-%EC%A7%84%ED%96%89-%EC%86%8C%EA%B0%90)
+1. [과제 설명](https://github.com/joominchul/kotlin-baseball-precourse/tree/joominchul#%EA%B3%BC%EC%A0%9C-%EC%84%A4%EB%AA%85)
+2. [과제 진행 요구 사항](https://github.com/joominchul/kotlin-baseball-precourse/tree/joominchul#%EA%B3%BC%EC%A0%9C-%EC%A7%84%ED%96%89-%EC%9A%94%EA%B5%AC-%EC%82%AC%ED%95%AD)
+3. [기능 요구 사항](https://github.com/joominchul/kotlin-baseball-precourse/tree/joominchul#%EA%B8%B0%EB%8A%A5-%EC%9A%94%EA%B5%AC-%EC%82%AC%ED%95%AD)
+4. [프로그래밍 요구 사항](https://github.com/joominchul/kotlin-baseball-precourse/tree/joominchul#%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D-%EC%9A%94%EA%B5%AC-%EC%82%AC%ED%95%AD)
+5. [실행 결과](https://github.com/joominchul/kotlin-baseball-precourse/tree/joominchul#%EC%8B%A4%ED%96%89-%EA%B2%B0%EA%B3%BC)
+6. [과제 진행 소감](https://github.com/joominchul/kotlin-baseball-precourse/tree/joominchul#%EA%B3%BC%EC%A0%9C-%EC%A7%84%ED%96%89-%EC%86%8C%EA%B0%90)
 ***  
 
 ## 과제 설명     

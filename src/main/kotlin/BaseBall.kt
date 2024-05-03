@@ -1,14 +1,14 @@
-private sealed class GameState {
+sealed class GameState {
     data object IsLoading : GameState() // 1. 게임 시작 전  2. 게임 종료 후 플레이어에게 상태를 입력받기 전
     data object OnGoing : GameState()
     data object End : GameState()
 }
 
-private class GameController {
+class GameController {
     private var gameState: GameState = GameState.IsLoading
 
     fun changeGameState(state: GameState) {
-        gameState = state
+        this.gameState = state
     }
 
     fun getGameState(): GameState {
@@ -16,7 +16,7 @@ private class GameController {
     }
 }
 
-private class Computer {
+class Computer {
     private val randomNumber: Array<Int> = setNumber()
 
     private fun setNumber(): Array<Int> {
@@ -73,7 +73,7 @@ private class Computer {
     }
 }
 
-private class Player {
+class Player {
     private fun getUserInput(): String {
         return readlnOrNull() ?: ""
     }
@@ -113,7 +113,7 @@ private class Player {
     }
 }
 
-private class InputChecker {
+class InputChecker {
     fun checkThreeDigitInput(userInput: String): Boolean {
         return isInt(userInput) && isThreeDigit(userInput) && notDuplicated(userInput)
     }

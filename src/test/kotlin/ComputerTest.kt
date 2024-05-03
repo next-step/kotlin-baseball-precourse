@@ -3,6 +3,8 @@ import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.RepeatedTest
 
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.ValueSource
 
 class ComputerTest {
 
@@ -53,6 +55,17 @@ class ComputerTest {
 	fun testOutOfRangeInput() {
 		val inputFunction: () -> Unit = {
 			val input = "23\n" // Out of range number
+			System.setIn(input.byteInputStream())
+			assertThrows(Exception::class.java) { computer.input() }
+		}
+		assertDoesNotThrow(inputFunction)
+	}
+
+	@ParameterizedTest
+	@DisplayName("잘못된 입력 확인")
+	@ValueSource(strings = ["23\n", "023\n", "a1d\n"])
+	fun wrongInput(input:String){
+		val inputFunction: () -> Unit = {
 			System.setIn(input.byteInputStream())
 			assertThrows(Exception::class.java) { computer.input() }
 		}

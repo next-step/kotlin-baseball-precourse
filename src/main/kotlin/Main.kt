@@ -7,12 +7,8 @@ private sealed class GameState {
 private class GameController {
     var gameState: GameState = GameState.IsLoading
 
-    fun startGame() {
-        gameState = GameState.OnGoing
-    }
-
-    fun endGame() {
-        gameState = GameState.GameEnd
+    fun changeGameState(state: GameState) {
+        gameState = state
     }
 }
 

@@ -28,7 +28,7 @@ class Computer{
             input()
             check()
         }
-        println("게임을 새로 시작하려면 1, 종료하려면 다른 수를 입력하세요.")
+        println("게임을 새로 시작하려면 1, 종료하려면 0을 제외한 다른 수를 입력하세요.")
         return readNum()
     }
 

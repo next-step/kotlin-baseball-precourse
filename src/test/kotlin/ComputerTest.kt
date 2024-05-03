@@ -35,6 +35,34 @@ class ComputerTest {
 	}
 
 
+	@Test
+	@DisplayName("볼판정 확인")
+	fun testNoMatch() {
+		// Given
+		var answer = 465
+		val first = 4
+		val second = 5
+		val third = 6
+		val expectBall:Int = 2
+		val expectStrike:Int = 1
+
+		var ball:Int = 0
+		var strike:Int = 0
+		var num:Int = answer/100
+		if (first == num) strike+=1
+		else if (num == second || num == third) ball +=1
+		answer %= 100
+		num = answer/10
+		if (second == num) strike+=1
+		else if (num == first || num == third) ball +=1
+		answer%=10
+		num = answer
+		if (third == num) strike+=1
+		else if (num == first || num == second) ball +=1
+
+		assert(expectBall==ball)
+		assert(expectStrike==strike)
+	}
 
 
 

@@ -6,6 +6,7 @@ import engine.io.Output
 import org.junit.jupiter.api.Assertions.*
 
 import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 
 class ApplicatioinKtTest {
@@ -21,6 +22,7 @@ class ApplicatioinKtTest {
     }
 
     @Test
+    @DisplayName("Test Game Simple Flow")
     fun testGameSimpleFlow() {
         val generator = StaticNumberGenerator(listOf(1, 2, 3))
         val inputs = listOf("123", "2").iterator()
@@ -34,8 +36,27 @@ class ApplicatioinKtTest {
         assertEquals("3스트라이크", output.messages[0])
         assertEquals("3개의 숫자를 모두 맞히셨습니다! 게임 종료", output.messages[3],)
     }
+    @Test
+    @DisplayName("Test Game Restart Flow")
+    fun testGameRestartFlow() {
+        val generator = StaticNumberGenerator(listOf(1, 2, 3))
+        val inputs = listOf("123", "1", "123", "2").iterator()
+        val input = TestInput(inputs)
+        val output = TestOutput()
+
+        // Instantiate the game with the test configurations
+        baseBall = BaseBall(generator, input, output)
+        baseBall.run()
+
+        // Check that the game outputs the correct messages for both rounds
+        assertEquals("3스트라이크", output.messages[0])
+        assertEquals("3개의 숫자를 모두 맞히셨습니다! 게임 종료", output.messages[1])
+        assertEquals("3스트라이크", output.messages[2])
+        assertEquals("3개의 숫자를 모두 맞히셨습니다! 게임 종료", output.messages[3])
+    }
 
     @Test
+    @DisplayName("Test Game Example Flow")
     fun testGameExampleFlow() {
         val generator = StaticNumberGenerator(listOf(7, 1, 3))
         val inputs = listOf("123", "145", "671", "216", "713", "2").iterator()

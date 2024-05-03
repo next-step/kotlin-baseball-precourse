@@ -11,6 +11,8 @@ class BaseBall constructor(
 ) : Runnable {
     private val COUNT_OF_NUMBERS: Int = 3
 
+    /* Game Flow
+    * */
     override fun run() {
         var keepPlaying = true
         while (keepPlaying) {
@@ -46,6 +48,7 @@ class BaseBall constructor(
         return choice == "1"
     }
 
+    /* BallCount Check : 같은 수가 같은 자리에 있으면 스트라이크, 다른 자리에 있으면 볼 */
     fun returnBallCount(answer:List<Int>, inputNumbers:List<Int>): BallCount {
         var strikes = 0
         var balls = 0
@@ -61,6 +64,10 @@ class BaseBall constructor(
         return BallCount(strikes, balls)
     }
 
+    /* Input Validation : 1부터 9까지 서로 다른 수로 이루어진 3자리의 수
+    *   (1) 입력 문자열의 길이가 3자리
+    *   (2) 모두 숫자, 1부터 9까지(0 안됨), 중복 여부를 검사
+    * */
     fun parse(inputString: String): List<Int>? {
         if (inputString.length != COUNT_OF_NUMBERS) return null
 

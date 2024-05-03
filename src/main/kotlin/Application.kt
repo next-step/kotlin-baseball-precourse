@@ -54,10 +54,17 @@ fun compareNumber(goalNumber: String, userNumber: String): Int{
     return -1
 }
 
-fun main(){
-    print("숫자를 입력해 주세요 : ")
+fun play() {
     val br = BufferedReader(System.`in`.bufferedReader())
-    val inputNumber = br.readLine()
+    val goalNumber = generateGoalNumber()
+    do {
+        print("숫자를 입력해 주세요 : ")
+        val inputNumber = br.readLine()
+        checkInputNumber(inputNumber)
+    }while (compareNumber(goalNumber,inputNumber) != 0)
     br.close()
-    checkInputNumber(inputNumber)
+}
+
+fun main(){
+    play()
 }

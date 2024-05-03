@@ -29,14 +29,23 @@ class Computer{
             check()
         }
         println("게임을 새로 시작하려면 1, 종료하려면 다른 수를 입력하세요.")
-        return readLine()!!.toInt()
+        return readNum()
+    }
+
+//    잘못된 타입(널, 문자, 0이 맨 앞자리인 수)를 입력하는지 검사
+    fun readNum():Int{
+        val line:String? = readLine()
+        if (line == null) error("잘못된 값을 입력하셨습니다")
+        val answer:Int = line.toInt()
+        if (Math.pow(10.0,line.length.toDouble()-1)>answer) error("잘못된 값을 입력하셨습니다")
+        return answer
     }
 
 //    게임 플레이어는 컴퓨터가 생각하고 있는 3개의 숫자를 입력.
 //    범위를 벗어나거나 Int가 아닐 경우 에러 발생.
     fun input(){
         print("숫자를 입력해 주세요 : ")
-        answer = readLine()!!.toInt()
+        answer = readNum()
         if (answer>999 || answer <100){
 //            println("IllegalArgumentException 잘못된 값을 입력하셨습니다.")
             error("잘못된 값을 입력하셨습니다")

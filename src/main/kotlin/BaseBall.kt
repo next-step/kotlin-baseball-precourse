@@ -88,6 +88,10 @@ private class Player {
             inputNumberState = inputChecker.checkThreeDigitInput(userInput)
         }
 
+        return getArrayInput(userInput)
+    }
+
+    private fun getArrayInput(userInput: String): Array<Int> {
         val result: Array<Int> = Array(3) { 0 }
         result[0] = userInput[0].digitToInt()
         result[1] = userInput[1].digitToInt()

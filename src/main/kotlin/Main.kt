@@ -43,7 +43,7 @@ private class Computer {
         if (strike == 3) {
             println("3스트라이크")
             println("3개의 숫자를 모두 맞히셨습니다!게임종료")
-            gameController.changeGameState(GameState.End)
+            gameController.changeGameState(GameState.IsLoading)
         } else {
             when {
                 strike == 0 && ball == 0 -> println("낫싱")
@@ -55,7 +55,7 @@ private class Computer {
     }
 
     private fun countStrike(userInputNumber: Array<Int>): Int {
-        var strike: Int = 0
+        var strike = 0
         if (userInputNumber[0] == randomNumber[0]) strike++
         if (userInputNumber[1] == randomNumber[1]) strike++
         if (userInputNumber[2] == randomNumber[2]) strike++
@@ -64,7 +64,7 @@ private class Computer {
     }
 
     private fun countBall(userInputNumber: Array<Int>): Int {
-        var ball: Int = 0
+        var ball = 0
         if (userInputNumber[0] == randomNumber[1] || userInputNumber[0] == randomNumber[2]) ball++
         if (userInputNumber[1] == randomNumber[0] || userInputNumber[1] == randomNumber[2]) ball++
         if (userInputNumber[2] == randomNumber[0] || userInputNumber[2] == randomNumber[1]) ball++
@@ -161,13 +161,24 @@ private class InputChecker {
 
 fun main() {
     val gameController = GameController()
-    val computer = Computer()
-    val player = Player()
-    val inputChecker = InputChecker()
 
-    gameController.gameState = GameState.OnGoing
-    while (gameController.gameState != GameState.OnGoing) {
-        val userInput = player.getUserNumberInput(inputChecker)
-        computer.printResult(userInput, gameController)
+    while (gameController.getGameState() != GameState.End) {
+
+        gameController.changeGameState(GameState.OnGoing)
+        val computer = Computer()
+        val player = Player()
+        val inputChecker = InputChecker()
+
+        while (gameController.getGameState() == GameState.OnGoing) {
+            val userInput = player.getUserNumberInput(inputChecker)
+            computer.printResult(userInput, gameController)
+        }
+
+        val userInput = player.getUserGameStatusInput(inputChecker)
+
+        when (userInput) {
+            1 -> continue
+            2 -> gameController.changeGameState(GameState.End)
+        }
     }
 }

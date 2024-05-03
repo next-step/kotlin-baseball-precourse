@@ -12,7 +12,7 @@ class ComputerTest {
 	@RepeatedTest(100)
 	fun checkNum(){
 		val RANGE = (1..9)
-		var first:Int
+		val first:Int
 		var second:Int
 		var third:Int
 		first = RANGE.random()
@@ -52,9 +52,20 @@ class ComputerTest {
 	@DisplayName("범위 밖 숫자 입력 확인")
 	fun testOutOfRangeInput() {
 		val inputFunction: () -> Unit = {
-			val input = "\n" // Out of range number
+			val input = "23\n" // Out of range number
 			System.setIn(input.byteInputStream())
 			assertThrows(Exception::class.java) { computer.input() }
+		}
+		assertDoesNotThrow(inputFunction)
+	}
+
+	@Test
+	@DisplayName("0 입력 확인")
+	fun testZeroInput() {
+		val inputFunction: () -> Unit = {
+			val input = "023\n" // Out of range number
+			System.setIn(input.byteInputStream())
+			assertThrows(Exception::class.java) { computer.readNum() }
 		}
 		assertDoesNotThrow(inputFunction)
 	}
@@ -69,6 +80,8 @@ class ComputerTest {
 		}
 		assertDoesNotThrow(inputFunction)
 	}
+
+
 
 
 }

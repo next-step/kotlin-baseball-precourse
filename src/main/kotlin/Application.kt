@@ -19,6 +19,19 @@ class Computer{
 
     }
 
+//    게임 플레이어는 컴퓨터가 생각하고 있는 3개의 숫자를 입력.
+//    범위를 벗어나거나 Int가 아닐 경우 에러 발생.
+    fun input(){
+        print("숫자를 입력해 주세요 : ")
+        answer = readLine()!!.toInt()
+        if (answer>999 || answer <100){
+//            println("IllegalArgumentException 잘못된 값을 입력하셨습니다.")
+            error("error")
+        }
+
+
+    }
+
 }
 
 

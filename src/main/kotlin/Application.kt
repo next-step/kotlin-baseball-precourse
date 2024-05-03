@@ -25,7 +25,15 @@ fun checkInputNumber(number: String){
     }
 }
 
-fun printResult(strikeCount: Int, userNumber: Int){}
+fun printResult(strikeCount: Int, ballCount: Int){
+    val result = when {
+        strikeCount > 0 && ballCount > 0 -> "${ballCount}볼 ${strikeCount}스트라이크"
+        strikeCount > 0 -> "${strikeCount}스트라이크"
+        ballCount > 0 -> "${ballCount}볼"
+        else -> "낫싱"
+    }
+    println(result)
+}
 
 fun compareNumber(goalNumber: String, userNumber: String){
     var strikeCount : Int = 0

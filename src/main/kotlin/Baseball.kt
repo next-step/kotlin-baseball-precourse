@@ -1,9 +1,24 @@
 import kotlin.random.Random
 
 fun main() {
-    val length = 3
-    val answerNumList = setRandomNumber(length)
-    val inputNumList = inputNumber()
+    do {
+        // 프로그램 첫 실행 시 조건없이 시작
+        val length = 3
+        val answerNumList = setRandomNumber(length)
+
+        // 3 스트라이크가 될 때 까지 반복
+        do {
+            val inputNumList = inputNumber()
+            val (strike, ball) = countStrikeBall(answerNumList, inputNumList, length)
+            printDecision(strike, ball)
+        } while (strike != 3)
+        println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+        println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+        val flag = readlnOrNull()?.toInt()
+
+    } while (flag != 2)
+
+
 }
 
 // 세자리 랜덤 숫자 생성

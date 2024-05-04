@@ -63,6 +63,7 @@ fun play() {
         val inputNumber = br.readLine()
         checkInputNumber(inputNumber)
     }while (compareNumber(goalNumber,inputNumber) != 0)
+    println("3개의 숫자를 모두 맞히셨습니다! 게임종료")
     br.close()
 }
 

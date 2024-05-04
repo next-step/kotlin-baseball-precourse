@@ -8,11 +8,25 @@ class BaseballGame {
         makeRandomNumber()
     }
 
-    fun getTargetNumber() : Unit {
+    private fun getTargetNumber() : Unit {
         targetNumber.forEach(){
             print(it)
         }
     }
+
+    fun playGame() {
+        var gamingFlag = true
+        while (gamingFlag == true) {
+            val inputNumber: Int = fetchNumericInput()
+            val result : String = calculate(inputNumber)
+            println(result)
+            if (result == "3스트라이크") {
+                println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+                gamingFlag = false
+            }
+        }
+    }
+
     fun makeRandomNumber() : Unit {
         // 3글자 난수 생성
         var digits = mutableSetOf<Int>()

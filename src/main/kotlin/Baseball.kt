@@ -9,6 +9,9 @@ fun main() {
         // 3 스트라이크가 될 때 까지 반복
         do {
             val inputNumList = inputNumber()
+            // 3개의 숫자 입력 예외 처리
+            inputNumberException(inputNumList)
+
             val (strike, ball) = countStrikeBall(answerNumList, inputNumList, length)
             printDecision(strike, ball)
         } while (strike != 3)
@@ -65,4 +68,22 @@ fun printDecision(strike: Int, ball: Int) {
         else -> String.format("%d볼 %d스트라이크", ball, strike)
     }
     println(result)
+}
+
+// 3개의 숫자 입력 예외 처리
+fun inputNumberException(numList: List<Int>) {
+    // 세자리 수 입력에서 중복된 숫자가 있는 예외
+    var isDuplication = false
+    for (i in numList) {
+        if (numList.count { it == i } > 1) {
+            isDuplication = true
+            break
+        }
+    }
+
+    when {
+        (numList.size != 3) -> throw IllegalArgumentException("잘못된 입력: 3개의 숫자가 아닙니다.")
+        (numList.any { it == 0 }) -> throw IllegalArgumentException("잘못된 입력: 숫자 0은 입력할 수 없습니다.")
+        (isDuplication) -> throw IllegalArgumentException("잘못된 입력: 중복된 숫자가 있습니다.")
+    }
 }

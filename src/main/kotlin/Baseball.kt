@@ -85,6 +85,7 @@ fun inputNumberException(numList: List<Int>) {
         (numList.size != 3) -> throw IllegalArgumentException("잘못된 입력: 3개의 숫자가 아닙니다.")
         (numList.any { it == 0 }) -> throw IllegalArgumentException("잘못된 입력: 숫자 0은 입력할 수 없습니다.")
         (isDuplication) -> throw IllegalArgumentException("잘못된 입력: 중복된 숫자가 있습니다.")
+        (numList.isEmpty()) -> throw IllegalArgumentException("잘못된 입력: 입력된 값이 없습니다.")
     }
 }
 

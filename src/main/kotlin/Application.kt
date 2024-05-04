@@ -55,14 +55,16 @@ fun compareNumber(predict: List<Int>, gameInfo: GameInfo) {
     }
 }
 
-fun printScore(gameInfo: GameInfo) {
+fun printScore(gameInfo: GameInfo): String {
+    var res: String = ""
     if (gameInfo.ball != 0)
-        print("${gameInfo.ball}볼 ")
+        res += "${gameInfo.ball}볼 "
     if (gameInfo.strike != 0)
-        print("${gameInfo.strike}스트라이크")
+        res += "${gameInfo.strike}스트라이크"
     if (gameInfo.ball == 0 && gameInfo.strike == 0)
-        print("낫싱")
-    println()
+        res = "낫싱"
+    println(res)
+    return res
 }
 
 fun checkEnd(gameInfo: GameInfo): Boolean {

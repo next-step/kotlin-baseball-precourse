@@ -8,6 +8,9 @@ class BaseballGame {
         makeRandomNumber()
     }
 
+    fun setTargetNumberForTesting(numbers: List<Int>) {
+        targetNumber = numbers.toMutableList()
+    }
     private fun getTargetNumber() : Unit {
         targetNumber.forEach(){
             print(it)

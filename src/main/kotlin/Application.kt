@@ -86,8 +86,7 @@ fun main() {
             }
 
             else -> {
-                println("올바르지 않은 입력값입니다.")
-                continue
+                throw IllegalArgumentException("유효한 입력값( 새로 시작: 1, 종료: 2)이 아닙니다")
             }
         }
     }

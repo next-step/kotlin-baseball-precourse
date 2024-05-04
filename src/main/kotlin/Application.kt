@@ -38,8 +38,7 @@ fun printResult(strikeCount: Int, ballCount: Int){
 fun compareNumber(goalNumber: String, userNumber: String): Int{
     var strikeCount : Int = 0
     var ballCount : Int = 0
-    //goalNumber와 userNumber가 동일하다면 0 리턴
-    if (goalNumber == userNumber) return 0
+
     //각 자리 값 비교
     for(i in 0 .. 2){
         if (userNumber[i] == goalNumber[i]){
@@ -50,6 +49,8 @@ fun compareNumber(goalNumber: String, userNumber: String): Int{
     }
     //비교 결과 출력
     printResult(strikeCount,ballCount)
+    //goalNumber와 userNumber가 동일하다면 0 리턴
+    if (goalNumber == userNumber) return 0
     // goalNumber와 userNumber가 다르다면 -1 리턴
     return -1
 }

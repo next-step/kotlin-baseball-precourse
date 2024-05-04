@@ -40,3 +40,14 @@ fun countStrikeBall(randomList: List<Int>, numList: List<Int>, length: Int): Pai
     }
     return Pair(strike, ball)
 }
+
+// 비교 결과 출력
+fun printDecision(strike: Int, ball: Int) {
+    val result = when {
+        (strike == 0 && ball == 0) -> "낫싱"
+        (ball == 0) -> String.format("%d스트라이크", strike)
+        (strike == 0) -> String.format("%d볼", ball)
+        else -> String.format("%d볼 %d스트라이크", ball, strike)
+    }
+    println(result)
+}

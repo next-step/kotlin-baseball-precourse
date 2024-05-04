@@ -62,11 +62,27 @@ fun play() {
         print("숫자를 입력해 주세요 : ")
         val inputNumber = br.readLine()
         checkInputNumber(inputNumber)
-    }while (compareNumber(goalNumber,inputNumber) != 0)
+    } while (compareNumber(goalNumber, inputNumber) != 0)
     println("3개의 숫자를 모두 맞히셨습니다! 게임종료")
-    br.close()
 }
 
-fun main(){
+fun main() {
     play()
+
+    while (true) {
+        println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+        val br = BufferedReader(System.`in`.bufferedReader())
+        val inputCommand = br.readLine()
+        when (inputCommand) {
+            "1" -> play()
+            "2" -> {
+                br.close()
+                return
+            }
+            else -> {
+                println("올바르지 않은 입력값입니다.")
+                continue
+            }
+        }
+    }
 }

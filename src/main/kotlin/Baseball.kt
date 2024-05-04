@@ -18,7 +18,7 @@ fun main() {
         println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
         println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
         val flag = readlnOrNull()?.toInt()
-
+        flagException(flag)
     } while (flag != 2)
 
 
@@ -86,4 +86,12 @@ fun inputNumberException(numList: List<Int>) {
         (numList.any { it == 0 }) -> throw IllegalArgumentException("잘못된 입력: 숫자 0은 입력할 수 없습니다.")
         (isDuplication) -> throw IllegalArgumentException("잘못된 입력: 중복된 숫자가 있습니다.")
     }
+}
+
+// 재시작 조건 입력 예외 처리
+fun flagException(flag: Int?) {
+    if (flag == null)
+        throw IllegalArgumentException("잘못된 조건 입력: 입력된 값이 없습니다.")
+    if (flag != 1 && flag != 2)
+        throw IllegalArgumentException("잘못된 조건 입력: 입력한 숫자가 조건에 맞지 않습니다.")
 }

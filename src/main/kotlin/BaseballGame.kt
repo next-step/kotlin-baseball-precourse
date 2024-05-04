@@ -4,8 +4,6 @@ class BaseballGame {
      var targetNumber = mutableListOf<Int>()
 
 
-
-
     init {
         makeRandomNumber()
     }
@@ -37,4 +35,33 @@ class BaseballGame {
         }
         return inputNumber
     }
+
+    fun calculate(inputNumber : Int) : String {
+        val inputDigits = inputNumber.toString().map { it.toString().toInt() }
+        var strikes = 0
+        var balls = 0
+
+        inputDigits.forEachIndexed { index, digit ->
+            if (digit == targetNumber[index]) {
+                strikes++
+            } else if (digit in targetNumber) {
+                balls++
+            }
+        }
+        return formatResult(balls, strikes)
+    }
+
+    private fun formatResult(balls: Int, strikes: Int) : String  {
+        return when {
+            strikes == 0 && balls == 0 -> "낫싱"
+            strikes == 0 -> "${balls}볼"
+            balls == 0 -> "${strikes}스트라이크"
+            else -> "${balls}볼 ${strikes}스트라이크"
+        }
+    }
+
+
+
+
+
 }

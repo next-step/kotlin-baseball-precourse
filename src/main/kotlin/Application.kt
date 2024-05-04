@@ -15,14 +15,19 @@ fun generateGoalNumber(): String {
 fun checkInputNumber(number: String) {
     //세 자리 숫자인지 확인
     if (number.length != 3) {
-        throw IllegalArgumentException("세 자리 숫자를 입력해주세요")
+        throw IllegalArgumentException("세 자리 숫자가 아닙니다")
     }
     // 각 자리 숫자가 1~9인지 확인
     number.forEach {
         if (it !in '1'..'9') {
-            throw IllegalArgumentException("각 자리의 숫자는 1~9사이 입니다")
+            throw IllegalArgumentException("각 자리의 수가 1~9 범위의 숫자가 아닙니다")
         }
     }
+    // 각 자리 숫자가 서로 다른지 확인
+    if (number[0] == number[1] || number[0] == number[1] || number[1] == number[2]) {
+        throw IllegalArgumentException("각 자리의 수가 서로 다른 숫자가 아닙니다")
+    }
+
 }
 
 fun printResult(strikeCount: Int, ballCount: Int) {

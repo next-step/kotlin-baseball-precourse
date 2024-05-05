@@ -15,6 +15,10 @@ fun main() {
         userNum = inputUserNum()
         userNumList = makeUserNumList(userNum)
 
+        if (userNumList.isEmpty()) {
+            break
+        }
+
         isMatched = checkMatch(selectedNumList, userNumList)
 
         if (isMatched && askEndGame()) {
@@ -52,8 +56,16 @@ fun makeUserNumList(str: String?): List<Int> {
     val numList = mutableListOf<Int>()
     var num: Int = 0
 
+    if (str == null || str == "") {
+        inputErrorHandling('0', 0, "게임 중")
+    }
+
     for ((index, value) in str!!.withIndex()) {
-        num = Character.getNumericValue(value) // 이부분 에러처리하기!
+        num = inputErrorHandling(value, str.length, "게임 중")
+        if (num == -1) {
+            numList.clear()
+            return numList
+        }
         numList.add(num)
     }
     return numList
@@ -64,7 +76,7 @@ fun checkMatch(selectedNumList: List<Int>, userNumList: List<Int>): Boolean {
     var strikeCnt: Int = 0
     var idx: Int = 0
 
-    //println(selectedNumList)
+    println(selectedNumList)
 
     for ((userIndex, userValue) in userNumList.withIndex()) {
         idx = selectedNumList.indexOf(userValue)
@@ -106,11 +118,41 @@ fun askEndGame(): Boolean {
     println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
     answer = readlnOrNull()
 
-    num = Character.getNumericValue(answer!![0]) // 이부분 에러처리하기!
+    if (answer == null || answer == "") {
+        num = inputErrorHandling('0', 0, "게임 끝")
+    } else {
+        num = inputErrorHandling(answer[0], answer.length, "게임 끝")
+    }
 
     if (num == 2 || num == -1) {
         return true
     } else {
         return false
     }
+}
+
+fun inputErrorHandling(c: Char, length: Int, mode: String): Int {
+    var num: Int = 0
+
+    try {
+        num = Character.getNumericValue(c)
+
+        if (mode == "게임 중" && length != 3) {
+            throw IllegalArgumentException()
+        }
+        if (mode == "게임 중" && num <= 0) {
+            throw IllegalArgumentException()
+        }
+
+        if (mode == "게임 끝" && length != 1) {
+            throw IllegalArgumentException()
+        }
+        if (mode == "게임 끝" && (num != 1) && (num != 2)) {
+            throw IllegalArgumentException()
+        }
+    } catch (exception: Exception) {
+        println(exception)
+        return -1
+    }
+    return num
 }

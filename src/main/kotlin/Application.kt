@@ -9,7 +9,7 @@ fun run() {
 }
 fun tryPlayGame(): Boolean {
     return try {
-        val answer = generateRandomInt()
+        val answer: IntArray = generateRandomInt()
         playGame(answer)
         askToPlayAgain()
     } catch (e: IllegalArgumentException) {
@@ -19,12 +19,12 @@ fun tryPlayGame(): Boolean {
 }
 fun askToPlayAgain(): Boolean {
     println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
-    val input = readLine()?.toIntOrNull() ?: 2
+    val input: Int = readLine()?.toIntOrNull() ?: 2
     return input == 1
 }
 fun generateRandomInt(): IntArray { // 서로 다른 수로 구성된 배열 리턴
     val answer = IntArray(3)
-    for (i in 0 until 3) {
+    for (i:Int in 0 until 3) {
         answer[i] = getUniqueNumber(answer)
     }
     return answer
@@ -48,13 +48,13 @@ fun playGame(answer: IntArray){ // 숫자야구 실행한다
     }
 }
 fun play(answer: IntArray): Int {
-    val userInput = getUserInput()
+    val userInput: IntArray = getUserInput()
     val strike = ballOrStrikeOrOut(userInput, answer)
     return checkCorrectAnswer(strike)
 }
 fun getUserInput(): IntArray {
     print("숫자를 입력해 주세요: ")
-    val input = readLine() ?: throw IllegalArgumentException("잘못된 입력입니다. 프로그램을 종료합니다.")
+    val input: String = readLine() ?: throw IllegalArgumentException("잘못된 입력입니다. 프로그램을 종료합니다.")
     checkInputLength(input) // 길이 3인지
     checkInputIsNumeric(input) // 숫자인지
     checkInputDuplicate(input) // 중복 없는지
@@ -89,7 +89,7 @@ fun ballOrStrikeOrOut(userInput: IntArray, answer: IntArray): Int{
     var ball: Int = 0
 
     for(i in 0 until 3){
-        var CurrentStrike = strike(userInput[i], answer[i])
+        var CurrentStrike: Int = strike(userInput[i], answer[i])
         strike += CurrentStrike
         ball +=  ball(userInput[i], answer, CurrentStrike)
     }
@@ -99,11 +99,9 @@ fun ballOrStrikeOrOut(userInput: IntArray, answer: IntArray): Int{
 fun ball(userNumber: Int, answer: IntArray, currentStrike: Int): Int {
     return if (userNumber in answer && currentStrike == 0) 1 else 0
 }
-
 fun strike(userNumber: Int, answerNumber: Int): Int {
     return if (userNumber == answerNumber) 1 else 0
 }
-
 fun getResult(strike: Int, ball: Int){
     var result: String = ""
     if(ball != 0){

@@ -1,6 +1,5 @@
 package role
 
-import utils.Constraints
 import utils.ExceptionHandler
 
 sealed class Role(
@@ -12,7 +11,7 @@ sealed class Role(
     }
 
     private fun validate() {
-        ExceptionHandler.validateListLengthOrException(numbers, Constraints.DIGIT_LENGTH)
+        ExceptionHandler.validateListLengthOrException(numbers, 3)
         ExceptionHandler.validateDuplicatedOrException(numbers)
     }
 

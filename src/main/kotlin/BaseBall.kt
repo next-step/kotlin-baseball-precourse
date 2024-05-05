@@ -39,7 +39,7 @@ class Game{
 
     //게임 재시작 or 게임 종료
     fun gameRestart(): Boolean {
-        print("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+        println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
         return when (readLine()) {
             "1" -> true
             "2" -> false

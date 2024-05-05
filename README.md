@@ -22,16 +22,22 @@
    **generateSecretNumber()**
   - 1~9중 서로 다른 수로 이루어진 3자리 수 생성
 
-    **playGame()**
+
+   **playGame()**
   - 3자리 수 입력 받기
   - IllegalArgumentException 발생시키기
   - 힌트 제시
 
-    **checkGuess()**
+
+  **checkGuess()**
   - 정답 판독
 
-    **playAgain()**
+
+  **playAgain()**
   - 게임 재실행 여부 묻기
 
-    **main()**
+
+  **main()**
   - 정답을 맞출 때까지 게임 계속하기
+
+    

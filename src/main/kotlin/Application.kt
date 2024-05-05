@@ -35,9 +35,8 @@ fun calculateBallCount(inputNumber: String, answerNumber: String): String {
     var strikeCount = answerNumber.zip(inputNumber).count { it.first == it.second }
     var intersectionCount = answerNumber.toSet().intersect(inputNumber.toSet()).size
     val ballCount = intersectionCount - strikeCount
-    
     return when {
-        strikeCount > 0 && ballCount > 0 -> "${strikeCount}스트라이크, ${ballCount}볼"
+        strikeCount > 0 && ballCount > 0 -> "${strikeCount}스트라이크 ${ballCount}볼"
         strikeCount > 0 -> "${strikeCount}스트라이크"
         ballCount > 0 -> "${ballCount}볼"
         else -> "낫싱"
@@ -51,10 +50,8 @@ fun gamePlay() {
     while (!strikeOut) {
         val inputNumber = enterNumber()
         val validInputNumber = validateNumber(inputNumber)
-        
         val result = calculateBallCount(validInputNumber, answerNumber)
         println(result)
-        
         if (result.startsWith("3스트라이크")) {
             println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
             strikeOut = true

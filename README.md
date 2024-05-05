@@ -4,7 +4,9 @@
 - untitled/src/main 에 파일을 올림 : Vs Code 오류로 /src에 작성(수정)이 안됨
 
 
-  - <img width="330" alt="image" src="https://github.com/DeveloperBaa/kotlin-baseball-precourse/assets/106180966/f4ef4c06-0d6d-4275-ae18-4e63d498e937">
+   <img width="330" alt="image" src="https://github.com/DeveloperBaa/kotlin-baseball-precourse/assets/106180966/f4ef4c06-0d6d-4275-ae18-4e63d498e937">
+
+
   - IntelliJ IDEA로 실행
 
 ---

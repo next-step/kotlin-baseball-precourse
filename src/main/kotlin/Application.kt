@@ -55,3 +55,18 @@ fun makeGuess(secretNumber: List<Int>): Boolean {
     displayResult(result) // 추측 결과 출력
     return result.first == 3 // 모든 숫자가 정확하게 맞으면 true 반환
 }
+
+// 사용자의 추측을 정답과 비교하여 결과를 반환하는 함수
+fun checkGuess(guess: String, secretNumber: List<Int>): Pair<Int, Int> {
+    var strikes = 0 // 위치와 숫자 모두 맞는 경우
+    var balls = 0 // 숫자는 맞지만 위치가 틀린 경우
+    for (index in guess.indices) {
+        val num = guess[index].toString().toInt()
+        if (num == secretNumber[index]) {
+            strikes++ // 숫자와 위치 모두 일치
+        } else if (num in secretNumber) {
+            balls++ // 숫자는 있지만 위치 불일치
+        }
+    }
+    return Pair(strikes, balls) // 결과 반환
+}

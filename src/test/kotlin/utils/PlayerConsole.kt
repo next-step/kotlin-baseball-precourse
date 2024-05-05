@@ -47,7 +47,7 @@ internal class PlayerConsoleTest {
             }
         }
 
-        @DisplayName("입력값에 중복된 숫자가 있음음")
+        @DisplayName("입력값에 중복된 숫자가 있음")
         @Test
         fun case_3sameNum() {
             assertThrows<IllegalArgumentException>("중복된 숫자가 존재합니다.") {

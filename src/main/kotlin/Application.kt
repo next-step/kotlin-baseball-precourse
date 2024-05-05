@@ -23,17 +23,14 @@ fun validateNumber(input: String): String {
 }
 
 fun calculateBallCount(inputNumber: String, answerNumber: String): String {
-    var strikeCount = 0
-    var ballCount = 0
-
     var strikeCount = answerNumber.zip(inputNumber).count { it.first == it.second }
     var intersectionCount = answerNumber.toSet().intersect(inputNumber.toSet()).size
     val ballCount = intersectionCount - strikeCount
     
     return when {
-        strikeCount > 0 && ballCount > 0 -> "$strikeCount 스트라이크, $ballCount 볼"
-        strikeCount > 0 -> "$strikeCount 스트라이크"
-        ballCount > 0 -> "$ballCount 볼"
+        strikeCount > 0 && ballCount > 0 -> "${strikeCount}스트라이크, ${ballCount}볼"
+        strikeCount > 0 -> "${strikeCount}스트라이크"
+        ballCount > 0 -> "${ballCount}볼"
         else -> "낫싱"
     }
 }

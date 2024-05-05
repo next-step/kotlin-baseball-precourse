@@ -10,11 +10,9 @@ class BaseballGameTest {
         "4, 4, 4",
         "1, 0, 1",
         "3, 3, 2")
-    fun test_baseballGame_init(param1:Int, param2:Int, param3:Int){
-        fun test_threeDigits_if_given_argument_out_of_bound(param1:Int, param2:Int, param3:Int) {
-            Assertions.assertThatIllegalArgumentException().isThrownBy {
-                BaseballGame(ThreeDigits(param1, param2, param3))
-            }
+    fun test_threeDigits_if_given_argument_out_of_bound(param1:Int, param2:Int, param3:Int) {
+        Assertions.assertThatIllegalArgumentException().isThrownBy {
+            BaseballGame(ThreeDigits(param1, param2, param3))
         }
     }
 

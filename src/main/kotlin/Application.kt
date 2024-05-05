@@ -1,4 +1,16 @@
 fun main() {
+    var gameOver: Boolean = false
+    var isSelected: Boolean = false
+    var selectedNumList = listOf<Int>()
+    var userNum: String? = ""
+
+
+    if (isSelected == false) {
+        selectedNumList = selectNum()
+        isSelected = true
+    }
+    userNum = inputUserNum()
+
 
 }
 
@@ -14,4 +26,13 @@ fun selectNum(): List<Int> {
         }
     }
     return numList
+}
+
+fun inputUserNum(): String? {
+    var userNum: String? = ""
+
+    print("숫자를 입력해 주세요 : ")
+    userNum = readlnOrNull() // 이부분 에러처리하기! - 같은 숫자 입력했을때, 타입 다를때
+
+    return userNum
 }

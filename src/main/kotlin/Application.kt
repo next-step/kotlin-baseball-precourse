@@ -14,3 +14,13 @@ fun inputNumber(): String {
     val inputPlayerNumberStr = inputPlayerNumberInt.toString()
     return inputPlayerNumberStr
 }
+fun checkInputNumber(): String {
+    val checkPlayerNumber = try {
+        inputNumber()
+    } catch (exception: IllegalArgumentException) {
+        println("IllegalArgumentException")
+        System.exit(1)
+    }
+    val playerNumber = checkPlayerNumber.toString()
+    return playerNumber
+}

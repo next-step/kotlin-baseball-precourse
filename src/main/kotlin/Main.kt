@@ -5,11 +5,12 @@ fun main() {
 }
 
 fun generateAnswer(): String {
-    // 정답 수 생성
+    val numbers = (1..9).shuffled().take(3)
+    return numbers.joinToString("")
 }
 
 fun checkInputIfValid(input: String): Boolean {
-    // 적절한 입력인 지 확인
+    return input.length == 3 && input.all { it.isDigit() && it != '0' } && input.toSet().size == 3
 }
 
 fun evaluate(input: String, answer: String): String {

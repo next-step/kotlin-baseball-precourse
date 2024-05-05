@@ -1,5 +1,5 @@
 fun Input(): List<Int> {
-    while (true) {
+    while(true) {
         println("3개의 숫자를 입력해주세요 : ")
         val input = readLine() ?: throw IllegalArgumentException("입력이 잘못되었습니다.")
         val userInput = input.map { it.toString().toIntOrNull() ?: throw IllegalArgumentException("입력이 잘못되었습니다.") }

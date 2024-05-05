@@ -1,14 +1,12 @@
 package utils
 
 import role.Player
-import utils.Constraints.ENTER_NUMBER_TEXT
-import utils.Constraints.RESTART_ASKING_TEXT
 import utils.ExceptionHandler.validateDigitOrException
 import utils.ExceptionHandler.validateRestartCode
 
 object PlayerConsole {
     fun enterAnswer(): Player {
-        print(ENTER_NUMBER_TEXT)
+        print("숫자를 입력해주세요 : ")
 
         val answers = arrayListOf<Int>()
         val playerInput = readLine()
@@ -22,7 +20,7 @@ object PlayerConsole {
     }
 
     fun enterRestart(): String {
-        println(RESTART_ASKING_TEXT)
+        println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
 
         val restartCode = readLine()
         validateRestartCode(restartCode.toString())

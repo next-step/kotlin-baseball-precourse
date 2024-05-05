@@ -1,6 +1,6 @@
 # kotlin-baseball-precourse
 
-- untitled/src/main 에 파일을 올림 : Vs Code 오류로 /src에 작성이 안됨
+- untitled/src/main 에 파일을 올림 : Vs Code 오류로 /src에 작성(수정)이 안됨
 
   #### [기능]
   - 1~9중 서로 다른 수로 이루어진 3자리 수 생성

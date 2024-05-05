@@ -10,7 +10,6 @@ fun run() {
 fun tryPlayGame(): Boolean {
     return try {
         val answer = generateRandomInt()
-        println(answer.joinToString(""))
         playGame(answer)
         askToPlayAgain()
     } catch (e: IllegalArgumentException) {

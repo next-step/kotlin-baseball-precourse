@@ -54,6 +54,7 @@ fun randomNumber(): List<Int> {
 }
 
 //플레이어: 3개 숫자 입력
+//예외 처리
 fun playerInput(): List<Int> {
     print("숫자를 입력해 주세요 : ")
     val input = readLine() ?: throw IllegalArgumentException("입력이 없습니다")

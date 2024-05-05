@@ -59,6 +59,8 @@ fun checkMatch(selectedNumList: List<Int>, userNumList: List<Int>): Boolean {
     var strikeCnt: Int = 0
     var idx: Int = 0
 
+    //println(selectedNumList)
+
     for ((userIndex, userValue) in userNumList.withIndex()) {
         idx = selectedNumList.indexOf(userValue)
         if (idx == userIndex) {
@@ -68,10 +70,26 @@ fun checkMatch(selectedNumList: List<Int>, userNumList: List<Int>): Boolean {
         }
     }
 
+    printMatchList(ballCnt, strikeCnt)
+
     if (strikeCnt == 3) {
         println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
         return true
     } else {
         return false
     }
+}
+
+fun printMatchList(ballCnt: Int, strikeCnt: Int) {
+    if (ballCnt == 0 && strikeCnt == 0) {
+        print("낫싱")
+    } else {
+        if (ballCnt != 0) {
+            print("${ballCnt}볼 ")
+        }
+        if (strikeCnt != 0) {
+            print("${strikeCnt}스트라이크")
+        }
+    }
+    println()
 }

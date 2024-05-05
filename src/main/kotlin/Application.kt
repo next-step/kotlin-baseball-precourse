@@ -70,3 +70,13 @@ fun checkGuess(guess: String, secretNumber: List<Int>): Pair<Int, Int> {
     }
     return Pair(strikes, balls) // 결과 반환
 }
+
+// 추측 결과를 사용자에게 알려주는 함수
+fun displayResult(result: Pair<Int, Int>) {
+    when {
+        result.first == 0 && result.second == 0 -> println("낫싱")
+        result.first > 0 && result.second > 0 -> println("${result.second}볼 ${result.first}스트라이크")
+        result.first > 0 -> println("${result.first}스트라이크")
+        result.second > 0 -> println("${result.second}볼")
+    }
+}

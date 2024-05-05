@@ -76,7 +76,7 @@ fun checkMatch(selectedNumList: List<Int>, userNumList: List<Int>): Boolean {
     var strikeCnt: Int = 0
     var idx: Int = 0
 
-    println(selectedNumList)
+    //println(selectedNumList)
 
     for ((userIndex, userValue) in userNumList.withIndex()) {
         idx = selectedNumList.indexOf(userValue)

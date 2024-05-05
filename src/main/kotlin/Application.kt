@@ -65,4 +65,4 @@ fun gameStart() {
 
 fun main() {
     gameStart()
-}a
+}

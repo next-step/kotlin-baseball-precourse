@@ -25,6 +25,7 @@ class Game{
         return Pair(strike, ball)
     }
 
+    //정답 시 게임 종료
     fun playGame() {
         var strike = 0
         while(strike != 3) {
@@ -33,7 +34,7 @@ class Game{
             strike = strikes
             printResult(strike, balls)
         }
-        print("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+        println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
     }
 
     //게임 재시작 or 게임 종료

@@ -34,3 +34,21 @@ fun calculateBallCount(inputNumber: String, answerNumber: String): String {
         else -> "낫싱"
     }
 }
+
+fun gamePlay() {
+    val answerNumber = generateNumber()
+    var strikeOut = false
+
+    while (!strikeOut) {
+        val inputNumber = enterNumber()
+        val validInputNumber = validateNumber(inputNumber)
+        
+        val result = calculateBallCount(validInputNumber, answerNumber)
+        println(result)
+        
+        if (result.startsWith("3스트라이크")) {
+            println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+            strikeOut = true
+        }
+    }
+}

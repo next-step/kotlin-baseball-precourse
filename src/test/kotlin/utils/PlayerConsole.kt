@@ -1,10 +1,6 @@
 package utils
 
 import org.junit.jupiter.api.*
-import utils.Constraints.DUPLICATED_DIGIT_EXCEPTION
-import utils.Constraints.LENGTH_MISMATCH_EXCEPTION
-import utils.Constraints.NON_DIGIT_EXCEPTION
-import utils.Constraints.OUT_OF_RANGE_EXCEPTION
 
 import utils.PlayerConsole.enterAnswer
 import java.io.ByteArrayInputStream
@@ -15,7 +11,7 @@ internal class PlayerConsoleTest {
         @DisplayName("입력값 길이 3 미만")
         @Test
         fun case_inputLength1() {
-            assertThrows<IllegalArgumentException>(LENGTH_MISMATCH_EXCEPTION) {
+            assertThrows<IllegalArgumentException>("입력값의 길이가 올바르지 않습니다.") {
                 System.setIn(ByteArrayInputStream("56".toByteArray()))
                 enterAnswer()
             }
@@ -33,7 +29,7 @@ internal class PlayerConsoleTest {
         @DisplayName("입력값 길이 4 이상")
         @Test
         fun case_inputLength4() {
-            assertThrows<IllegalArgumentException>(LENGTH_MISMATCH_EXCEPTION) {
+            assertThrows<IllegalArgumentException>("입력값의 길이가 올바르지 않습니다.") {
                 System.setIn(ByteArrayInputStream("1999".toByteArray()))
                 enterAnswer()
             }
@@ -54,7 +50,7 @@ internal class PlayerConsoleTest {
         @DisplayName("입력값 2개 중복")
         @Test
         fun case_2sameNum() {
-            assertThrows<IllegalArgumentException>(DUPLICATED_DIGIT_EXCEPTION) {
+            assertThrows<IllegalArgumentException>("중복된 숫자가 존재합니다.") {
                 System.setIn(ByteArrayInputStream("177".toByteArray()))
                 enterAnswer()
             }
@@ -63,7 +59,7 @@ internal class PlayerConsoleTest {
         @DisplayName("입력값 3개 중복")
         @Test
         fun case_3sameNum() {
-            assertThrows<IllegalArgumentException>(DUPLICATED_DIGIT_EXCEPTION) {
+            assertThrows<IllegalArgumentException>("중복된 숫자가 존재합니다.") {
                 System.setIn(ByteArrayInputStream("777".toByteArray()))
                 enterAnswer()
             }
@@ -84,7 +80,7 @@ internal class PlayerConsoleTest {
         @DisplayName("입력값에 특수문자 또는 문자가 포함")
         @Test
         fun case_inputError() {
-            assertThrows<IllegalArgumentException>(NON_DIGIT_EXCEPTION) {
+            assertThrows<IllegalArgumentException>("입력값이 숫자가 아닙니다.") {
                 System.setIn(ByteArrayInputStream("!12".toByteArray()))
                 enterAnswer()
             }
@@ -105,7 +101,7 @@ internal class PlayerConsoleTest {
         @DisplayName("범위가 1보다 작은 경우")
         @Test
         fun case_smallInput() {
-            assertThrows<IllegalArgumentException>(OUT_OF_RANGE_EXCEPTION) {
+            assertThrows<IllegalArgumentException>("입력값이 올바른 범위가 아닙니다.") {
                 System.setIn(ByteArrayInputStream("102".toByteArray()))
                 enterAnswer()
             }

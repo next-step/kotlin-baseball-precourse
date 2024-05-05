@@ -1,15 +1,15 @@
 package baseball
 
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-
 class BaseballTest {
 
     @Test
     fun `generateAnswer returns a string of 3 unique digits`() {
-        //generateAnswer 함수가 다음 조건을 만족하는 지 확인
-        // 1. 세 자리 숫자를 생성
-        // 2. 해당 숫자에는 중복된 수가 없음
-        // 3. 해당 숫자는 0이 아닌 숫자로만 구성
+        val answer = generateAnswer()
+        assertThat(answer.length).isEqualTo(3)
+        assertThat(answer.toSet().size).isEqualTo(3)
+        assertThat(answer.all { it.isDigit() && it != '0' }).isTrue()
     }
 
     @Test

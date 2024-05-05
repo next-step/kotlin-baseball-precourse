@@ -2,6 +2,7 @@ package baseball.guessing
 
 import role.Computer
 import role.Player
+
 abstract class Guess(
     protected val computer: Computer,
     protected val player: Player

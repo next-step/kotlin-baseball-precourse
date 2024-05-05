@@ -1,14 +1,18 @@
 import kotlin.random.Random
 
 fun main() {
-    val computerInput = generateComputerNumber()
-    var checkResultFlag = true
-    while (checkResultFlag) {
-        val userInput = inputUserNumber()
-        isValidInput(userInput)
-        val (strikes, balls) = calculateResult(computerInput, userInput)
-        printResult(strikes, balls)
-        checkResultFlag = checkResult(strikes)
+    var checkReplayFlag = true
+    while (checkReplayFlag) {
+        val computerInput = generateComputerNumber()
+        var checkResultFlag = true
+        while (checkResultFlag) {
+            val userInput = inputUserNumber()
+            isValidInput(userInput)
+            val (strikes, balls) = calculateResult(computerInput, userInput)
+            printResult(strikes, balls)
+            checkResultFlag = checkResult(strikes)
+        }
+        checkReplayFlag = selectReplay()
     }
 }
 
@@ -63,4 +67,10 @@ fun checkResult(strikes: Int): Boolean {
     } else {
         return true
     }
+}
+
+fun selectReplay(): Boolean {
+    println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+    val selection = readlnOrNull() ?: ""
+    return selection == "1"
 }

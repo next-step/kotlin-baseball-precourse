@@ -6,18 +6,23 @@ fun main() {
     var userNumList = listOf<Int>()
     var isMatched: Boolean = false
 
+    while (gameOver == false) {
 
-    if (isSelected == false) {
-        selectedNumList = selectNum()
-        isSelected = true
+        if (isSelected == false) {
+            selectedNumList = selectNum()
+            isSelected = true
+        }
+        userNum = inputUserNum()
+        userNumList = makeUserNumList(userNum)
+
+        isMatched = checkMatch(selectedNumList, userNumList)
+
+        if (isMatched && askEndGame()) {
+            gameOver = true // gameOver
+        } else if (isMatched) {
+            isSelected = false // restart
+        }
     }
-
-    userNum = inputUserNum()
-    userNumList = makeUserNumList(userNum)
-
-    isMatched = checkMatch(selectedNumList, userNumList)
-
-
 }
 
 fun selectNum(): List<Int> {
@@ -92,4 +97,20 @@ fun printMatchList(ballCnt: Int, strikeCnt: Int) {
         }
     }
     println()
+}
+
+fun askEndGame(): Boolean {
+    var answer: String? = ""
+    var num: Int = 0
+
+    println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+    answer = readlnOrNull()
+
+    num = Character.getNumericValue(answer!![0]) // 이부분 에러처리하기!
+
+    if (num == 2 || num == -1) {
+        return true
+    } else {
+        return false
+    }
 }

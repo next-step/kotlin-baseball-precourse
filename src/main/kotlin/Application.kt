@@ -24,3 +24,10 @@ fun checkInputNumber(): String {
     val playerNumber = checkPlayerNumber.toString()
     return playerNumber
 }
+
+fun restartCheck(): Int {
+    val restartCheck = readLine()
+    val restartInt = restartCheck!!.toInt()
+    if (restartInt != 1 && restartInt != 2) throw IllegalArgumentException("IllegalArgumentException")
+    return restartInt
+}

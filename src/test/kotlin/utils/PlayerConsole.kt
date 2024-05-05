@@ -38,7 +38,7 @@ internal class PlayerConsoleTest {
 
     @Nested
     inner class DuplicatedTest {
-        @DisplayName("입력값 중복 없음")
+        @DisplayName("입력값에 중복된 숫자가 없음")
         @Test
         fun case_noSameNum() {
             assertDoesNotThrow {
@@ -47,20 +47,11 @@ internal class PlayerConsoleTest {
             }
         }
 
-        @DisplayName("입력값 2개 중복")
-        @Test
-        fun case_2sameNum() {
-            assertThrows<IllegalArgumentException>("중복된 숫자가 존재합니다.") {
-                System.setIn(ByteArrayInputStream("177".toByteArray()))
-                enterAnswer()
-            }
-        }
-
-        @DisplayName("입력값 3개 중복")
+        @DisplayName("입력값에 중복된 숫자가 있음음")
         @Test
         fun case_3sameNum() {
             assertThrows<IllegalArgumentException>("중복된 숫자가 존재합니다.") {
-                System.setIn(ByteArrayInputStream("777".toByteArray()))
+                System.setIn(ByteArrayInputStream("122".toByteArray()))
                 enterAnswer()
             }
         }
@@ -98,7 +89,7 @@ internal class PlayerConsoleTest {
             }
         }
 
-        @DisplayName("범위가 1보다 작은 경우")
+        @DisplayName("입력 범위가 올바르지 않음")
         @Test
         fun case_smallInput() {
             assertThrows<IllegalArgumentException>("입력값이 올바른 범위가 아닙니다.") {

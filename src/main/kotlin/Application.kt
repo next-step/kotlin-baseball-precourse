@@ -33,3 +33,12 @@ fun generateSecretNumber(): List<Int> {
     }
     return numbers // 생성된 정답 반환
 }
+
+// 실제 게임 플레이를 처리하는 함수
+fun playGame(secretNumber: List<Int>) {
+    while (true) {
+        // 사용자의 추측 값을 받고 정답과 비교하여 맞췄는지 확인
+        if (makeGuess(secretNumber)) break // 성공 시 루프 종료
+    }
+    println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+}

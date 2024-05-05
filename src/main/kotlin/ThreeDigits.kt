@@ -24,7 +24,7 @@ data class ThreeDigits(
     companion object{
         fun fromList(list:List<Int>):ThreeDigits{
             if(list.size!=3)
-                throw IndexOutOfBoundsException("invalid size of the input list.")
+                throw IllegalArgumentException("invalid size of the input list.")
             return ThreeDigits(list[0], list[1], list[2])
         }
     }

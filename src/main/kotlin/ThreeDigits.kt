@@ -14,12 +14,12 @@ data class ThreeDigits(
     }
 
     init{
-        if((digit1<0) or (digit1>=10))
-            throw IllegalArgumentException("Each argument must be 1-digit integer.")
-        if((digit2<0) or (digit2>=10))
-            throw IllegalArgumentException("Each argument must be 1-digit integer.")
-        if((digit3<0) or (digit3>=10))
-            throw IllegalArgumentException("Each argument must be 1-digit integer.")
+        if((digit1<1) or (digit1>=10))
+            throw IllegalArgumentException("Each argument must be non-zero 1-digit integer.")
+        if((digit2<1) or (digit2>=10))
+            throw IllegalArgumentException("Each argument must be non-zero 1-digit integer.")
+        if((digit3<1) or (digit3>=10))
+            throw IllegalArgumentException("Each argument must be non-zero 1-digit integer.")
     }
     companion object{
         fun fromList(list:List<Int>):ThreeDigits{

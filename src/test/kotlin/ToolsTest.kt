@@ -38,13 +38,13 @@ class ToolsTest {
     }
 
     @ParameterizedTest(name = "permutation(\"{0}\") should not contain duplicates and works without any failures")
-    @ValueSource(ints = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+    @ValueSource(ints = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
     fun test_permutation_if_inside_bound(input:Int){
         assertThat(Tools.permutation(input)).doesNotHaveDuplicates()
     }
 
     @ParameterizedTest(name = "permutation(\"{0}\") should throw illegalArgumentException")
-    @ValueSource(ints = [-2,-1, 11, 12])
+    @ValueSource(ints = [-2,-1, 10, 12])
     fun test_permutation_if_out_of_bound(input:Int){
         assertThatIllegalArgumentException()
             .isThrownBy { Tools.permutation(input) }

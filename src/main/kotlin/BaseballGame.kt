@@ -1,10 +1,10 @@
 class BaseballGame(private val answer:ThreeDigits) {
     private fun checkIfDigit(numberToCheck:Int):Boolean{
-        return (numberToCheck < 10) and (numberToCheck >= 0)
+        return (numberToCheck < 10) and (numberToCheck >= 1)
     }
     private fun checkBall(numberToFind:Int, digit:Int):Boolean{
         if(!checkIfDigit(numberToFind))
-            throw IllegalArgumentException("input number must be a digit")
+            throw IllegalArgumentException("input number must be a non-zero digit")
         if((digit<0) or (digit>=3))
             throw IllegalArgumentException("input digit must between [0-2]")
         for(i in 0..2){
@@ -16,7 +16,7 @@ class BaseballGame(private val answer:ThreeDigits) {
 
     private fun checkStrike(numberToFind: Int, digit: Int):Boolean{
         if(!checkIfDigit(numberToFind))
-            throw IllegalArgumentException("input number must be a digit")
+            throw IllegalArgumentException("input number must be a non-zero digit")
         if((digit<0) or (digit>=3))
             throw IllegalArgumentException("input digit must between [0-2]")
         if(answer[digit] == numberToFind)

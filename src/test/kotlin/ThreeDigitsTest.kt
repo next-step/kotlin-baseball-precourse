@@ -10,9 +10,9 @@ class ThreeDigitsTest {
     @CsvSource(
         "1, 2, 3",
         "4, 5, 6",
-        "1, 0, 8",
+        "1, 4, 8",
         "4, 3, 2",
-        "9, 8, 0")
+        "9, 8, 7")
     fun test_threeDigits(param1:Int, param2:Int, param3:Int){
         assertThat(ThreeDigits(param1, param2, param3)).matches {
             (it.digit1 == param1) and (it.digit2 == param2) and (it.digit3 == param3)
@@ -20,7 +20,7 @@ class ThreeDigitsTest {
     }
     @ParameterizedTest(name = "ThreeDigit({0}, {1}, {2}) should throw illegalArgumentException")
     @CsvSource(
-        "1, 2, 11",
+        "0, 2, 8",
         "-1, 5, 6",
         "11, 12, 13",
         "8, 9, 10",
@@ -35,9 +35,9 @@ class ThreeDigitsTest {
     @CsvSource(
         "1, 2, 3",
         "4, 5, 6",
-        "1, 0, 8",
+        "1, 4, 8",
         "4, 3, 2",
-        "9, 8, 0")
+        "9, 8, 3")
     fun test_threeDigits_from_list(param1:Int, param2:Int, param3:Int){
         assertThat(ThreeDigits.fromList(listOf(param1, param2, param3))).matches {
             (it.digit1 == param1) and (it.digit2 == param2) and (it.digit3 == param3)
@@ -56,9 +56,9 @@ class ThreeDigitsTest {
     @CsvSource(
         "1, 2, 3, 0, 1",
         "4, 5, 6, 1, 5",
-        "1, 0, 8, 2, 8",
+        "1, 3, 8, 2, 8",
         "4, 3, 2, 0, 4",
-        "9, 8, 0, 2, 0")
+        "9, 8, 1, 2, 1")
     fun test_threeDigits_indexing(param1:Int, param2:Int, param3:Int, index:Int, expected:Int){
         assertThat(ThreeDigits(param1, param2, param3)[index]).isEqualTo(expected)
     }

@@ -22,3 +22,29 @@ fun main() {
 
     check(inputNum.toIntArray(), tmpArray)
 }
+
+fun check(guess: IntArray, answer: IntArray) {
+    var strike = 0
+    var ball = 0
+
+    for (i in guess.indices) {
+        if (guess[i] == answer[i]) {
+            strike++
+        } else if (guess.contains(answer[i])) {
+            ball++
+        }
+    }
+
+    if (strike == 3) {
+        println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+        //exit()
+    } else if (strike > 0 && ball > 0) {
+        println("$strike 스트라이크, $ball 볼")
+    } else if (strike > 0) {
+        println("$strike 스트라이크")
+    } else if (ball > 0) {
+        println("$ball 볼")
+    } else {
+        println("낫싱")
+    }
+}

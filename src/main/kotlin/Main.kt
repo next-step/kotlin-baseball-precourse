@@ -11,7 +11,7 @@ fun main() {
             throw IllegalArgumentException("잘못된 값 입력: 입력값은 서로 다른 1에서 9까지의 3자리 수여야 합니다.")
         }
 
-        while (!evaluate(input, targetNumbers)) {
+        while (evaluate(input, targetNumbers) != Pair(3,0)) { // 3스트라이크일 때 반복 중단
             println("숫자를 입력해 주세요:")
             input = readln()
             if (!checkInputIfValid(input)) {
@@ -35,7 +35,7 @@ fun checkInputIfValid(input: String): Boolean {
     return input.length == 3 && input.all { it.isDigit() && it != '0' } && input.toSet().size == 3
 }
 
-fun evaluate(input: String, answer: String): Boolean {
+fun evaluate(input: String, answer: String): Pair<Int, Int> {
     var strikes = 0
     var balls = 0
 
@@ -46,14 +46,5 @@ fun evaluate(input: String, answer: String): Boolean {
         }
     }
 
-    val result = when {
-        strikes == 0 && balls == 0 -> "낫싱"
-        strikes > 0 && balls == 0 -> "${strikes}스트라이크"
-        strikes == 0 && balls > 0 -> "${balls}볼"
-        else -> "${balls}볼 ${strikes}스트라이크"
-    }
-
-    println(result)
-
-    return strikes == 3
+    return Pair(strikes, balls)
 }

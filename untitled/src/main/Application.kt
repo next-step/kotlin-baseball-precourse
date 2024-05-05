@@ -48,3 +48,16 @@ fun check(guess: IntArray, answer: IntArray) {
         println("낫싱")
     }
 }
+
+fun exit() {
+    println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+    val choice = readLine()
+    when (choice) {
+        "1" -> main()
+        "2" -> return
+        else -> {
+            println("잘못된 입력입니다.")
+            exit()
+        }
+    }
+}

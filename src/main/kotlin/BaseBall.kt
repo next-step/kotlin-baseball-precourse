@@ -16,10 +16,8 @@ class GameController {
     }
 }
 
-class Computer {
-    private val randomNumber: Array<Int> = setNumber()
-
-    private fun setNumber(): Array<Int> {
+class RandomNumberGenerator {
+    fun setNumber(): Array<Int> {
         val number: Array<Int> = Array(3) { 0 }
         number[0] = getRandomNumber(number)
         number[1] = getRandomNumber(number)

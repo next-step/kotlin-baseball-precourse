@@ -80,3 +80,17 @@ fun displayResult(result: Pair<Int, Int>) {
         result.second > 0 -> println("${result.second}볼")
     }
 }
+
+// 게임을 재시작할 지 결정하는 함수
+fun handleGameRestart(): Boolean {
+    // 반복적으로 사용자의 입력을 받음.
+    while (true) {
+        println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+        val input = readLine()!!.trim()
+        when (input) {
+            "1" -> return true // 새 게임 시작
+            "2" -> return false // 게임 종료
+            else -> println("1 혹은 2만 입력해 주세요.") // 잘못된 입력 처리
+        }
+    }
+}

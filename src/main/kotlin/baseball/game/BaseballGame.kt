@@ -3,12 +3,9 @@ package baseball.game
 import baseball.guessing.numGuess
 import baseball.guessing.Guess
 import utils.computer
-import utils.Constraints.ANSWER_BALL
-import utils.Constraints.ANSWER_STRIKE
-import utils.Constraints.CORRECT_AND_FINISH
-import utils.Constraints.YES_RESTART
 import utils.PlayerConsole
-class BaseballGame : Game {
+
+class BaseballGame: Game{
     override fun start() {
         do {
             startGame()
@@ -16,7 +13,7 @@ class BaseballGame : Game {
     }
 
     override fun restart(): Boolean =
-        PlayerConsole.enterRestart() == YES_RESTART
+        PlayerConsole.enterRestart() == "1"
 
     private fun startGame() {
         val computer = computer.create()
@@ -31,9 +28,9 @@ class BaseballGame : Game {
 
         } while (!isAnswer(strike, ball))
 
-        println(CORRECT_AND_FINISH)
+        println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
     }
 
     private fun isAnswer(strike: Int, ball: Int): Boolean =
-        (strike == ANSWER_STRIKE && ball == ANSWER_BALL)
+        (strike == 3 && ball == 0)
 }

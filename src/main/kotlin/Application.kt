@@ -42,3 +42,16 @@ fun playGame(secretNumber: List<Int>) {
     }
     println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
 }
+
+// 사용자로부터 추측 값을 입력받고 결과를 확인하는 함수
+fun makeGuess(secretNumber: List<Int>): Boolean {
+    print("숫자를 입력해 주세요: ")
+    val guess = readLine()!!.trim()
+    if(guess.length != secretNumber.size || !guess.all { it.isDigit() }) {
+        // 입력 값의 유효성을 체크하고 유효하지 않을 경우 예외 발생
+        throw IllegalArgumentException("유효하지 않은 숫자 입력입니다. 3자리 숫자를 입력해 주세요.")
+    }
+    val result = checkGuess(guess, secretNumber)
+    displayResult(result) // 추측 결과 출력
+    return result.first == 3 // 모든 숫자가 정확하게 맞으면 true 반환
+}

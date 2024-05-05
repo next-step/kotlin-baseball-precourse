@@ -1,7 +1,29 @@
 package baseball
 
 fun main() {
-    // 프로그램 실행부
+    while (true) {
+        val targetNumbers = generateAnswer()
+
+        println("숫자를 입력해 주세요:")
+        var input = readln()
+
+        while (!checkInputIfValid(input)) {
+            throw IllegalArgumentException("잘못된 값 입력: 입력값은 서로 다른 1에서 9까지의 3자리 수여야 합니다.")
+        }
+
+        while (!evaluate(input, targetNumbers)) {
+            println("숫자를 입력해 주세요:")
+            input = readln()
+            if (!checkInputIfValid(input)) {
+                throw IllegalArgumentException("잘못된 값 입력: 입력값은 서로 다른 1에서 9까지의 3자리 수여야 합니다.")
+            }
+        }
+
+        println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+        println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+        val option = readln()
+        if (option == "2") break
+    }
 }
 
 fun generateAnswer(): String {
@@ -13,14 +35,14 @@ fun checkInputIfValid(input: String): Boolean {
     return input.length == 3 && input.all { it.isDigit() && it != '0' } && input.toSet().size == 3
 }
 
-fun evaluate(input: String, answer: String): String {
+fun evaluate(input: String, answer: String): Boolean {
     var strikes = 0
     var balls = 0
 
     input.forEachIndexed { index, num ->
-        when (num) {
-            answer[index] -> strikes++
-            in answer -> balls++
+        when {
+            num == answer[index] -> strikes++
+            num in answer -> balls++
         }
     }
 
@@ -33,5 +55,5 @@ fun evaluate(input: String, answer: String): String {
 
     println(result)
 
-    return result
+    return strikes == 3
 }

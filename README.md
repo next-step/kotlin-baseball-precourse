@@ -1,7 +1,7 @@
 # kotlin-baseball-precourse
 
 #### [파일 위치]
-- untitled/src/main 에 파일을 올림 : Vs Code 오류로 /src에 작성(수정)이 안됨
+- **untitled/src/main** 에 파일을 올림 : Vs Code 오류로 /src에 작성(수정)이 안됨
 - https://github.com/DeveloperBaa/kotlin-baseball-precourse/blob/DeveloperBaa/untitled/src/main/Application.kt
 
 

@@ -4,7 +4,7 @@ sealed class GameState {
     data object End : GameState()
 }
 
-class GameController {
+class GameStateManager {
     private var gameState: GameState = GameState.IsLoading
 
     fun changeGameState(state: GameState) {
@@ -36,15 +36,14 @@ class RandomNumberGenerator {
 }
 
 class Computer(private val randomNumber: Array<Int>) {
-
-    fun printResult(userInputNumber: Array<Int>, gameController: GameController) {
+    fun printResult(userInputNumber: Array<Int>, gameStateManager: GameStateManager) {
         val strike: Int = countStrike(userInputNumber)
         val ball: Int = countBall(userInputNumber)
 
         if (strike == 3) {
             println("3스트라이크")
             println("3개의 숫자를 모두 맞히셨습니다!게임종료")
-            gameController.changeGameState(GameState.IsLoading)
+            gameStateManager.changeGameState(GameState.IsLoading)
         } else {
             when {
                 strike == 0 && ball == 0 -> println("낫싱")

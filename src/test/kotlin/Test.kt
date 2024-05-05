@@ -1,6 +1,8 @@
 package baseball
 
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Assertions.assertTrue
+import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Test
 class BaseballTest {
 
@@ -14,12 +16,16 @@ class BaseballTest {
 
     @Test
     fun `checkInputIfValid returns true for valid input`() {
-        // 예외처리가 valid input에 대해 정상 작동하는 지 확인
+        val validInput = "123"
+        assertTrue(checkInputIfValid(validInput))
     }
 
     @Test
     fun `checkInputIfValid returns false for invalid input`() {
-        // 예외처리가 invalid input에 대해 정상 작동하는 지 확인
+        val invalidInputs = listOf("111", "1234", "abc", "012")
+        invalidInputs.forEach { input ->
+            assertFalse(checkInputIfValid(input))
+        }
     }
 
     @Test

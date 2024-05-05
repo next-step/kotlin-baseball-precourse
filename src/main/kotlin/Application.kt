@@ -3,4 +3,14 @@ fun selectRandomnumber(): List<String> {
     val randomNumbersStr = randomNumbersInt.map { it.toString() }
     return randomNumbersStr
 }
-
+fun inputNumber(): String {
+    println("숫자를 입력해 주세요 : ")
+    val playerNumberStr: String? = readLine()
+    val inputPlayerNumberInt: Int = playerNumberStr!!.toInt()
+    when (inputPlayerNumberInt) {
+        in 111..999 -> {}
+        else -> throw IllegalArgumentException("IllegalArgumentException")
+    }
+    val inputPlayerNumberStr = inputPlayerNumberInt.toString()
+    return inputPlayerNumberStr
+}

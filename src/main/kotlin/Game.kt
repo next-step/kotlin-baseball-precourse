@@ -2,9 +2,18 @@ import kotlin.random.Random
 
 class Game {
     private val threeNumber: MutableList<Int>
+    private var continueGame: Boolean
 
     init {
         threeNumber = generateRandomNumber()
+        continueGame = true
+    }
+
+    fun gameStart() {
+        while (continueGame) {
+            checkNumber(threeNumber, inputNumber())
+        }
+        println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
     }
 
     private fun generateRandomNumber(): MutableList<Int> {
@@ -59,6 +68,22 @@ class Game {
                 continue
             }
         }
+        printHint(strike, ball)
     }
 
+    private fun printHint(strike: Int, ball: Int) {
+        if (strike > 0 && ball > 0) {
+            println("${ball}볼 ${strike}스트라이크")
+        } else if (strike > 0) {
+            println("${strike}스트라이크")
+            if (strike == 3) {
+                continueGame = false
+            }
+        } else if (ball > 0) {
+            println("${ball}볼")
+        } else {
+            println("낫싱")
+        }
+    }
 }
+

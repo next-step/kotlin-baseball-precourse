@@ -5,6 +5,7 @@ fun main() {
     val userInput = inputUserNumber()
     isValidInput(userInput)
     val (strikes, balls) = calculateResult(computerInput, userInput)
+    printResult(strikes, balls)
 }
 
 fun generateComputerNumber(): String {
@@ -40,4 +41,13 @@ fun calculateResult(computerInput: String, userInput: String): Pair<Int, Int> {
         }
     }
     return Pair(strikes, balls)
+}
+
+fun printResult(strikes: Int, balls: Int) {
+    when {
+        strikes > 0 && balls > 0 -> println("${balls}볼 ${strikes}스트라이크")
+        strikes > 0 -> println("${strikes}스트라이크")
+        balls > 0 -> println("${balls}볼")
+        else -> println("낫싱")
+    }
 }

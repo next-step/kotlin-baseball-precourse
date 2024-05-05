@@ -17,8 +17,8 @@ class Application {
         println("축하합니다! 숫자를 모두 맞히셨습니다!")
 
         if (playAgain()) {
-            computerNumbers = ComputerNumberGenerator.generate() // 새로운 랜덤 숫자 생성
-            play() // 게임 다시 시작
+            computerNumbers = ComputerNumberGenerator.generate()
+            play()
         } else {
             println("게임을 종료합니다.")
         }

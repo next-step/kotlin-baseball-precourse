@@ -19,3 +19,17 @@ fun main() {
     println("게임 종료.") // 사용자가 게임 종료를 원할 때 출력
 }
 
+// 정답(3개의 난수)을 생성하는 함수
+fun generateSecretNumber(): List<Int> {
+    // 중복되지 않는 숫자 세 개를 저장하기 위한 MutableList
+    val numbers = mutableListOf<Int>()
+    while (numbers.size < 3) {
+        // 1부터 9까지 무작위 번호 생성
+        val randomNumber = Random.nextInt(1, 10)
+        // 중복된 번호가 아니라면 리스트에 추가
+        if (!numbers.contains(randomNumber)) {
+            numbers.add(randomNumber)
+        }
+    }
+    return numbers // 생성된 정답 반환
+}

@@ -8,7 +8,7 @@
   
 - 사용자의 숫자 3개를 입력받는 함수
   * argument : X
-  * return : List<Int>
+  * return : String?
   
 - 입력받은 사용자의 숫자를 list형태로 변환하는 함수
   * argument : String?

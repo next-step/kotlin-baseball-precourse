@@ -42,4 +42,20 @@ class BaseballGame {
         }
         return numbers
     }
+
+    fun checkInput(userInput: String?, targetNumbers: List<Int>): String {
+        if (userInput == null || userInput.length != 3 || !userInput.all { it.isDigit() }) {
+            throw IllegalArgumentException("Invalid input")
+        }
+
+        val userNumbers = userInput.map { it.toString().toInt() }
+        val strikes = userNumbers.zip(targetNumbers).count { it.first == it.second }
+        val balls = userNumbers.intersect(targetNumbers).size - strikes
+
+        return when {
+            strikes == 3 -> "3스트라이크"
+            strikes > 0 || balls > 0 -> "${balls}볼 ${strikes}스트라이크"
+            else -> "낫싱"
+        }
+    }
 }

@@ -7,7 +7,6 @@ class Application {
     private var computerNumbers = ComputerNumberGenerator.generate()
 
     fun play() {
-
         do {
             val userInput = Input()
             val result = check(userInput, computerNumbers)
@@ -17,7 +16,7 @@ class Application {
         println("축하합니다! 숫자를 모두 맞히셨습니다!")
 
         if (playAgain()) {
-            computerNumbers = ComputerNumberGenerator.generate()
+            computerNumbers = ComputerNumberGenerator.generate(
             play()
         } else {
             println("게임을 종료합니다.")

@@ -1,6 +1,7 @@
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.RepeatedTest
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance
 import org.junit.jupiter.params.ParameterizedTest
@@ -28,6 +29,25 @@ class ToolsTest {
     @DisplayName("input with empty string should return empty list")
     fun test_strToIntegers_if_it_is_empty(){
         assertThat(Tools.strToIntegers("")).isEqualTo(listOf<Int>())
+    }
+
+    @RepeatedTest(100)
+    @DisplayName("permutation() should not contain duplicates and works without any failures")
+    fun test_permutation(){
+        assertThat(Tools.permutation(5)).doesNotHaveDuplicates()
+    }
+
+    @ParameterizedTest(name = "permutation(\"{0}\") should not contain duplicates and works without any failures")
+    @ValueSource(ints = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+    fun test_permutation_if_inside_bound(input:Int){
+        assertThat(Tools.permutation(input)).doesNotHaveDuplicates()
+    }
+
+    @ParameterizedTest(name = "permutation(\"{0}\") should throw illegalArgumentException")
+    @ValueSource(ints = [-2,-1, 11, 12])
+    fun test_permutation_if_out_of_bound(input:Int){
+        assertThatIllegalArgumentException()
+            .isThrownBy { Tools.permutation(input) }
     }
 
 

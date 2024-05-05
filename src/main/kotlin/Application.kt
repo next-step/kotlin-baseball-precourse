@@ -62,3 +62,7 @@ fun gameStart() {
     if (restart == 2) return
     else if (restart == 1) gameStart()
 }
+
+fun main() {
+    gameStart()
+}a

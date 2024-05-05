@@ -1,8 +1,8 @@
 import kotlin.random.Random
 
 class Game {
-    private val threeNumber: MutableList<Int>
-    private var continueGame: Boolean
+    val threeNumber: MutableList<Int>
+    var continueGame: Boolean
 
     init {
         threeNumber = generateRandomNumber()
@@ -13,7 +13,8 @@ class Game {
         while (continueGame) {
             print("숫자를 입력해 주세요 : ")
             val input = readlnOrNull()
-            checkNumber(threeNumber, inputNumber(input))
+            val result: String = checkNumber(threeNumber, inputNumber(input))
+            println(result)
         }
         println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
     }
@@ -32,8 +33,9 @@ class Game {
     fun inputNumber(input: String?): MutableList<Int> {
         val playerNumbers = mutableListOf<Int>()
 
-        //공백을 입력 했을 경우 예외처리
-        input ?: throw IllegalArgumentException("숫자를 입력하지 않았습니다.")
+        //null 입력 했을 경우 예외처리
+        input ?: throw IllegalArgumentException("null 값이 입력됐습니다.")
+
         //세 자리 수 입력을 하지 않았을 경우 예외처리 ex) 12
         if (input.length != 3) {
             throw IllegalArgumentException("3개의 숫자를 입력해야 합니다.")
@@ -56,7 +58,7 @@ class Game {
 
     fun checkNumber(
         resultNumbers: MutableList<Int>, playerNumbers: MutableList<Int>
-    ) {
+    ): String {
         var strike = 0
         var ball = 0
         for ((index, value) in playerNumbers.withIndex()) {
@@ -68,21 +70,21 @@ class Game {
                 continue
             }
         }
-        printHint(strike, ball)
+        return printHint(strike, ball)
     }
 
-    fun printHint(strike: Int, ball: Int) {
+    fun printHint(strike: Int, ball: Int): String {
         if (strike > 0 && ball > 0) {
-            println("${ball}볼 ${strike}스트라이크")
+            return "${ball}볼 ${strike}스트라이크"
         } else if (strike > 0) {
-            println("${strike}스트라이크")
             if (strike == 3) {
                 continueGame = false
             }
+            return "${strike}스트라이크"
         } else if (ball > 0) {
-            println("${ball}볼")
+            return "${ball}볼"
         } else {
-            println("낫싱")
+            return "낫싱"
         }
     }
 }

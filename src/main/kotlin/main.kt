@@ -4,9 +4,9 @@ fun main() { //기본 게임 구현
 }
 
 class BaseballGame {
-    val targetNumbers: List<Int> = generateTargetNumbers()
+    val targetNumbers: List<Int> = generateTargetNumbers() //public
 
-    fun play() {
+    fun play() { //public test 가능, private 불가
         var isRestarting = true
 
         while (isRestarting) {
@@ -43,7 +43,7 @@ class BaseballGame {
         return numbers
     }
 
-    fun checkInput(userInput: String?, targetNumbers: List<Int>): String {
+    fun checkInput(userInput: String?, targetNumbers: List<Int>): String { //public 가능
         if (userInput == null || userInput.length != 3 || !userInput.all { it.isDigit() }) {
             throw IllegalArgumentException("Invalid input")
         }

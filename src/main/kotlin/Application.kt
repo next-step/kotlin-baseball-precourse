@@ -3,6 +3,7 @@ fun main() {
     var isSelected: Boolean = false
     var selectedNumList = listOf<Int>()
     var userNum: String? = ""
+    var userNumList = listOf<Int>()
 
 
     if (isSelected == false) {
@@ -10,6 +11,7 @@ fun main() {
         isSelected = true
     }
     userNum = inputUserNum()
+    userNumList = makeUserNumList(userNum)
 
 
 }
@@ -32,7 +34,18 @@ fun inputUserNum(): String? {
     var userNum: String? = ""
 
     print("숫자를 입력해 주세요 : ")
-    userNum = readlnOrNull() // 이부분 에러처리하기! - 같은 숫자 입력했을때, 타입 다를때
+    userNum = readlnOrNull()
 
     return userNum
+}
+
+fun makeUserNumList(str: String?): List<Int> {
+    val numList = mutableListOf<Int>()
+    var num: Int = 0
+
+    for ((index, value) in str!!.withIndex()) {
+        num = Character.getNumericValue(value) // 이부분 에러처리하기!
+        numList.add(num)
+    }
+    return numList
 }

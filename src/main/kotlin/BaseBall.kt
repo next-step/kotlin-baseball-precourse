@@ -35,6 +35,9 @@ class Computer {
         }
         return result
     }
+}
+
+class Computer(private val randomNumber: Array<Int>) {
 
     fun printResult(userInputNumber: Array<Int>, gameController: GameController) {
         val strike: Int = countStrike(userInputNumber)

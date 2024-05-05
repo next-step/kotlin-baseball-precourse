@@ -1,5 +1,14 @@
 
-fun main() {}
+fun main() {
+    gamePlay()
+    println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+    var choice = readLine()
+    while (choice == "1") {
+        gamePlay()
+        println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+        choice = readLine()
+    }
+}
 
 fun generateNumber(): String {
     val numbers = (1..9).shuffled().take(3)

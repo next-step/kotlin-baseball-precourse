@@ -14,5 +14,24 @@ fun checkInputIfValid(input: String): Boolean {
 }
 
 fun evaluate(input: String, answer: String): String {
-    // 입력에 대한 평가 및 결과 출력
+    var strikes = 0
+    var balls = 0
+
+    input.forEachIndexed { index, num ->
+        when (num) {
+            answer[index] -> strikes++
+            in answer -> balls++
+        }
+    }
+
+    val result = when {
+        strikes == 0 && balls == 0 -> "낫싱"
+        strikes > 0 && balls == 0 -> "${strikes}스트라이크"
+        strikes == 0 && balls > 0 -> "${balls}볼"
+        else -> "${balls}볼 ${strikes}스트라이크"
+    }
+
+    println(result)
+
+    return result
 }

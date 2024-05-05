@@ -7,7 +7,7 @@ class Application {
     private var computerNumbers = ComputerNumberGenerator.generate()
 
     fun play() {
-        
+
         do {
             val userInput = Input()
             val result = check(userInput, computerNumbers)
@@ -24,7 +24,7 @@ class Application {
         }
     }
 
-    private fun playAgain(): Boolean {
+    internal fun playAgain(): Boolean {
         println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
         val choice = readLine()?.toIntOrNull() ?: 2
         return choice == 1

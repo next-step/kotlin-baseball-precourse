@@ -2,6 +2,7 @@ import kotlin.random.Random
 
 fun main() {
     val computerInput = generateComputerNumber()
+    val userInput = inputUserNumber()
 }
 
 fun generateComputerNumber(): String {
@@ -13,4 +14,9 @@ fun generateComputerNumber(): String {
         }
     }
     return numbers.joinToString("")
+}
+
+fun inputUserNumber(): String {
+    print("숫자를 입력해 주세요 : ")
+    return readlnOrNull() ?: ""
 }

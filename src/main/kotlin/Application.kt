@@ -4,14 +4,18 @@ fun main() {
     var selectedNumList = listOf<Int>()
     var userNum: String? = ""
     var userNumList = listOf<Int>()
+    var isMatched: Boolean = false
 
 
     if (isSelected == false) {
         selectedNumList = selectNum()
         isSelected = true
     }
+
     userNum = inputUserNum()
     userNumList = makeUserNumList(userNum)
+
+    isMatched = checkMatch(selectedNumList, userNumList)
 
 
 }
@@ -48,4 +52,26 @@ fun makeUserNumList(str: String?): List<Int> {
         numList.add(num)
     }
     return numList
+}
+
+fun checkMatch(selectedNumList: List<Int>, userNumList: List<Int>): Boolean {
+    var ballCnt: Int = 0
+    var strikeCnt: Int = 0
+    var idx: Int = 0
+
+    for ((userIndex, userValue) in userNumList.withIndex()) {
+        idx = selectedNumList.indexOf(userValue)
+        if (idx == userIndex) {
+            strikeCnt++
+        } else if (idx > -1) {
+            ballCnt++
+        }
+    }
+
+    if (strikeCnt == 3) {
+        println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+        return true
+    } else {
+        return false
+    }
 }

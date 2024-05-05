@@ -33,7 +33,7 @@ fun inputUserNumber(): String {
 }
 
 fun isValidInput(input: String) {
-    if (input.length != 3 || !input.all { it.isDigit() }) {
+    if (input.length != 3 || !input.all { it.isDigit() } || input.toSet().size != input.length) {
         throw IllegalArgumentException("1부터 9까지 서로 다른 수로 이루어진 3자리의 수를 입력해주세요.")
     }
 }

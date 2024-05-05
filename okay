@@ -1,0 +1,17 @@
+[33mcommit ab0b88a6473d3cae6df78be39e8fb06dc08a1423[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mddangcong80[m[33m)[m
+Author: dldjwls <dldjwls@naver.com>
+Date:   Sat May 4 00:42:47 2024 +0900
+
+    feat: Added random number generation feature
+
+[33mcommit 4573b5ed9178e4d5bfd656614f528fd6ec321387[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m
+Author: wotjd243 <wotjd243@naver.com>
+Date:   Fri Apr 26 09:30:08 2024 +0900
+
+    feat: set up the project
+
+[33mcommit 305137e2dbc95d20762860fecf7a222f6f5c0c46[m
+Author: 박재성(Jason) <wotjd243@naver.com>
+Date:   Thu Apr 25 23:00:28 2024 +0900
+
+    Initial commit

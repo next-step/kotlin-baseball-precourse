@@ -11,7 +11,9 @@ class Game {
 
     fun gameStart() {
         while (continueGame) {
-            checkNumber(threeNumber, inputNumber())
+            print("숫자를 입력해 주세요 : ")
+            val input = readlnOrNull()
+            checkNumber(threeNumber, inputNumber(input))
         }
         println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
     }
@@ -27,10 +29,8 @@ class Game {
         return numbers
     }
 
-    private fun inputNumber(): MutableList<Int> {
+    fun inputNumber(input: String?): MutableList<Int> {
         val playerNumbers = mutableListOf<Int>()
-        print("숫자를 입력해 주세요 : ")
-        val input = readlnOrNull()
 
         //공백을 입력 했을 경우 예외처리
         input ?: throw IllegalArgumentException("숫자를 입력하지 않았습니다.")
@@ -54,7 +54,7 @@ class Game {
         return playerNumbers
     }
 
-    private fun checkNumber(
+    fun checkNumber(
         resultNumbers: MutableList<Int>, playerNumbers: MutableList<Int>
     ) {
         var strike = 0
@@ -71,7 +71,7 @@ class Game {
         printHint(strike, ball)
     }
 
-    private fun printHint(strike: Int, ball: Int) {
+    fun printHint(strike: Int, ball: Int) {
         if (strike > 0 && ball > 0) {
             println("${ball}볼 ${strike}스트라이크")
         } else if (strike > 0) {

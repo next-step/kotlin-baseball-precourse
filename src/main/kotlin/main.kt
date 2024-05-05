@@ -32,4 +32,14 @@ class BaseballGame {
             isRestarting = restartInput?.trim() == "1"
         }
     }
+    private fun generateTargetNumbers(): List<Int> {
+        val numbers = mutableListOf<Int>()
+        while (numbers.size < 3) {
+            val randomNumber = (1..9).random()
+            if (!numbers.contains(randomNumber)) {
+                numbers.add(randomNumber)
+            }
+        }
+        return numbers
+    }
 }

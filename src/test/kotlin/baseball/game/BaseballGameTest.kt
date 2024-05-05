@@ -5,9 +5,6 @@ import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertDoesNotThrow
 import org.junit.jupiter.api.assertThrows
-import utils.Constraints
-import utils.Constraints.LENGTH_MISMATCH_EXCEPTION
-import utils.Constraints.WRONG_FORMAT_EXCEPTION
 import utils.PlayerConsole
 import java.io.ByteArrayInputStream
 
@@ -20,7 +17,7 @@ internal class BaseballGameTest {
 
         assertDoesNotThrow {
             val restart = PlayerConsole.enterRestart()
-            assertEquals(restart, Constraints.YES_RESTART)
+            assertEquals(restart, "1")
         }
     }
 
@@ -31,14 +28,14 @@ internal class BaseballGameTest {
 
         assertDoesNotThrow {
             val restart = PlayerConsole.enterRestart()
-            assertEquals(restart, Constraints.NO_RESTART)
+            assertEquals(restart, "2")
         }
     }
 
     @DisplayName("재시작 입력값 : 3")
     @Test
     fun case_restart3_error() {
-        assertThrows<IllegalArgumentException>(WRONG_FORMAT_EXCEPTION) {
+        assertThrows<IllegalArgumentException>("잘못된 입력 형식입니다.") {
             System.setIn(ByteArrayInputStream("3".toByteArray()))
             PlayerConsole.enterRestart()
         }
@@ -47,7 +44,7 @@ internal class BaseballGameTest {
     @DisplayName("재시작 입력값 : 12")
     @Test
     fun case_restart_lengthError() {
-        assertThrows<IllegalArgumentException>(LENGTH_MISMATCH_EXCEPTION) {
+        assertThrows<IllegalArgumentException>("입력값의 길이가 올바르지 않습니다.") {
             System.setIn(ByteArrayInputStream("12".toByteArray()))
             PlayerConsole.enterRestart()
         }

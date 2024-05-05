@@ -2,10 +2,14 @@ import kotlin.random.Random
 
 fun main() {
     val computerInput = generateComputerNumber()
-    val userInput = inputUserNumber()
-    isValidInput(userInput)
-    val (strikes, balls) = calculateResult(computerInput, userInput)
-    printResult(strikes, balls)
+    var checkResultFlag = true
+    while (checkResultFlag) {
+        val userInput = inputUserNumber()
+        isValidInput(userInput)
+        val (strikes, balls) = calculateResult(computerInput, userInput)
+        printResult(strikes, balls)
+        checkResultFlag = checkResult(strikes)
+    }
 }
 
 fun generateComputerNumber(): String {
@@ -49,5 +53,14 @@ fun printResult(strikes: Int, balls: Int) {
         strikes > 0 -> println("${strikes}스트라이크")
         balls > 0 -> println("${balls}볼")
         else -> println("낫싱")
+    }
+}
+
+fun checkResult(strikes: Int): Boolean {
+    if (strikes == 3) {
+        println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+        return false
+    } else {
+        return true
     }
 }

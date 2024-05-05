@@ -37,7 +37,7 @@ fun check(guess: IntArray, answer: IntArray) {
 
     if (strike == 3) {
         println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
-        //exit()
+        exit()
     } else if (strike > 0 && ball > 0) {
         println("$strike 스트라이크, $ball 볼")
     } else if (strike > 0) {

@@ -21,4 +21,12 @@ class BaseballGameTest {
         }
         assertEquals("Invalid input", exception.message)
     }
+
+    @Test
+    @DisplayName("게임이 정상적으로 종료되는지 확인")
+    fun testGameEnd() {
+        val game = BaseballGame()
+        val result = game.checkInput(game.targetNumbers.joinToString(separator = ""), game.targetNumbers)
+        assertEquals("3스트라이크", result)
+    }
 }

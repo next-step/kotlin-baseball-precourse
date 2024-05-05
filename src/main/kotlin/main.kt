@@ -23,7 +23,7 @@ class BaseballGame {
                         isGameEnd = true
                     }
                 } catch (e: IllegalArgumentException) {
-                    return
+                    return //잘못된 값 완전히 종료. isGameEnd=true시 종료조건문 반복.
                 }
             }
 

@@ -10,6 +10,11 @@ class GameManager constructor(){
     }
 
     fun guess(guessNumber: String) {
+        // 입력 값이 3자리 숫자가 아니거나, 중복된 숫자를 포함하는 경우 예외 발생
+        if (guessNumber.length != 3 || guessNumber.toSet().size != 3) {
+            throw IllegalArgumentException("잘못된 입력입니다. 서로 다른 3자리 숫자를 입력해주세요.")
+        }
+
         var (strikes, balls) = mark(guessNumber)
         printScores(strikes, balls)
     }
@@ -45,5 +50,5 @@ class GameManager constructor(){
 fun main() {
     val gameManager: GameManager = GameManager()
     gameManager.setComputerNumber()
-    gameManager.guess("123")
+    gameManager.guess("13")
 }

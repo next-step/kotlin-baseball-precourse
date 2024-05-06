@@ -57,12 +57,18 @@ fun getUserInput(): IntArray {
     val input: String = readLine() ?: throw IllegalArgumentException("잘못된 입력입니다. 프로그램을 종료합니다.")
     checkInputLength(input) // 길이 3인지
     checkInputIsNumeric(input) // 숫자인지
+    checkInputHasZero(input)
     checkInputDuplicate(input) // 중복 없는지
     return stringToNumberArray(input) // 검사 통과하면 유저 배열을 반환
 }
 fun checkInputLength(input: String) {
     if (input.length != 3) {
         throw IllegalArgumentException("세 자리가 아닙니다. 프로그램을 종료합니다.")
+    }
+}
+fun checkInputHasZero(input: String){
+    if(!input.all {it!='0'}) {
+        throw IllegalArgumentException("0이 들어갈 수 없습니다. 프로그램을 종료합니다.")
     }
 }
 fun checkInputIsNumeric(input: String) {

@@ -19,13 +19,15 @@ class UserInterfaceTest() {
 
     @ParameterizedTest
     @ValueSource(strings = ["1234", "402", "133", "12", "cake"])
-    fun checkNumberTest(string: String) {
+    @DisplayName("잘못된 3자리 입력값을 받았을 때 IllegalArgumentException을 발생시키는지 테스트")
+    fun changeNumberTest(string: String) {
         val userInterface: UserInterface = UserInterface()
         assertThrows<IllegalArgumentException> { userInterface.changeNumber(string) }
     }
 
     @ParameterizedTest
     @ValueSource(strings = ["3", "cake", "-1"])
+    @DisplayName("잘못된 게임 재시작 여부 입력값을 받았을 때 IllegalArgumentException을 발생시키는지 테스트")
     fun checkGameRestartExceptionTest(string: String) {
         val userInterface: UserInterface = UserInterface()
         assertThrows<IllegalArgumentException> { userInterface.checkGameRestartException(string) }

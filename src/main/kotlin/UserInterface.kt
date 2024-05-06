@@ -49,7 +49,7 @@ class UserInterface() {
     }
 
     fun checkHundredNumber(intNumber: Int) {
-        if (isNotHundredNumber(intNumber)) throw IllegalArgumentException("허용된 범위의 수가 아닙니다.: ${intNumber}")
+        if (isNotHundredNumber(intNumber)) throw IllegalArgumentException("허용된 범위의 수가 아닙니다.: $intNumber")
     }
 
     fun isNotHundredNumber(intNumber: Int): Boolean {
@@ -57,7 +57,7 @@ class UserInterface() {
     }
 
     fun checkContainZero(listNumber: List<Int>) {
-        if (isContainZero(listNumber)) throw IllegalArgumentException("0은 포함할 수 없습니다 : ${listNumber}")
+        if (isContainZero(listNumber)) throw IllegalArgumentException("0은 포함할 수 없습니다 : $listNumber")
     }
 
     fun isContainZero(listNumber: List<Int>): Boolean {
@@ -65,7 +65,7 @@ class UserInterface() {
     }
 
     fun checkDuplicateNum(listNumber: List<Int>) {
-        if (isDuplicateNum(listNumber)) throw IllegalArgumentException("중복 되지 않은 수여야 합니다 : ${listNumber}")
+        if (isDuplicateNum(listNumber)) throw IllegalArgumentException("중복 되지 않은 수여야 합니다 : $listNumber")
     }
 
     fun isDuplicateNum(listNumber: List<Int>): Boolean {
@@ -82,7 +82,7 @@ class UserInterface() {
 
     fun checkGameRestartException(strGameRestart: String): Int {
         val intGameRestart = inputStrToIntNumber(strGameRestart)
-        if (!((intGameRestart == 1) or (intGameRestart == 2))) throw IllegalArgumentException("옳은 입력이 아닙니다.: ${intGameRestart}")
+        if (!((intGameRestart == 1) or (intGameRestart == 2))) throw IllegalArgumentException("옳은 입력이 아닙니다.: $intGameRestart")
         return intGameRestart
     }
 }

@@ -6,7 +6,23 @@ fun main() {
 }
 
 class Game{
-    val computerNumber = randomNumber()
+    var computerNumber = randomNumber()
+
+    //컴퓨터: 1~9 서로 다른 임의의 수 3개 랜덤 생성
+    fun randomNumber(): List<Int> {
+        return (1..9).shuffled().take(3)
+    }
+
+    //플레이어: 3개 숫자 입력
+    //예외 처리
+    fun playerInput(): List<Int> {
+        print("숫자를 입력해 주세요 : ")
+        val input = readLine() ?: throw IllegalArgumentException("입력이 없습니다")
+        if(input.length != 3 || !input.all {it.isDigit()} || input.toSet().size != 3 || input.any {it < '1' || it > '9'}) {
+            throw IllegalArgumentException("1~9까지 서로 다른 수로 이루어진 3자리의 숫자를 입력하세요.")
+        }
+        return input.map {it.toString().toInt()}
+    }
 
     //랜덤 생성 숫자(컴퓨터)와 입력 숫자(플레이어) 비교
     fun numberCompare(guess: List<Int>): Pair<Int, Int> {
@@ -23,6 +39,16 @@ class Game{
             }
         }
         return Pair(strike, ball)
+    }
+
+    //출력
+    fun printResult(strikes: Int, balls: Int) {
+        when{
+            strikes == 0 && balls == 0 -> println("낫싱")
+            strikes > 0 && balls == 0 -> println("${strikes}스트라이크")
+            strikes == 0 && balls > 0 -> println("${balls}볼")
+            else -> println("${balls}볼 ${strikes}스트라이크")
+        }
     }
 
     //정답 시 게임 종료
@@ -44,32 +70,6 @@ class Game{
             "1" -> true
             "2" -> false
             else -> false
-        }
-    }
-
-    //컴퓨터: 1~9 서로 다른 임의의 수 3개 랜덤 생성
-    fun randomNumber(): List<Int> {
-        return (1..9).shuffled().take(3)
-    }
-
-    //플레이어: 3개 숫자 입력
-//예외 처리
-    fun playerInput(): List<Int> {
-        print("숫자를 입력해 주세요 : ")
-        val input = readLine() ?: throw IllegalArgumentException("입력이 없습니다")
-        if(input.length != 3 || !input.all {it.isDigit()} || input.toSet().size != 3 || input.any {it < '1' || it > '9'}) {
-            throw IllegalArgumentException("1~9까지 서로 다른 수로 이루어진 3자리의 숫자를 입력하세요.")
-        }
-        return input.map {it.toString().toInt()}
-    }
-
-    //출력
-    fun printResult(strikes: Int, balls: Int) {
-        when{
-            strikes == 0 && balls == 0 -> println("낫싱")
-            strikes > 0 && balls == 0 -> println("${strikes}스트라이크")
-            strikes == 0 && balls > 0 -> println("${balls}볼")
-            else -> println("${balls}볼 ${strikes}스트라이크")
         }
     }
 }

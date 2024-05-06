@@ -1,40 +1,35 @@
 class GameManager constructor(){
     var computerNumber: String = ""
 
-    private fun setComputerNumber(){
-        val numbers = (1..9).toList().shuffled().take(3)
-        this.computerNumber = numbers.joinToString("")
-        println(this.computerNumber)
-    }
-
     fun newGame() {
         while(true) {
             setComputerNumber()
-            while (true) {
-                var guessNumber: String = guessNumber()
-
-                checkNumber(guessNumber)
-
-                var (strikes, balls) = mark(guessNumber)
-                printScores(strikes, balls)
-                if (strikes == 3) {
-                    println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
-                    break
-                }
-            }
+            start()
             if (!isReGame()) return
         }
     }
+    private fun setComputerNumber(){
+        val numbers = (1..9).toList().shuffled().take(3)
+        this.computerNumber = numbers.joinToString("")
+//        println(this.computerNumber)
+    }
+    private fun start() {
+        while (true) {
+            var guessNumber: String = guessNumber()
+            checkNumber(guessNumber)
 
-    private fun isReGame():Boolean {
-        println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
-        val number: String = readLine().toString()
-        when{
-            number.equals("1") -> return true
-            else -> return false
+            var (strikes, balls) = markNumber(guessNumber)
+            printScores(strikes, balls)
+            if (strikes == 3) {
+                println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+                break
+            }
         }
     }
-
+    private fun guessNumber(): String {
+        print("숫자를 입력해 주세요 : ")
+        return readLine().toString()
+    }
     private fun checkNumber(guessNumber: String) {
         // 입력 값이 3자리 숫자가 아니거나, 중복된 숫자를 포함하는 경우 예외 발생
         if (guessNumber.length != 3 || guessNumber.toSet().size != 3) {
@@ -42,12 +37,7 @@ class GameManager constructor(){
         }
     }
 
-    private fun guessNumber(): String {
-        print("숫자를 입력해 주세요 : ")
-        return readLine().toString()
-    }
-
-    private fun mark(guessNumber: String): Pair<Int, Int> {
+    private fun markNumber(guessNumber: String): Pair<Int, Int> {
         var strikes = 0
         var balls = 0
 
@@ -71,8 +61,14 @@ class GameManager constructor(){
             else -> println("낫싱")
         }
     }
-
-
+    private fun isReGame():Boolean {
+        println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+        val number: String = readLine().toString()
+        when{
+            number.equals("1") -> return true
+            else -> return false
+        }
+    }
 }
 
 fun main() {

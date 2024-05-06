@@ -18,27 +18,25 @@ class Game{
     fun playerInput(): List<Int> {
         print("숫자를 입력해 주세요 : ")
         val input = readLine() ?: throw IllegalArgumentException("입력이 없습니다")
-        if(input.length != 3 || !input.all {it.isDigit()} || input.toSet().size != 3 || input.any {it < '1' || it > '9'}) {
+        validateInput(input)
+        return input.map { it.toString().toInt() }
+    }
+
+    fun validateInput(input: String) {
+        if (input.length != 3 || !input.all { it.isDigit() } || input.toSet().size != 3 || input.any { it < '1' || it > '9' }) {
             throw IllegalArgumentException("1~9까지 서로 다른 수로 이루어진 3자리의 숫자를 입력하세요.")
         }
-        return input.map {it.toString().toInt()}
     }
 
     //랜덤 생성 숫자(컴퓨터)와 입력 숫자(플레이어) 비교
     fun numberCompare(guess: List<Int>): Pair<Int, Int> {
-        var strike = 0
-        var ball = 0
-        guess.forEachIndexed { index, number ->
-            if (number in computerNumber) {
-                if(computerNumber[index] == number) {
-                    strike++
-                }
-                else {
-                    ball++
-                }
+        return guess.foldIndexed(Pair(0, 0)) { index, acc, number ->
+            when {
+                number == computerNumber[index] -> acc.copy(first = acc.first + 1)
+                number in computerNumber -> acc.copy(second = acc.second + 1)
+                else -> acc
             }
         }
-        return Pair(strike, ball)
     }
 
     //출력

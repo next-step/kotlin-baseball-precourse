@@ -1,5 +1,3 @@
-import kotlin.random.Random
-
 class GameManager constructor(){
     var computerNumber: String = ""
 
@@ -9,14 +7,31 @@ class GameManager constructor(){
         println(this.computerNumber)
     }
 
-    fun guess(guessNumber: String) {
+    fun guess() {
+        while(true) {
+            var guessNumber: String = enterNumber()
+
+            checkNumber(guessNumber)
+
+            var (strikes, balls) = mark(guessNumber)
+            printScores(strikes, balls)
+            if(strikes == 3){
+                println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+                break
+            }
+        }
+    }
+
+    private fun checkNumber(guessNumber: String) {
         // 입력 값이 3자리 숫자가 아니거나, 중복된 숫자를 포함하는 경우 예외 발생
         if (guessNumber.length != 3 || guessNumber.toSet().size != 3) {
             throw IllegalArgumentException("잘못된 입력입니다. 서로 다른 3자리 숫자를 입력해주세요.")
         }
+    }
 
-        var (strikes, balls) = mark(guessNumber)
-        printScores(strikes, balls)
+    private fun enterNumber(): String {
+        print("숫자를 입력해 주세요 : ")
+        return readLine().toString()
     }
 
     private fun mark(guessNumber: String): Pair<Int, Int> {
@@ -50,5 +65,5 @@ class GameManager constructor(){
 fun main() {
     val gameManager: GameManager = GameManager()
     gameManager.setComputerNumber()
-    gameManager.guess("13")
+    gameManager.guess()
 }

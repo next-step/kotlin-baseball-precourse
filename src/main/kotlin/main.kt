@@ -15,7 +15,7 @@ class Com {
             }
             usedNumbers[randomNumber[i]] = true
         }
-        println("랜덤한 숫자: ${randomNumber.joinToString()}")
+        //println("랜덤한 숫자: ${randomNumber.joinToString()}")
     }
 
     fun compare(userInput: IntArray) {

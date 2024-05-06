@@ -1,9 +1,9 @@
-class Com constructor(){
+class Com {
 
     var randomNumber: IntArray = IntArray(3)
     var strike: Int = 0
     var ball: Int = 0
-    val game: Boolean = true
+    var game: Boolean = true
 
 
     fun makeNumber() {
@@ -24,18 +24,28 @@ class Com constructor(){
         for (i in 0..2) {
             if (randomNumber[i] == userInput[i]) {
                 strike++
-            } else if (userInput.contains(randomNumber[i])) {
+            }
+            else if (userInput.contains(randomNumber[i])) {
                 ball++
             }
         }
-        println("${strike}스트라이크 ${ball}볼")
 
+        if (strike == 0 && ball == 0) {
+            println("낫싱")
+        } else {
+            println("${strike}스트라이크 ${ball}볼")
+        }
+
+        if (strike == 3) {
+            game = false
+            println("정답!")
+        }
 
     }
 
 }
 
-class User constructor(){
+class User {
 
     var inputNumber: Int = 0
     var inputArray: IntArray = IntArray(3,{0})
@@ -52,9 +62,9 @@ class User constructor(){
         }
     }
 
-    fun print() {
-        println("입력한 숫자: $inputNumber")
-    }
+//    fun print() {
+//        println("입력한 숫자: $inputNumber")
+//    }
 
     fun change() {
         inputArray[0]= inputNumber/100
@@ -64,12 +74,27 @@ class User constructor(){
     }
 }
 
-fun main () {
+
+fun play () {
     val com = Com()
     com.makeNumber()
     val user = User()
-    user.input()
-    user.change()
-    com.compare(user.inputArray)
+    while (com.game) {
+        user.input()
+        user.change()
+        com.compare(user.inputArray)
+    }
+    if (!com.game) {
+        println("게임을 계속 할까요? y를 누르면 다시 시작")
+        var a = readlnOrNull()
+        if (a == "y"){
+            play()
+        }else {
+            println("종료합니다.")
+        }
+    }
+}
 
+fun main() {
+    play()
 }

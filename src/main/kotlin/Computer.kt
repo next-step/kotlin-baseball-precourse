@@ -8,9 +8,13 @@ class Computer constructor() {
     fun generateRandomNumber() {
         while (correctNumberList.size < 3) {
             val randomNumber: Int = (1..9).random()
-            if (!(correctNumberList.contains(randomNumber))) {
-                correctNumberList = correctNumberList + randomNumber
-            }
+            concatenateList(randomNumber)
+        }
+    }
+
+    fun concatenateList(randomNumber: Int) {
+        if (!(correctNumberList.contains(randomNumber))) {
+            correctNumberList = correctNumberList + randomNumber
         }
     }
 
@@ -30,9 +34,8 @@ class Computer constructor() {
     }
 
     fun checkBalls(index: Int, inputNumber: Int, targetList: List<Int>): Int {
-        return if ((checkStrikes(
-                index, inputNumber, targetList
-            ) == 0) and targetList.contains(inputNumber)
+        return if ((checkStrikes(index, inputNumber, targetList) == 0)
+            && targetList.contains(inputNumber)
         ) 1
         else 0
     }

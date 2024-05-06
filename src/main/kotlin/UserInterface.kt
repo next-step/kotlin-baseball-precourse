@@ -53,7 +53,7 @@ class UserInterface() {
     }
 
     fun isNotHundredNumber(intNumber: Int): Boolean {
-        return !((intNumber >= 123) and (intNumber <= 987))
+        return !((intNumber >= 123) && (intNumber <= 987))
     }
 
     fun checkContainZero(listNumber: List<Int>) {
@@ -82,7 +82,7 @@ class UserInterface() {
 
     fun checkGameRestartException(strGameRestart: String): Int {
         val intGameRestart = inputStrToIntNumber(strGameRestart)
-        if (!((intGameRestart == 1) or (intGameRestart == 2))) throw IllegalArgumentException("옳은 입력이 아닙니다.: $intGameRestart")
+        if (!((intGameRestart == 1) || (intGameRestart == 2))) throw IllegalArgumentException("옳은 입력이 아닙니다.: $intGameRestart")
         return intGameRestart
     }
 }

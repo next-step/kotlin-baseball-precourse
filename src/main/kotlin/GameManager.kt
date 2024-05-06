@@ -30,14 +30,14 @@ class GameManager constructor(){
         print("숫자를 입력해 주세요 : ")
         return readLine().toString()
     }
-    private fun checkNumber(guessNumber: String) {
+    fun checkNumber(guessNumber: String) {
         // 입력 값이 3자리 숫자가 아니거나, 중복된 숫자를 포함하는 경우 예외 발생
         if (guessNumber.length != 3 || guessNumber.toSet().size != 3) {
             throw IllegalArgumentException("잘못된 입력입니다. 서로 다른 3자리 숫자를 입력해주세요.")
         }
     }
 
-    private fun markNumber(guessNumber: String): Pair<Int, Int> {
+    fun markNumber(guessNumber: String): Pair<Int, Int> {
         var strikes = 0
         var balls = 0
 

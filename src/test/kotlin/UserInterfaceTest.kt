@@ -23,4 +23,11 @@ class UserInterfaceTest() {
         val userInterface: UserInterface = UserInterface()
         assertThrows<IllegalArgumentException> { userInterface.changeNumber(string) }
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["3", "cake", "-1"])
+    fun checkGameRestartExceptionTest(string: String) {
+        val userInterface: UserInterface = UserInterface()
+        assertThrows<IllegalArgumentException> { userInterface.checkGameRestartException(string) }
+    }
 }

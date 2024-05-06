@@ -1,16 +1,37 @@
-
-
 class Com constructor(){
 
     var randomNumber: IntArray = IntArray(3)
+    var strike: Int = 0
+    var ball: Int = 0
+    val game: Boolean = true
 
 
     fun makeNumber() {
-        for (i in 0..2) randomNumber[i] = (1..9).random()
+        val usedNumbers = Array(10) { false }
+        for (i in 0 until 3) {
+            randomNumber[i] = (1..9).random()
+            while (usedNumbers[randomNumber[i]]) {
+                randomNumber[i] = (1..9).random()
+            }
+            usedNumbers[randomNumber[i]] = true
+        }
         println("랜덤한 숫자: ${randomNumber.joinToString()}")
     }
 
+    fun compare(userInput: IntArray) {
+        strike = 0
+        ball = 0
+        for (i in 0..2) {
+            if (randomNumber[i] == userInput[i]) {
+                strike++
+            } else if (userInput.contains(randomNumber[i])) {
+                ball++
+            }
+        }
+        println("${strike}스트라이크 ${ball}볼")
 
+
+    }
 
 }
 
@@ -39,15 +60,16 @@ class User constructor(){
         inputArray[0]= inputNumber/100
         inputArray[1] = (inputNumber / 10) % 10
         inputArray[2] = inputNumber%10
-        println("변환된 숫자 배열: ${inputArray.joinToString()}")
+        //println("변환된 숫자 배열: ${inputArray.joinToString()}")
     }
 }
 
-fun main() {
+fun main () {
     val com = Com()
     com.makeNumber()
     val user = User()
     user.input()
-    user.print()
     user.change()
+    com.compare(user.inputArray)
+
 }

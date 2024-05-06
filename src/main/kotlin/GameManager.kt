@@ -1,24 +1,37 @@
 class GameManager constructor(){
     var computerNumber: String = ""
 
-    fun setComputerNumber(){
+    private fun setComputerNumber(){
         val numbers = (1..9).toList().shuffled().take(3)
         this.computerNumber = numbers.joinToString("")
         println(this.computerNumber)
     }
 
-    fun guess() {
+    fun newGame() {
         while(true) {
-            var guessNumber: String = enterNumber()
+            setComputerNumber()
+            while (true) {
+                var guessNumber: String = guessNumber()
 
-            checkNumber(guessNumber)
+                checkNumber(guessNumber)
 
-            var (strikes, balls) = mark(guessNumber)
-            printScores(strikes, balls)
-            if(strikes == 3){
-                println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
-                break
+                var (strikes, balls) = mark(guessNumber)
+                printScores(strikes, balls)
+                if (strikes == 3) {
+                    println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
+                    break
+                }
             }
+            if (!isReGame()) return
+        }
+    }
+
+    private fun isReGame():Boolean {
+        println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+        val number: String = readLine().toString()
+        when{
+            number.equals("1") -> return true
+            else -> return false
         }
     }
 
@@ -29,7 +42,7 @@ class GameManager constructor(){
         }
     }
 
-    private fun enterNumber(): String {
+    private fun guessNumber(): String {
         print("숫자를 입력해 주세요 : ")
         return readLine().toString()
     }
@@ -64,6 +77,5 @@ class GameManager constructor(){
 
 fun main() {
     val gameManager: GameManager = GameManager()
-    gameManager.setComputerNumber()
-    gameManager.guess()
+    gameManager.newGame()
 }

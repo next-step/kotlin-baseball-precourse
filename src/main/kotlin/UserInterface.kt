@@ -28,8 +28,7 @@ class UserInterface() {
         val intNumber = inputStrToIntNumber(stringNumber)
         val listNumber = listOf<Int>()
 
-        checkHundredNumber(intNumber)
-        val newListNumber = listNumber + intNumber / 100 + (intNumber % 100) / 10 + (intNumber % 10)
+        val newListNumber = changeIntNumberToList(intNumber)
         checkContainZero(newListNumber)
         checkDuplicateNum(newListNumber)
         return newListNumber
@@ -41,6 +40,12 @@ class UserInterface() {
         } catch (e: NumberFormatException) {
             throw IllegalArgumentException("숫자가 아닌 값을 입력 했습니다. : $stringNumber")
         }
+    }
+
+    fun changeIntNumberToList(intNumber: Int): List<Int> {
+        val listNumber = listOf<Int>()
+        checkHundredNumber(intNumber)
+        return listNumber + intNumber / 100 + (intNumber % 100) / 10 + (intNumber % 10)
     }
 
     fun checkHundredNumber(intNumber: Int) {

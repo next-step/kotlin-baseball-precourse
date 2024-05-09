@@ -1,7 +1,16 @@
 import kotlin.random.Random
 
 fun main() {
+    println("숫자야구 게임 시작")
 
+    while (true) {
+        val answer = random()
+        val user = userInput()
+        val judge = judgement(user, answer)
+
+        if (ExitOrContinue()) continue
+        else break
+    }
 }
 
 fun random(): Array<Int?> { //랜덤 함수: 랜덤으로 숫자 세 개를 생성한다.
@@ -23,7 +32,7 @@ fun random(): Array<Int?> { //랜덤 함수: 랜덤으로 숫자 세 개를 생�
     return ranNumber
 }
 
-fun userInput() {
+fun userInput(): Array<Int?> {
     val userNumber: Array<Int?> = arrayOfNulls<Int>(3)
     print("숫자 세 개를 입력해주세요: ")
     val inputNumber: String = readLine() ?: throw IllegalArgumentException("입력이 없습니다.")
@@ -35,6 +44,8 @@ fun userInput() {
     userNumber[0] = inputNumber.substring(0, 1).toInt()
     userNumber[1] = inputNumber.substring(1, 2).toInt()
     userNumber[2] = inputNumber.substring(2, 3).toInt()
+
+    return userNumber
 }
 
 fun judgement(inputNumber: Array<Int?>, answerNumber: Array<Int?>): Pair<Int, Int> {
@@ -58,4 +69,13 @@ fun ExitOrContinue(): Boolean {
         "1" -> true
         else -> false
     }
+}
+
+fun display(res: Pair<Int, Int>): String {
+    val strike = res.first
+    val ball = res.second
+
+    if (strike == 0 && ball == 0) return "낫싱"
+    else if (strike == 3) return "정답입니다"
+    else return "$strike 스트라이크 $ball 볼"
 }

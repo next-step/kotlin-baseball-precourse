@@ -3,7 +3,28 @@ import kotlin.random.Random
 var status: Boolean = true
 
 fun main() {
-    
+    println("숫자야구 게임 시작")
+    var answer = random()
+//    println(answer.contentToString())
+
+    var continueGame = true
+    while (continueGame) {
+        status = true
+        val user = userInput()
+        val judge = judgement(user, answer)
+
+        if (status == true) {
+            val display = display(judge)
+            println(display)
+        }
+
+
+        if (judge.first == 3) {
+            continueGame = ExitOrContinue()
+            answer = random()
+//            println(answer.contentToString())
+        }
+    }
 }
 
 fun random(): Array<Int?> { //랜덤 함수: 랜덤으로 숫자 세 개를 생성한다.

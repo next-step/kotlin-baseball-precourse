@@ -48,13 +48,12 @@ fun judgement(inputNumber: Array<Int?>, answerNumber: Array<Int?>): Pair<Int, In
     }
 
     return Pair(strike, ball)
-
 }
 
-fun ExitOrContinue() {
-
-}
-
-fun resetCounts() {
-
+fun ExitOrContinue(): Boolean {
+    println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+    return when (readLine()) {
+        "1" -> true
+        else -> false
+    }
 }

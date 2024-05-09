@@ -4,7 +4,37 @@ fun main(){
 
 
 }
+fun inputUserNumber(randomNumberInFunction : String){
+    while(true){
+        println("숫자를 입력해 주세요:")
+        var userNumberInFunction : String = readLine()!!
+        isItPossibleToUse(userNumberInFunction)
+        val result = strikeAndBallDecisions(userNumberInFunction,randomNumberInFunction)
+        if (result == true){
+            break
+        }else if (result == false){
+            continue
+        }
 
+    }
+}
+fun strikeAndBallDecisions(checkUserNumber: String, checkRandomNumber : String) : Boolean{ //스트라이크 볼 판정
+    var ball : Int = 0
+    var strike : Int = 0
+    for (i in 0..2){
+        if(checkUserNumber[i] == checkRandomNumber[i]){
+            strike +=1
+        }else if (checkUserNumber[i] != checkRandomNumber[i] && checkUserNumber[i] in checkRandomNumber){
+            ball +=1
+        }else{
+            continue
+        }
+
+    }
+
+    return  printResult(strike,ball)
+
+}
 fun createdRandomNumber() : String { // 난수 생성 함수
     while(true) {
         val numberRange = (100..999)

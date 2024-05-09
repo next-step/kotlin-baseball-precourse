@@ -1,8 +1,18 @@
 fun main(){
+    while(true){
+        println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
+        val game = readLine()!!
+        if (game == "1"){
+            inputUserNumber(createdRandomNumber())
 
+        } else if (game == "2"){
+            println("프로그램을 종료합니다.")
+            break
 
-
-
+        }else{
+            throw IllegalArgumentException("A number must be 1 or 2")
+        }
+    }
 }
 fun inputUserNumber(randomNumberInFunction : String){
     while(true){

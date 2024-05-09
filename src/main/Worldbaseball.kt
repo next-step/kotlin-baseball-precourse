@@ -65,15 +65,19 @@ fun startGame(randomNumberInFunction : String){
 
 fun createdRandomNumber() : String { // 난수 생성 함수
     while(true) { // 무한 루프 시작
-        val numberRange = (100..999) // 100 ~ 999까지 범위 설정
-        val randomNumber = numberRange.random().toString() //범위 안에서 난수 생성후 문자열로 치환
-        val numberList = randomNumber.toMutableList() //문자열를 MutableList로 변경
-        val checkedNumberList = numberList.distinct() // 리스트안에 있는 중복 제거
-        if(checkedNumberList.size == 3){ // 중복 제거 후 리스트 사이즈 체크 3이면 세개의 숫자가 중복 없이 생성 됨을 알 수 있음
-            return checkedNumberList.joinToString("")} //리스트에 있는 문자들을 합쳐서 문자열로 반환
+        val numberRange = (102..987) // 100 ~ 999까지 범위 설정
+        if(withoutOverlapping(numberRange).size == 3){ // 중복 제거 후 리스트 사이즈 체크 3이면 세개의 숫자가 중복 없이 생성 됨을 알 수 있음
+            return withoutOverlapping(numberRange).joinToString("")} //리스트에 있는 문자들을 합쳐서 문자열로 반환
         else{
             continue // 숫자가 3이 아닐 경우 다시 무한루프로 돌아감
         }
     }
 
+}
+
+fun withoutOverlapping(numberRange: IntRange) : List<Char> { // 중복 제거 함수
+    val randomNumber = numberRange.random().toString() //범위 안에서 난수 생성후 문자열로 치환
+    val numberList = randomNumber.toMutableList() //문자열를 MutableList로 변경
+    val checkedNumberList = numberList.distinct() // 리스트안에 있는 중복 제거
+    return checkedNumberList // 리스트 반환
 }

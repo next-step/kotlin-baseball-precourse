@@ -25,7 +25,8 @@
 
 ## 구현한 기능 목록
 1. main함수를 작성합니다. main함수는 게임을 시작할지 안할지 구별합니다.
-2. createdRandomNumber 난수 생성 함수를 구현하여 중복을 제거하고 컴퓨터가 중복 없는 세 자리 수를 생성 합니다.
+2. createdRandomNumber 난수 생성 함수를 구현하여 중복을 난수를 생성합니다.
+3. withoutOverlapping 함수를 구현하여 중복 제거 기능을 추가합니다. 
 3. startGame 함수를 구현하여 사용자로부터 숫자를 입력받고 3스트라이크면 바로 종료 아니면 진행합니다.
 4. strikeAndBallDecisions 함수를 구현하여  스트라이크와 볼의 개수를 확인합니다.
 5. judgmentOfResult 함수를 구현하여 낫싱 or n스트라이크 n볼을 출력합니다.

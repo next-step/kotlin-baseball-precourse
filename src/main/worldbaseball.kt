@@ -45,6 +45,23 @@ fun strikeAndBallDecisions(checkUserNumber: String, checkRandomNumber : String) 
     return  printResult(strike,ball)
 
 }
+fun userNumberCheck(numbers : String) : Boolean{
+    val numbersList = numbers.toMutableList()
+    val checkedNumbersList = numbersList.distinct()
+    if (checkedNumbersList.size == 3){
+        return true
+
+    }else{
+        return false
+    }
+
+}
+fun isItPossibleToUseUserNumber(userNumberInFunction:String){
+    if(userNumberInFunction.length != 3 || userNumberCheck(userNumberInFunction) == false){
+        throw IllegalArgumentException("A number must be 100~999 ")
+    }
+}
+
 fun createdRandomNumber() : String { // 난수 생성 함수
     while(true) {
         val numberRange = (100..999)

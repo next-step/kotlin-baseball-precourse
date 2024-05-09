@@ -3,7 +3,7 @@ fun main() {
         println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
         val game = readLine()!!
         if (game == "1"){
-            startGame(createdRandomNumber())
+            inputUserNumber(createdRandomNumber())
 
         } else if (game == "2"){
             println("프로그램을 종료합니다.")
@@ -50,24 +50,21 @@ fun printResult(strike : Int, ball : Int) : Boolean {
 
 }
 
-fun startGame(randomNumberInFunction : String){
+fun inputUserNumber(randomNumberInFunction : String){
     while(true){
         println("숫자를 입력해 주세요:")
         var userNumberInFunction : String = readLine()!!
-        if(userNumberInFunction.length != 3 || userNumberCheck(userNumberInFunction) == false){ // 숫자 길이가 3이 아닐시 에러 강제 생성
-            throw IllegalArgumentException("A number must be 100~999 ")
+        isItPossibleToUse(userNumberInFunction)
+        val result = strikeAndBallDecisions(userNumberInFunction,randomNumberInFunction)
+        if (result == true){
             break
-        }else{
-            val result = strikeAndBallDecisions(userNumberInFunction,randomNumberInFunction)
-            if (result == true){
-                break
-            }else if (result == false){
-                continue
-            }
-
+        }else if (result == false){
+            continue
         }
+
     }
 }
+
 
 fun createdRandomNumber() : String { // 난수 생성 함수
     while(true) { // 무한 루프 시작
@@ -98,4 +95,9 @@ fun userNumberCheck(numbers : String) : Boolean{
         return false
     }
 
+}
+fun isItPossibleToUseUserNumber(userNumberInFunction:String){
+    if(userNumberInFunction.length != 3 || userNumberCheck(userNumberInFunction) == false){
+        throw IllegalArgumentException("A number must be 100~999 ")
+    }
 }

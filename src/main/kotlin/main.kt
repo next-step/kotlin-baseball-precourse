@@ -35,10 +35,26 @@ fun userInput() {
     userNumber[2] = inputNumber.substring(2, 3).toInt()
 }
 
-fun judgement() {
+fun judgement(inputNumber: Array<Int?>, answerNumber: Array<Int?>): Pair<Int, Int> {
+    var strike: Int = 0
+    var ball: Int = 0
+
+    inputNumber.forEachIndexed { i, inputNum->
+        if (inputNum == answerNumber[i]) {
+            strike++
+        } else if (inputNum in answerNumber) {
+            ball++
+        }
+    }
+
+    return Pair(strike, ball)
 
 }
 
 fun ExitOrContinue() {
+
+}
+
+fun resetCounts() {
 
 }

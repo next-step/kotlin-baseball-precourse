@@ -106,17 +106,17 @@ class Player {
 
 class InputChecker {
     fun checkThreeDigitInput(userInput: String) {
-        isInt(userInput)
-        isThreeDigit(userInput)
-        notDuplicated(userInput)
+        assertIntType(userInput)
+        assertThreeDigit(userInput)
+        assertDuplication(userInput)
     }
 
     fun checkOneDigitInput(userInput: String) {
-        isInt(userInput)
-        isOneOrTwo(userInput)
+        assertIntType(userInput)
+        assertOneOrTwo(userInput)
     }
 
-    private fun isOneOrTwo(userInput: String) {
+    private fun assertOneOrTwo(userInput: String) {
         val num = userInput.toInt()
         if (num == 1 || num == 2) {
             return
@@ -124,7 +124,7 @@ class InputChecker {
         throw IllegalArgumentException ("입력값이 1 또는 2가 아닙니다.")
     }
 
-    private fun isInt(userInput: String) {
+    private fun assertIntType(userInput: String) {
         try {
             userInput.toInt()
             return
@@ -133,14 +133,14 @@ class InputChecker {
         }
     }
 
-    private fun isThreeDigit(userInput: String) {
+    private fun assertThreeDigit(userInput: String) {
         if (userInput.length == 3) {
             return
         }
         throw IllegalArgumentException ("입력값이 세 자리수가 아닙니다.")
     }
 
-    private fun notDuplicated(userInput: String){
+    private fun assertDuplication(userInput: String){
         if (userInput[0] == userInput[1]) {
             throw IllegalArgumentException ("입력값에 중복이 존재합니다.")
         }

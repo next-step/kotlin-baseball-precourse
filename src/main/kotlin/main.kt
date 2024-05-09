@@ -1,25 +1,25 @@
 import kotlin.random.Random
 
-var status: Boolean = true
+var status: Boolean = true //올바른 입력이 되었는 지
 
 fun main() {
     println("숫자야구 게임 시작")
-    var answer = random()
+    var answer = random() //랜덤 숫자 생성
 //    println(answer.contentToString())
 
-    var continueGame = true
+    var continueGame = true //게임을 계속 할 건지
     while (continueGame) {
         status = true
-        val user = userInput()
+        val user = userInput() //userInput 받기
         val judge = judgement(user, answer)
 
-        if (status == true) {
+        if (status == true) { //userInput이 올바르면 계속
             val display = display(judge)
             println(display)
         }
 
 
-        if (judge.first == 3) {
+        if (judge.first == 3) { //3스트라이크면 게임 종료여부 묻는다
             continueGame = ExitOrContinue()
             answer = random()
 //            println(answer.contentToString())
@@ -48,25 +48,15 @@ fun random(): Array<Int?> { //랜덤 함수: 랜덤으로 숫자 세 개를 생�
 
 fun userInput(): Array<Int?> {
     val userNumber: Array<Int?> = arrayOfNulls<Int>(3)
-
-
     try {
         print("숫자 세 개를 입력해주세요: ")
-        val inputNumber: String = readLine() ?: throw IllegalArgumentException("입력이 없습니다.")
+        val inputNumber: String = readLine() ?: throw IllegalArgumentException("다시 입력해주세요.")
 
-        if (inputNumber.length != 3 || !inputNumber.all { it.isDigit() }) {
-            throw IllegalArgumentException("다시 입력해주세요.")
-            status = false
-        }
+        validateInput(inputNumber) // 입력 값의 유효성 검사를 별도의 함수로 분리
 
         userNumber[0] = inputNumber.substring(0, 1).toInt()
         userNumber[1] = inputNumber.substring(1, 2).toInt()
         userNumber[2] = inputNumber.substring(2, 3).toInt()
-
-        if (userNumber[0] == userNumber[1] || userNumber[1] == userNumber[2] || userNumber[0] == userNumber[2]) {
-            throw IllegalArgumentException("중복 숫자입니다.")
-            status = false
-        }
     } catch (e: IllegalArgumentException) {
         println(e.message)
         status = false
@@ -75,15 +65,27 @@ fun userInput(): Array<Int?> {
     return userNumber
 }
 
+fun validateInput(inputNumber: String) { //input 의 유효성 검사
+    if (inputNumber.length != 3 || !inputNumber.all { it.isDigit() }) { //입력이 올바르지 않을 때 (길이 3 x, 숫자 아니거나)
+        throw IllegalArgumentException("다시 입력해주세요.")
+
+    }
+
+    val digits = inputNumber.map { it.toString().toInt() } //중복일 때
+    if (digits.distinct().size != 3) {
+        throw IllegalArgumentException("중복 숫자입니다.")
+    }
+}
+
 
 fun judgement(inputNumber: Array<Int?>, answerNumber: Array<Int?>): Pair<Int, Int> {
     var strike: Int = 0
     var ball: Int = 0
 
     inputNumber.forEachIndexed { i, inputNum->
-        if (inputNum == answerNumber[i]) {
+        if (inputNum == answerNumber[i]) { //위치가 같으면 스트라이크
             strike++
-        } else if (inputNum in answerNumber) {
+        } else if (inputNum in answerNumber) { //들어만 있으면 볼
             ball++
         }
     }
@@ -100,8 +102,8 @@ fun ExitOrContinue(): Boolean {
 }
 
 fun display(res: Pair<Int, Int>): String {
-    val strike = res.first
-    val ball = res.second
+    val strike = res.first //페어의 첫번째 값 스트라이크
+    val ball = res.second //페어의 두번째 값 볼
 
     if (strike == 0 && ball == 0) return "낫싱"
     else if (strike == 3) return "정답입니다"

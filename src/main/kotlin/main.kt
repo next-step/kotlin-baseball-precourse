@@ -4,7 +4,7 @@ fun main() {
 
 }
 
-fun random() { //랜덤 함수: 랜덤으로 숫자 세 개를 생성한다.
+fun random(): Array<Int?> { //랜덤 함수: 랜덤으로 숫자 세 개를 생성한다.
     val ranNumber: Array<Int?> = arrayOfNulls<Int>(3)
     val set: HashSet<Int> = HashSet()
 
@@ -19,6 +19,8 @@ fun random() { //랜덤 함수: 랜덤으로 숫자 세 개를 생성한다.
     for (i in 0..2) {
         ranNumber[i] = list[i] //리스트에 담아주기
     }
+
+    return ranNumber
 }
 
 fun userInput() {

@@ -1,16 +1,9 @@
 import kotlin.random.Random
 
+var status: Boolean = true
+
 fun main() {
-    println("숫자야구 게임 시작")
-
-    while (true) {
-        val answer = random()
-        val user = userInput()
-        val judge = judgement(user, answer)
-
-        if (ExitOrContinue()) continue
-        else break
-    }
+    
 }
 
 fun random(): Array<Int?> { //랜덤 함수: 랜덤으로 숫자 세 개를 생성한다.
@@ -34,19 +27,33 @@ fun random(): Array<Int?> { //랜덤 함수: 랜덤으로 숫자 세 개를 생�
 
 fun userInput(): Array<Int?> {
     val userNumber: Array<Int?> = arrayOfNulls<Int>(3)
-    print("숫자 세 개를 입력해주세요: ")
-    val inputNumber: String = readLine() ?: throw IllegalArgumentException("입력이 없습니다.")
 
-    if (inputNumber.length != 3 || !inputNumber.all { it.isDigit() }) {
-        throw IllegalArgumentException("다시 입력해주세요.")
+
+    try {
+        print("숫자 세 개를 입력해주세요: ")
+        val inputNumber: String = readLine() ?: throw IllegalArgumentException("입력이 없습니다.")
+
+        if (inputNumber.length != 3 || !inputNumber.all { it.isDigit() }) {
+            throw IllegalArgumentException("다시 입력해주세요.")
+            status = false
+        }
+
+        userNumber[0] = inputNumber.substring(0, 1).toInt()
+        userNumber[1] = inputNumber.substring(1, 2).toInt()
+        userNumber[2] = inputNumber.substring(2, 3).toInt()
+
+        if (userNumber[0] == userNumber[1] || userNumber[1] == userNumber[2] || userNumber[0] == userNumber[2]) {
+            throw IllegalArgumentException("중복 숫자입니다.")
+            status = false
+        }
+    } catch (e: IllegalArgumentException) {
+        println(e.message)
+        status = false
     }
-
-    userNumber[0] = inputNumber.substring(0, 1).toInt()
-    userNumber[1] = inputNumber.substring(1, 2).toInt()
-    userNumber[2] = inputNumber.substring(2, 3).toInt()
 
     return userNumber
 }
+
 
 fun judgement(inputNumber: Array<Int?>, answerNumber: Array<Int?>): Pair<Int, Int> {
     var strike: Int = 0

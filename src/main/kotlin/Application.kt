@@ -2,13 +2,15 @@ import kotlin.random.Random
 
 fun main(){
     var continueGame = true
-    val answer = setComputer()
+
+    val answer = setComputer()  //컴퓨터의 선택
     println("Computer : ${answer.joinToString()}")
 
     while(continueGame){
-        val guess = getPlayerInput()
+        val guess = getPlayerInput()    //게임 플레이어가 입력한 숫자
         println("Game Player : ${guess.joinToString()}")
-        val result = compareAnswerGuess(answer,guess)
+        val result = compareAnswerGuess(answer,guess)   //게임 플레이어가 입력한 숫자와 컴퓨터가 선택한 숫자를 비교
+        printResult(result)
     }
 
 }
@@ -35,6 +37,7 @@ fun getPlayerInput(): IntArray {
 }
 
 //컴퓨터가 생각하고 있는 숫자와 게임 플레이어가 입력한 숫자를 비교
+//같은 수가 같은 자리에 있으면 스트라이크, 다른 자리에 있으면 볼, 같은 수가 전혀 없으면 낫싱
 fun compareAnswerGuess(answer: IntArray, guess: IntArray): String {
     var strikes = 0
     var balls = 0
@@ -53,5 +56,14 @@ fun compareAnswerGuess(answer: IntArray, guess: IntArray): String {
         strikes > 0 -> "$strikes strike"
         balls > 0 -> "$balls ball"
         else -> "nothing"
+    }
+}
+
+//비교한 결과를 출력 (3개의 숫자를 모두 맞히지 못한 경우 결과가 힌트의 기능을 함)
+//3개의 숫자를 모두 맞히면 게임 종료
+fun printResult(result: String){
+    println("Result: $result")
+    if (result == "3 strikes"){
+        println("You got all 3 numbers right! Game over")
     }
 }

@@ -11,21 +11,20 @@ fun createNum(): MutableList<Int> {
     return numList
 }
 
-fun checkNum(): MutableList<Int>? {
+fun checkNum(): MutableList<Int> {
     val checkNumList: MutableList<Int> = mutableListOf()
     print("숫자를 입력해 주세요 : ")
-    val input = readLine()?.trim() ?: return null
-    val num = input.toIntOrNull() ?: return null
+    val input = readLine()?.trim() ?: throw IllegalArgumentException("입력 값이 없습니다.")
+    val num = input.toIntOrNull() ?: throw IllegalArgumentException("숫자로 변환할 수 없는 입력입니다.")
 
-    if (input.length != 3) return null
+    if (input.length != 3) throw IllegalArgumentException("3자리 숫자를 입력해야 합니다.")
 
     val hundredDigit = num / 100
     val tenDigit = (num / 10) % 10
     val oneDigit = num % 10
 
     if (hundredDigit == tenDigit || hundredDigit == oneDigit || tenDigit == oneDigit) {
-        println("중복된 숫자는 입력할 수 없습니다.")
-        return null
+        throw IllegalArgumentException("중복된 숫자는 입력할 수 없습니다.")
     }
 
     checkNumList.add(hundredDigit)
@@ -35,8 +34,7 @@ fun checkNum(): MutableList<Int>? {
     return checkNumList
 }
 
-fun isCorrect(list1: MutableList<Int>, list2: MutableList<Int>?): Boolean {
-    if (list2 == null) return false
+fun isCorrect(list1: MutableList<Int>, list2: MutableList<Int>): Boolean {
     var strike = 0
     var ball = 0
 
@@ -62,7 +60,7 @@ fun isCorrect(list1: MutableList<Int>, list2: MutableList<Int>?): Boolean {
 
 fun newGameSelect(): Boolean {
     println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
-    val restart = readLine()?.toIntOrNull()
+    val restart = readLine()?.toIntOrNull() ?: throw IllegalArgumentException("숫자 입력이 필요합니다.")
     return when (restart) {
         1 -> true
         else -> false
@@ -70,22 +68,22 @@ fun newGameSelect(): Boolean {
 }
 
 fun main() {
-    var continueGame = true
-    val computerList = createNum()
+    try {
+        var continueGame = true
+        val computerList = createNum()
 
-    while (continueGame) {
-        val playerList = checkNum()
-        if (playerList == null) {
-            println("잘못된 입력입니다.")
-            continue
-        }
-        val isGameEnd = isCorrect(computerList, playerList)
-        if (isGameEnd) {
-            continueGame = newGameSelect()
-            if (continueGame) {
-                main()
-                return
+        while (continueGame) {
+            val playerList = checkNum()
+            val isGameEnd = isCorrect(computerList, playerList)
+            if (isGameEnd) {
+                continueGame = newGameSelect()
+                if (continueGame) {
+                    main()
+                    return
+                }
             }
         }
+    } catch (e: IllegalArgumentException) {
+        println(e.message)
     }
 }

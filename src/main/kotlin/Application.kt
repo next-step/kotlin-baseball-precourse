@@ -11,7 +11,7 @@ class BaseballGame {
         }
     }
     //숫자 맞히기
-    private fun performPlayerAction(answer: IntArray) {
+     fun performPlayerAction(answer: IntArray) {
         var continueInput = true
         while (continueInput) {
             //println("Computer : ${answer.joinToString()}")    //테스트를 위한 코드
@@ -21,7 +21,7 @@ class BaseballGame {
         }
     }
     //컴퓨터가 1에서 9까지 서로 다른 임의의 수 3개 선택
-    private fun setComputer(): IntArray {
+    fun setComputer(): IntArray {
         val answer = mutableListOf<Int>()
         while (answer.size < 3) {
             answer.add(Random.nextInt(1, 10))
@@ -29,7 +29,7 @@ class BaseballGame {
         return answer.toIntArray()
     }
     //게임 플레이어가 1에서 9까지 3개의 숫자를 입력
-    private fun getPlayerInput(): IntArray {
+    fun getPlayerInput(): IntArray {
         println("Enter three numbers (without blanks like 123): ")
         val input = readLine()
         val guess = input?.let {
@@ -41,7 +41,7 @@ class BaseballGame {
     }
     //컴퓨터가 선택한 숫자와 게임 플레이어가 입력한 숫자를 비교
     //같은 수가 같은 자리에 있으면 스트라이크, 다른 자리에 있으면 볼, 같은 수가 전혀 없으면 낫싱
-    private fun compareAnswerGuess(answer: IntArray, guess: IntArray): String {
+    fun compareAnswerGuess(answer: IntArray, guess: IntArray): String {
         var strikes = 0
         var balls = 0
 
@@ -63,7 +63,7 @@ class BaseballGame {
     }
     //비교한 결과를 출력 (3개의 숫자를 모두 맞히지 못한 경우 결과가 힌트의 기능을 함)
     //3개의 숫자를 모두 맞히면 게임 종료
-    private fun printResult(result: String): Boolean {
+    fun printResult(result: String): Boolean {
         println("Result: $result")
         if (result == "3 strikes") {
             println("You got all 3 numbers right! Game over")
@@ -71,7 +71,7 @@ class BaseballGame {
         } else return true
     }
     //게임이 종료된 후 게임을 다시 시작하거나 완전히 종료
-    private fun confirmGameExit(): Boolean {
+    fun confirmGameExit(): Boolean {
         println("Enter 1 to start a new game or 2 to end the game")
         val input = readLine()?.trim()
         return when (input) {

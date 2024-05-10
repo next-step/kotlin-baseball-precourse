@@ -5,9 +5,9 @@ fun main(){
 
     while(continueGame){
         val answer = setComputer()  //컴퓨터의 선택
-        //println("Computer : ${answer.joinToString()}")
+        //println("Computer : ${answer.joinToString()}")    //테스트를 위한 코드
         performPlayerAction(answer)
-        continueGame = confirmGameExit()
+        continueGame = confirmGameExit()    //완전히 종료 or 새로운 게임 실행
     }
 
 }
@@ -15,9 +15,9 @@ fun main(){
 fun performPlayerAction(answer: IntArray){
     var continueInput = true
     while(continueInput){
-        println("Computer : ${answer.joinToString()}")
+        //println("Computer : ${answer.joinToString()}")    //테스트를 위한 코드
         val guess = getPlayerInput()    //게임 플레이어가 입력한 숫자
-        println("Game Player : ${guess.joinToString()}")
+        //println("Game Player : ${guess.joinToString()}")
         val result = compareAnswerGuess(answer,guess)   //게임 플레이어가 입력한 숫자와 컴퓨터가 선택한 숫자를 비교
         continueInput = printResult(result)
     }

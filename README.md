@@ -5,8 +5,12 @@
 - https://github.com/DeveloperBaa/kotlin-baseball-precourse/blob/DeveloperBaa/untitled/src/main/Application.kt
 
 
+<<<<<<< HEAD
    ![image](https://github.com/DeveloperBaa/kotlin-baseball-precourse/assets/106180966/5d77b373-4c69-4f43-bb13-2f833514c02f)
 
+=======
+   <img width="330" alt="image" src="https://github.com/DeveloperBaa/kotlin-baseball-precourse/assets/106180966/f4ef4c06-0d6d-4275-ae18-4e63d498e937">
+>>>>>>> parent of 6d3117f (Update README.md)
 
 
   - IntelliJ IDEA로 실행

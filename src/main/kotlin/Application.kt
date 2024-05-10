@@ -33,8 +33,8 @@ class BaseballGame {
         println("Enter three numbers (without blanks like 123): ")
         val input = readLine()
         val guess = input?.let {
-            if (it.length != 3 || !it.all { char -> char.isDigit() })
-                throw IllegalArgumentException("Input must be three digits!")
+            if (it.length != 3 || !it.all { char -> char.isDigit() }|| it.contains('0'))
+                throw IllegalArgumentException("Input must be three non-zero digits!")
             it.map { char -> char.toString().toInt() }.toIntArray()
         } ?: throw IllegalArgumentException("No input provided!")
         return guess

@@ -3,16 +3,24 @@ import kotlin.random.Random
 fun main(){
     var continueGame = true
 
-    val answer = setComputer()  //컴퓨터의 선택
-    println("Computer : ${answer.joinToString()}")
-
     while(continueGame){
+        val answer = setComputer()  //컴퓨터의 선택
+        //println("Computer : ${answer.joinToString()}")
+        performPlayerAction(answer)
+        continueGame = confirmGameExit()
+    }
+
+}
+
+fun performPlayerAction(answer: IntArray){
+    var continueInput = true
+    while(continueInput){
+        println("Computer : ${answer.joinToString()}")
         val guess = getPlayerInput()    //게임 플레이어가 입력한 숫자
         println("Game Player : ${guess.joinToString()}")
         val result = compareAnswerGuess(answer,guess)   //게임 플레이어가 입력한 숫자와 컴퓨터가 선택한 숫자를 비교
-        printResult(result)
+        continueInput = printResult(result)
     }
-
 }
 
 //컴퓨터가 1에서 9까지 서로 다른 임의의 수 3개 선택
@@ -61,9 +69,24 @@ fun compareAnswerGuess(answer: IntArray, guess: IntArray): String {
 
 //비교한 결과를 출력 (3개의 숫자를 모두 맞히지 못한 경우 결과가 힌트의 기능을 함)
 //3개의 숫자를 모두 맞히면 게임 종료
-fun printResult(result: String){
+fun printResult(result: String):Boolean{
     println("Result: $result")
     if (result == "3 strikes"){
         println("You got all 3 numbers right! Game over")
+        return false
+    } else return true
+}
+
+//게임을 종료한 후 게임을 다시 시작하거나 완전히 종료
+fun confirmGameExit():Boolean{
+    println("Enter 1 to start a new game or 2 to end the game")
+    val input = readLine()?.trim()
+    return when (input) {
+        "1" -> true
+        "2" -> false
+        else -> {
+            println("Invalid input. Please enter 1 for new game or 2 to exit.")
+            confirmGameExit()
+        }
     }
 }

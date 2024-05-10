@@ -1,8 +1,8 @@
 import kotlin.random.Random
 
 fun main(){
-    val answer = setComputer()
-    println("Computer : ${answer.joinToString()}")
+    //val answer = setComputer()
+    //println("Computer : ${answer.joinToString()}")
     val guess = getPlayerInput()
     println("Game Player : ${guess.joinToString()}")
 }

@@ -27,3 +27,4 @@ fun getPlayerInput(): IntArray {
     } ?: throw IllegalArgumentException("No input provided!")
     return guess
 }
+

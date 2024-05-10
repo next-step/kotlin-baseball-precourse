@@ -45,44 +45,42 @@ fun isCorrect(list1: MutableList<Int>, list2: MutableList<Int>): Boolean {
             ball += 1
     }
 
+    printResult(strike, ball)
+    return strike == 3
+}
+
+fun printResult(strike: Int, ball: Int) {
     when {
-        strike == 3 -> {
-            println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
-            return true
-        }
+        strike == 3 -> println("3개의 숫자를 모두 맞히셨습니다! 게임 종료")
         strike > 0 && ball > 0 -> println("${ball}볼 ${strike}스트라이크")
         strike > 0 && ball <= 0 -> println("${strike}스트라이크")
         strike <= 0 && ball > 0 -> println("${ball}볼")
         else -> println("낫싱")
     }
-    return false
 }
 
 fun newGameSelect(): Boolean {
     println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
     val restart = readLine()?.toIntOrNull() ?: throw IllegalArgumentException("숫자 입력이 필요합니다.")
-    return when (restart) {
-        1 -> true
-        else -> false
+    return restart == 1
+}
+
+fun playGame() {
+    val computerList = createNum()
+
+    var isGameEnd = false
+    while (!isGameEnd) {
+        val playerList = checkNum()
+        isGameEnd = isCorrect(computerList, playerList)
+        if (isGameEnd) {
+            isGameEnd = !newGameSelect()
+        }
     }
 }
 
 fun main() {
     try {
-        var continueGame = true
-        val computerList = createNum()
-
-        while (continueGame) {
-            val playerList = checkNum()
-            val isGameEnd = isCorrect(computerList, playerList)
-            if (isGameEnd) {
-                continueGame = newGameSelect()
-                if (continueGame) {
-                    main()
-                    return
-                }
-            }
-        }
+        playGame()
     } catch (e: IllegalArgumentException) {
         println(e.message)
     }

@@ -6,10 +6,10 @@ class GameManager {
 
             val computer = Computer(RandomNumberGenerator().setNumber())
             val player = Player()
-            val inputChecker = InputChecker()
+            val inputValidator = InputValidator()
 
-            playGame(gameStateManager, player, computer, inputChecker)
-            val userInput = player.getUserGameStatusInput(inputChecker)
+            playGame(gameStateManager, player, computer, inputValidator)
+            val userInput = player.getUserGameStatusInput(inputValidator)
             when (userInput) {
                 1 -> continue
                 2 -> gameStateManager.changeGameState(GameState.End)
@@ -17,9 +17,9 @@ class GameManager {
         }
     }
 
-    private fun playGame(gameStateManager: GameStateManager, player: Player, computer: Computer, inputChecker: InputChecker) {
+    private fun playGame(gameStateManager: GameStateManager, player: Player, computer: Computer, inputValidator: InputValidator) {
         while (gameStateManager.getGameState() == GameState.OnGoing) {
-            val userInput = player.getUserNumberInput(inputChecker)
+            val userInput = player.getUserNumberInput(inputValidator)
             computer.printResult(userInput, gameStateManager)
         }
     }

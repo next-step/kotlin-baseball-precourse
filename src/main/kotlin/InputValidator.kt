@@ -1,11 +1,11 @@
-class InputChecker {
-    fun checkThreeDigitInput(userInput: String) {
+class InputValidator {
+    fun validateThreeDigitInput(userInput: String) {
         assertIntType(userInput)
         assertThreeDigit(userInput)
         assertDuplication(userInput)
     }
 
-    fun checkOneDigitInput(userInput: String) {
+    fun validateOneDigitInput(userInput: String) {
         assertIntType(userInput)
         assertOneOrTwo(userInput)
     }

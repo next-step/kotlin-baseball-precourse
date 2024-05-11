@@ -3,10 +3,10 @@ class Player {
         return readlnOrNull() ?: ""
     }
 
-    fun getUserNumberInput(inputChecker: InputChecker): Array<Int> {
+    fun getUserNumberInput(inputValidator: InputValidator): Array<Int> {
         print("숫자를 입력해 주세요 : ")
         val userInput: String = getUserInput()
-        inputChecker.checkThreeDigitInput(userInput)
+        inputValidator.validateThreeDigitInput(userInput)
 
         return getArrayInput(userInput)
     }
@@ -20,10 +20,10 @@ class Player {
         return result
     }
 
-    fun getUserGameStatusInput(inputChecker: InputChecker): Int {
+    fun getUserGameStatusInput(inputValidator: InputValidator): Int {
         println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.")
         val userInput: String = getUserInput()
-        inputChecker.checkOneDigitInput(userInput)
+        inputValidator.validateOneDigitInput(userInput)
 
         return userInput.toInt()
     }

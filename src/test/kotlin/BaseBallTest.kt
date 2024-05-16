@@ -9,7 +9,7 @@ class BaseBallTest {
 
     @Test
     @DisplayName("1에서 9까지 서로 다른 수로 이루어진 세 자리 수 생성")
-    fun randomNumberValidateAssertion() {
+    fun testGenerateValidNumber() {
         // given
         val randomNumberGenerator = RandomNumberGenerator()
 
@@ -34,7 +34,7 @@ class BaseBallTest {
        inner class ThreeDigitInputValidationTest {
            @Test
            @DisplayName("세 자리 수를 입력하지 않은 경우 예외 발생")
-           fun digitExceptionTest() {
+           fun testThrowsExceptionIfInputIsOneDigit() {
                // when
                val playerInput = "1"
 
@@ -44,7 +44,7 @@ class BaseBallTest {
 
            @Test
            @DisplayName("숫자 외의 값을 입력한 경우 예외 발생")
-           fun typeExceptionTest() {
+           fun testThrowsExceptionIfTypeIsNotInt() {
                // when
                val playerInput = "hello"
 
@@ -54,7 +54,7 @@ class BaseBallTest {
 
            @Test
            @DisplayName("동일한 숫자를 여러번 입력한 경우 예외 발생")
-           fun duplicationExceptionTest() {
+           fun testThrowsExceptionIfInputHasDuplication() {
                // when
                val playerInput = "131"
 
@@ -64,7 +64,7 @@ class BaseBallTest {
 
            @Test
            @DisplayName("0이 입력값에 포함된 경우 예외 발생")
-           fun includeZeroExceptionTest() {
+           fun testThrowsExceptionIfInputContainsZero() {
                // when
                val playerInput = "012"
 
@@ -79,7 +79,7 @@ class BaseBallTest {
 
             @Test
             @DisplayName("1이나 2를 입력한 경우 예외 발생하지 않음.")
-            fun success() {
+            fun testSuccessIfInputIsValid() {
                 // when
                 val oneOrTwo = (1..2).random()
                 val playerInput = oneOrTwo.toString()
@@ -89,18 +89,19 @@ class BaseBallTest {
             }
 
             @Test
-            @DisplayName("")
-            fun digitExceptionTest() {
+            @DisplayName("한 자리 수가 아닌 값을 입력한 경우 예외 발생")
+            fun testThrowsExceptionIfInputIsNotOneDigit() {
                 // when
                 val exceptionNumber = (3 .. 10000).random()
                 val playerInput = exceptionNumber.toString()
 
+                // then
                 assertThrows(IllegalArgumentException::class.java) { inputValidator.validateOneDigitInput(playerInput) }
             }
 
             @Test
             @DisplayName("숫자 외의 값을 입력한 경우 예외 발생")
-            fun typeExceptionTest() {
+            fun testThrowsExceptionIfTypeIsNotInt() {
                 // when
                 val playerInput = "hello"
 

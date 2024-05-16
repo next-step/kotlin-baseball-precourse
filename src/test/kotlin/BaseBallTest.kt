@@ -32,6 +32,17 @@ class BaseBallTest {
        @Nested
        @DisplayName("세 자리 수 입력값 유효성 검사 테스트")
        inner class ThreeDigitInputValidationTest {
+
+           @Test
+           @DisplayName("유효한 값이 입력되었을 때, 예외 발생하지 않음.")
+           fun testSuccessIfInputIsValid() {
+               // when
+               val playerInput = "123"
+
+               // then
+               assertDoesNotThrow { inputValidator.validateThreeDigitInput(playerInput) }
+           }
+
            @Test
            @DisplayName("세 자리 수를 입력하지 않은 경우 예외 발생")
            fun testThrowsExceptionIfInputIsOneDigit() {

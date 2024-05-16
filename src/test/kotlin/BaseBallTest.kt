@@ -1,10 +1,9 @@
-import org.junit.jupiter.api.Assertions.assertFalse
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Assertions.assertThrows
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertDoesNotThrow
-import java.util.stream.IntStream.range
 
 class BaseBallTest {
 
@@ -18,8 +17,10 @@ class BaseBallTest {
         val randomNumber = randomNumberGenerator.setNumber()
 
         // then
-        assert(randomNumber.toSet().size == 3) { "생성된 수는 서로 다른 숫자여야 합니다." }
-        assertFalse(randomNumber.contains(0)) { "생성된 수에 0을 포함할 수 없습니다." }
+        assertThat(randomNumber)
+            .isSubsetOf(listOf(1, 2, 3, 4, 5, 6, 7, 8, 9))
+            .doesNotHaveDuplicates()
+            .hasSize(3)
     }
 
     @Nested
